@@ -21,8 +21,8 @@ import CollectorSocial from './components/collect/social.component';
 import CollectorBanner from './components/collect/banner.component';
 import CollectorEmail from './components/collect/email/manage.component';
 import CollectorSMS from './components/collect/sms/manage.component';
-import ExecutiveReport from './components/executive-report.component';
-import RedirectClientSurvey from './components/redirect-client-survey.component';
+// import ExecutiveReport from './components/executive-report.component';
+// import RedirectClientSurvey from './components/redirect-client-survey.component';
 import PreviewClientSurvey from './components/preview-client-survey.component';
 import Login from './components/login.component';
 import Register from './components/register.component';
@@ -64,7 +64,7 @@ const App: React.FC = () => {
                     <Route path='/:xSite/collect/banner/:id' component={ CollectorBanner } />
                     <Route path='/:xSite/collect/sms/:id' component={ CollectorSMS } />
                     <Route path='/:xSite/collect/email/:id' component={ CollectorEmail } />
-                    <Route path='/:xSite/executive-report' component={ ExecutiveReport } />
+                    {/* <Route path='/:xSite/executive-report' component={ ExecutiveReport } /> */}
                     <Route path='/:xSite/dashboard' component={ Dashboard } />
                     <Route path='/:xSite/' component={ Dashboard } />
                 </Switch>
