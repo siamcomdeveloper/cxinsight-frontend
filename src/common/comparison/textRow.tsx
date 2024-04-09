@@ -49,7 +49,8 @@ const textRow: React.StatelessComponent<IProps> = (props) => {
                         { props.answer.tags && props.question.analyze_entity && !props.question.analyze_sentiment ?
                         <div>
                             <Divider style={{ fontSize: '18px', color: 'black', fontStyle: 'italic' }} >WORD CLOUD</Divider>
-                            <TagCloud data={props.answer.tags} height={200} color={""} />
+                            {/* <TagCloud data={props.answer.tags} height={200} color={""} /> */}
+                            <TagCloud data={props.answer.tags} height={200} />
                             <div className="comment-list">
                                 <Collapse accordion>
                                     <Panel header="comment" key="comment">
