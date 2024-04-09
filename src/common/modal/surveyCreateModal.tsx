@@ -109,7 +109,7 @@ class surveyCreateModal extends React.Component<IProps, IState> {
                 <Modal 
                     className="create-survey-modal"
                     // title="Name Your survey"
-                    // title={<div>Name Your survey <Tooltip title={'โดยผู้ทำแบบสอบถามจะเห็นชื่อที่ต้ังนี้ แนะนำให้ตั้งชื่อให้สอดคล้องกับแบบสอบถาม ตัวอย่างเช่น ถ้าเป็นแบบสอบถามเกี่ยวกับความพึงพอใจของลูกค้าที่มีต่อ Sales Gallery ก็ตั้งควรตั้งชื่อ "แบบสอบถามความพึงพอใจของลูกค้าที่มีต่อ Sales Gallery"'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> </div>}
+                    
                     title={<div>Name Your survey</div>}
                     // title={<div><Divider style={{ fontSize: '18px', color: 'black', fontStyle: 'italic', textAlign: 'center' }} >{this.props.surveyTouchpoint} Touchpoint</Divider>Name Your survey</div>}
                     visible={this.state.visible}

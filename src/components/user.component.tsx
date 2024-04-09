@@ -88,34 +88,6 @@ export default class User extends React.Component<IProps, IState>{
                                             }, () => {
                                                 ReactDOM.render(<UserForm userData={this.state.userData} surveys={this.state.surveys} handleHistoryPush={this.handleHistoryPush} history={this.props.history} match={this.props.match}></UserForm>, document.getElementById("userForm")); 
                                             });
-                                            
-
-                                            // BaseService.get(this.props.match.params.xSite ,"/projects", '', jwtToken).then(
-                                            //     (rp) => {
-                                            //         try{
-                                            //             if (rp.Status) {
-                                            //                 // console.log('get projects rp', rp);
-                                            //                 // console.log('get projects rp.Data', rp.Data);
-                                            //                 // console.log('get projects rp.Data.result', rp.Data.result);
-                                            //               // console.log('get projects rp.Data.result.recordset', rp.Data.result.recordset);
-                                    
-                                            //                 this.setState({
-                                            //                     projects: rp.Data.result.recordset,
-                                            //                 }, () => {
-                                            //                     ReactDOM.render(<UserForm userData={this.state.userData} surveys={this.state.surveys} projects={this.state.projects} handleHistoryPush={this.handleHistoryPush}></UserForm>, document.getElementById("userForm"));
-                                            //                 });
-                                    
-                                            //             } else {
-                                            //                 toastr.error(rp.Messages);
-                                            //                 console.log("Messages: " + rp.Messages);
-                                            //                 console.log("Exception: " + rp.Exception);
-                                            //             }
-                                            //         } catch(error){
-                                            //             toastr.error(rp.Messages + ' - something went wrong!');
-                                            //           // console.log("Exception: " + error);
-                                            //         }
-                                            //     }
-                                            // );
                     
                                         } else {
                                             // toastr.error(rp.Messages);
@@ -155,8 +127,7 @@ export default class User extends React.Component<IProps, IState>{
                     <div className="site-card-border-less-wrapper">
                         <Card bordered={true} style={{ width: 350, marginTop: 50, marginBottom: 50}}>
                             <div style={{ textAlign: 'center' }}>
-                                {/* <img style={{ width: '150px' }} src="https://dl.dropboxusercontent.com/s/nmt9tk5mox7a5nj/ICON%20ANALYTICS_New.png?dl=0" alt="ICONSURVEY"/> */}
-                                <img style={{ width: '150px' }} src={logo} alt="ICONSURVEY"/>
+                                <img style={{ width: '150px' }} src={logo} alt="SURVEY"/>
                             </div>
                             <Divider style={{ fontSize: '18px', color: 'black', fontStyle: 'italic' }} >Update User Profile</Divider>
                             <div id="userForm"></div>

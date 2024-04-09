@@ -23,59 +23,8 @@ import HeaderSurvey from '../../common/header';
 import Project from '../../models/project';
 
 import SurveyReNicknameModal from '../../common/modal/surveyRenicknameModal';
-// import { Cipher } from 'crypto';
 
-// import '../css/wds-charts.4_16_1.min.css';
-// import '../css/survey-summary.css';
-// import '../css/side-bar.css';
-// import '../css/survey-info-stats.css';
-// import '../css/status-card-survey-status.css';
-// import '../css/status-card-response-count.css';
-// import '../css/collector-list.css';
 const { Option, OptGroup } = Select;
-
-// const menu = (id: any) => (
-//     <Menu>
-//         <Menu.Item key="edit">
-//             <a href={'/cxm/platform/${this.props.match.params.xSite}/edit/' + id} style={{ textDecoration: 'none' }}><Icon type="edit" /> Edit collector</a>
-//         </Menu.Item>
-//         <Menu.Item key="close">
-//             {/* <Link to={"/edit/" + id}><Icon type="edit" />  Edit</Link> */}
-//             <a  href="# " onClick={()=>Close(Number(id))} style={{ textDecoration: 'none' }}><Icon type="close" /> Close collector</a>
-//         </Menu.Item>
-//         <Menu.Item key="delete">
-//             {/* <Link to={"#"} onClick={()=>Del(Number(id))}><Icon type="delete" />  Delete</Link> */}
-//             <a  href="# " onClick={()=>Del(Number(id))} style={{ textDecoration: 'none' }}><Icon type="delete" />  Delete collector</a>
-//         </Menu.Item>
-//         <Menu.Item key="rename">
-//             <a  href="# " onClick={()=>Rename(Number(id))} style={{ textDecoration: 'none' }}><Icon type="edit" />  Rename collector</a>
-//         </Menu.Item>
-//     </Menu>
-// );
-
-// function Del(ID:number) {
-//   // console.log("Del click", ID);
-//     // BaseService.delete(this.props.match.params.xSite, "/surveys/", ID).then(
-//     //     (rp) => {
-//     //         if (rp.Status) {
-//     //             toastr.success(rp.Messages);    
-//     //             window.location.reload();
-//     //         } else { 
-//     //             toastr.error(rp.Messages);
-//     //             console.log("Messages: " + rp.Messages);
-//     //             console.log("Exception: " + rp.Exception);
-//     //         }
-//     //     }
-//     // );
-// }
-
-// function Rename(ID:number) {
-//   // console.log("Rename click", ID);
-// }
-
-// function Close(ID:number) {
-//   // console.log("Close click", ID);
-// }
 
 interface IProps { 
     history: History;
@@ -327,7 +276,7 @@ export default class CollectorDashboard extends React.Component<IProps, IState> 
                                 name: '',
                                 survey_id: current_survey_id,
                                 type: typeId,
-                                link: `www.iconcxm.com/sv/${current_survey_id}/${typeId}`
+                                link: `https://cxinsight-frontend-client.onrender.com/douglas/sv/${current_survey_id}/${typeId}`
                             },
                             collectorType: typeName,
                             selectCollector: "ADD NEW COLLECTOR"
@@ -348,65 +297,6 @@ export default class CollectorDashboard extends React.Component<IProps, IState> 
         );
 
     }
-
-    // private onSave = () => {
-
-    //   // console.log('Edit component onSave()');
-
-    //     // const nextState = {
-    //     //     ...this.state,
-    //     //     survey: {
-    //     //         ...this.state.survey,
-    //     //         ['id']: this.state.survey['id'],
-    //     //         ['template_id']: this.state.survey['template_id']
-    //     //     }
-    //     // };
-
-    //     // console.log(nextState);
-    //     // this.setState(nextState);
-
-    //     //remove unnessary value
-    //     // delete this.state.survey['id'];
-    //     // delete this.state.survey['name'];
-    //     // delete this.state.survey['template_id'];
-    //     delete this.state.survey['status'];
-    //     delete this.state.survey['num_page'];
-    //     delete this.state.survey['num_question'];
-    //     delete this.state.survey['total_responses'];
-    //     delete this.state.survey['normal_responses'];
-    //     delete this.state.survey['good_responses'];
-    //     delete this.state.survey['bad_responses'];
-    //     delete this.state.survey['responses_volume_id'];
-    //     delete this.state.survey['alert_status'];
-    //     delete this.state.survey['completion_rate'];
-    //     delete this.state.survey['time_spent'];
-    //     delete this.state.survey['num_collector'];
-    //     delete this.state.survey['notification_status'];
-    //     delete this.state.survey['active'];
-    //     // delete this.state.survey['created_date'];
-    //     delete this.state.survey['created_at'];
-    //     // delete this.state.survey['modified_date'];
-    //     delete this.state.survey['modified_at'];
-    //     delete this.state.survey['deleted_at'];
-    //     delete this.state.survey['template_name'];
-
-    //     // this.setState(this.state.survey.template_id);
-    //   // console.log(this.state.survey);
-    //     BaseService.update<Surveys>("/surveys/", this.props.match.params.id, this.state.survey).then(
-    //         (rp) => {
-    //             if (rp.Status) {
-    //                 toastr.success('Survey updated.');
-    //                 // this.props.history.goBack();
-    //                 this.props.history.push(`/${this.props.match.params.xSite}`);
-    //             } else {
-    //                 toastr.error(rp.Messages);
-    //                 console.log("Messages: " + rp.Messages);
-    //                 console.log("Exception: " + rp.Exception);
-    //             }
-    //         }
-    //     );
-
-    // }
 
     handleSelectChange = (typeId: any) => {
       // console.log(`handleSelectChange`, typeId);
@@ -448,75 +338,7 @@ export default class CollectorDashboard extends React.Component<IProps, IState> 
 
         if(this.state.totalCollectors > 0){
 
-            if(this.props.match.params.xSite === 'realasset'){
-
-                const jwtToken = await refreshJwtToken(this.props.match.params.xSite, getJwtToken());
-                // console.log(`jwtToken`, jwtToken);
-
-                // console.log('BaseService.getJSON(this.props.match.params.xSite, "/employees")');
-
-                // BaseService.get<Collector>(this.props.match.params.xSite, '/collector/list/', this.props.match.params.id, jwtToken).then(
-                employeeElement = await BaseService.getJSON(this.props.match.params.xSite, "/employees", '', jwtToken).then((rp) => {
-                    try{
-                        if (rp.Status) {
-                            // console.log('employees rp', rp);
-                            // console.log('employees rp.Data', rp.Data);
-                            // console.log('employees rp.Data.result', rp.Data.result);
-                            const employees = rp.Data.result;
-
-                            // console.log('employees rp.Data.result.length', rp.Data.result.length);
-                            
-                            const numEmployee = employees.length;
-                            // console.log('numEmployee', numEmployee);
-                
-                            // <OptGroup label="Manager">
-                            //     <Option value="001">Jack</Option>
-                            //     <Option value="200">Lucy</Option>
-                            // </OptGroup>
-                            //     <OptGroup label="Engineer">
-                            //     <Option value="030">yiminghe</Option>
-                            // </OptGroup>
-                    
-                            let employeeNode = new Array<any>(numEmployee);
-                            for(let i = 0; i < employeeNode.length; i++) { employeeNode[i] = ''; }
-
-                            let departmentIDList = [] as any;
-                            let departmentNameList = [] as any;
-
-                            //Genarate Department list
-                            employees.map((employeeData: any, i: any) => {  if (departmentIDList.indexOf(employeeData.DepartmentID) === -1){ departmentIDList.push(employeeData.DepartmentID);  departmentNameList.push(employeeData.DepartmentName); } });
-
-                            //create a new employeeInDepartmentList
-                            let employeeInDepartmentList = new Array<any>(departmentIDList.length);
-                            for(let i = 0; i < employeeInDepartmentList.length; i++) { employeeInDepartmentList[i] = [] as any; }
-
-                            // console.log('employeeInDepartmentList', employeeInDepartmentList);
-                            //Put employees in Department list
-                            departmentIDList.map((departmentID: any, index: any) => {  employees.map((employeeData: any, i: any) => {  if (employeeData.DepartmentID === departmentID){ employeeInDepartmentList[index].push(employeeData); } }); });
-                                
-                            // console.log('departmentIDList', departmentIDList);
-                            // console.log('departmentNameList', departmentNameList);
-                            // console.log('employeeInDepartmentList', employeeInDepartmentList);
-
-                            const nodeElements = employeeInDepartmentList.map((departmentList: any, index: any) => this.getEmployeeOptions(departmentNameList, departmentList, index));
-                            
-                            // console.log('nodeElements', nodeElements);
-                            return nodeElements;
-                        } else {
-                            toastr.error('Something went wrong!, please refresh the page or try again later.');
-                            BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: 'CollectorDashboard collectorList BaseService.getJSON /employees else', message: `Messages: ${rp.Messages} | Exception: ${rp.Exception}` }, getJwtToken()).then( (rp) => { console.log(`Messages: ${rp.Messages} | Exception: ${rp.Exception}`); });
-                            return false;
-                        }
-                    }catch(error){ 
-                        toastr.error('Something went wrong!, please refresh the page or try again later.');
-                        BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: 'CollectorDashboard collectorList BaseService.getJSON /employees catch', message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-                        return false;
-                    }
-                });
-                    
-                // console.log('Pass BaseService.getJSON(this.props.match.params.xSite, "/employees") employeeElement', employeeElement);
-            }
-            
+                       
             const collectorTable: JSX.Element[] = [];
         
             collectorTable.push(
@@ -526,18 +348,12 @@ export default class CollectorDashboard extends React.Component<IProps, IState> 
                             <th id="left-th" className="border-th border-th-icon" data-sort="true">
                             </th>
                             <th className="border-th border-th-nickname" data-sort="true">
-                                NICKNAME <Tooltip title={'ผู้ใช้งานระบบเท่านั้นถึงจะเห็นชื่อนี้ (ผู้ทำแบบสอบถามจะไม่เห็น)'}><Icon type="info-circle-o"/></Tooltip>
+                                NICKNAME 
                             </th>
                             <th className="border-th border-th-project" data-sort="true">
                                 PROJECT / BRANCH
                             </th>
-                            { this.props.match.params.xSite === 'realasset' ?
-                            <th className="border-th border-th-project" data-sort="true">
-                                EMPLOYEE NAME
-                            </th>
-                            :
-                            null
-                            }
+                            
                             <th className="border-th border-th-status" data-sort="true">
                                 STATUS
                             </th>
@@ -571,14 +387,9 @@ export default class CollectorDashboard extends React.Component<IProps, IState> 
             collectorTable.push(<footer key='footer' style={{margin: '0'}} className="collectors-footer wds-type--product-ui wds-type-weight--regular"><b>COLLECTORS</b>: {this.state.totalCollectors} of {this.state.totalCollectors}</footer>);
 
             try{
-                if(this.props.match.params.xSite === 'realasset'){
-                    this.setState({ isLoadingCollector: false }, () => {
-                        ReactDOM.render(<div>{collectorTable}</div>, document.getElementById('collector-items-list'));
-                    });
-                }
-                else{
-                    ReactDOM.render(<div>{collectorTable}</div>, document.getElementById('collector-items-list'));
-                }
+                
+                ReactDOM.render(<div>{collectorTable}</div>, document.getElementById('collector-items-list'));
+                
             }
             catch(error){
                 toastr.error('Something went wrong!, please refresh the page or try again later.');
@@ -587,14 +398,9 @@ export default class CollectorDashboard extends React.Component<IProps, IState> 
         }
         else{
             // ReactDOM.render(<Empty style={{ backgroundColor: 'white', margin: '20px 0', padding: '100px 0 100px 0' }}/>, document.getElementById('collector-items-list'));
-            if(this.props.match.params.xSite === 'realasset'){
-                this.setState({ isLoadingCollector: false }, () => {
-                    ReactDOM.render(<Empty style={{ backgroundColor: 'white', margin: '20px 0', padding: '100px 0 100px 0' }} description={<span> No Collector </span>}/>, document.getElementById('collector-items-list'));
-                });
-            }
-            else{
-                ReactDOM.render(<Empty style={{ backgroundColor: 'white', margin: '20px 0', padding: '100px 0 100px 0' }} description={<span> No Collector </span>}/>, document.getElementById('collector-items-list'));
-            }
+
+            ReactDOM.render(<Empty style={{ backgroundColor: 'white', margin: '20px 0', padding: '100px 0 100px 0' }} description={<span> No Collector </span>}/>, document.getElementById('collector-items-list'));
+            
         }
     }
 
@@ -675,21 +481,14 @@ export default class CollectorDashboard extends React.Component<IProps, IState> 
                             <section className="collector-list-container">
                                     
                                 <div className="add-collector">
-                                    <Tooltip title="ตัวจัดเก็บการตอบกลับของแบบสอบถาม">
-                                        <h1 className="wds-type--section-title">Survey Collectors</h1>
-                                    </Tooltip>
+                                   
                                     <span className="btn-menu ">
                                         
                                         {/* <a  href="# " role="button" new-collector-action-menu="" className="wds-button wds-button--icon-right wds-button--arrow-down" ref="#">ADD NEW COLLECTOR</a> */}
 
                                         <Select onChange={this.handleSelectChange} value={this.state.selectCollector}>
                                             <Option value="1"><Icon type="link" />&emsp;Web link collector</Option>
-                                            {/* <Option value="2" disabled><Icon type="mobile" />&emsp;SMS collector</Option> */}
-                                            <Option value="3"><Icon type="mail" />&emsp;Email collector</Option>
-                                            {/* <Option value="4" disabled><Icon type="facebook" />&emsp;Social Media collector</Option> */}
-                                            {/* <Option value="4" disabled><Icon type="facebook" />&emsp;Post to social media</Option> */}
-                                            {/* { this.state.survey.rem_api_link ? <Option value="5"><Icon type="mobile" />&emsp;SMS EventTrigger collector</Option> : null === 'true' }
-                                            { this.state.survey.rem_api_link ? <Option value="6"><Icon type="mail" />&emsp;Email EventTrigger collector</Option> : null === 'true' } */}
+                                            <Option value="2"><Icon type="mail" />&emsp;Email collector</Option>
                                         </Select>
                                         
                                     </span>
@@ -697,21 +496,14 @@ export default class CollectorDashboard extends React.Component<IProps, IState> 
 
                                 <section className="collector-list-grid-container" survey-sm-key="">
                                     <section className="clgrid" view-role="CollectorsGridView">
-
-                                    { this.props.match.params.xSite === 'realasset' && this.state.isLoadingCollector ?
-                                        <div id="syncing"> <Spin size="large" tip="Syncing..."></Spin> </div>
-                                    : 
-                                        <div id="collector-items-list"></div>
-                                    }
                                     
-                                        {/* {this.collectorTable} */}
+                                        <div id="collector-items-list"></div>
+                                
                                     </section>
                                 </section>
 
                                 <section className="collector-ads">
-                                    <Tooltip placement="topLeft" title="ตัวจัดเก็บการตอบกลับของแบบสอบถาม">
-                                        <header className="wds-type--section-title">Add a new collector</header>
-                                    </Tooltip>
+                                    
                                     <ul className="newCollector-list">
                                         <li className="add-weblink-collector">
                                             {/* <a data-icon="Ç" className="newCollector metric" href="# " collector-type="weblink" data-log-action="add_weblink_collector_button"> */}

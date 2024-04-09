@@ -748,39 +748,6 @@ class TextQuestionForm extends React.Component<Props, IState, any> {
                     }, () => { /*console.log('setFieldsValue hint_EN')*/ });
                 }
 
-            //     let selectedAreaOfImpactsName = [];
-            //     const areaOfImpacts = this.state.question.area_of_impact_id.includes(',') ? this.state.question.area_of_impact_id.split(',') : [this.state.question.area_of_impact_id];
-            //     let allAreaOfImpactName = this.props.survey.name_area_of_impacts.includes(",") ? this.props.survey.name_area_of_impacts.split(',') : [this.props.survey.name_area_of_impacts];
-
-            // // console.log('areaOfImpacts', areaOfImpacts);
-            // // console.log('allAreaOfImpactName', allAreaOfImpactName);
-
-            //     //replace &amp; with & character
-            //     allAreaOfImpactName = allAreaOfImpactName.map((name: any) => { return name.includes('&amp;') ? name.replace('&amp;', '&') : name; });
-
-            //     selectedAreaOfImpactsName = areaOfImpacts.map((selectedAreaOfImpactId: any, selectedAreaOfImpactIndex: any) => {
-            //         // console.log(`selectedAreaOfImpactId ${selectedAreaOfImpactId} selectedAreaOfImpactIndex ${selectedAreaOfImpactIndex}`);
-            //         let selectedAreaOfImpactName;
-            //         allAreaOfImpactName.map((areaOfImpactName: any, areaOfImpactIndex: any) => {
-            //         const areaOfImpactNameSplit = areaOfImpactName.split('~')[0];
-            //         const areaOfImpactId = parseInt(areaOfImpactName.split('~')[1]);
-            //         // console.log(`areaOfImpactName ${areaOfImpactName} areaOfImpactId ${areaOfImpactId} areaOfImpactIndex ${areaOfImpactIndex} no ${areaOfImpactIndex+1}`);
-            //         // console.log(`selectedAreaOfImpactId ${selectedAreaOfImpactId} === areaOfImpactId ${areaOfImpactId}`, parseInt(selectedAreaOfImpactId) === areaOfImpactId);
-            //             if(parseInt(selectedAreaOfImpactId) === areaOfImpactId) {
-            //                 // console.log('in if areaOfImpactNameSplit', areaOfImpactNameSplit);
-            //                 selectedAreaOfImpactName = areaOfImpactNameSplit;
-            //                 return;
-            //             }
-            //         });
-            //         return selectedAreaOfImpactName;
-            //     });
-
-            // // console.log('selectedAreaOfImpactsName', selectedAreaOfImpactsName);
-            //     this.setState( { selectedAreaOfImpacts: selectedAreaOfImpactsName, allAreaOfImpactName: allAreaOfImpactName }, () => {
-            //         // console.log('after selectedAreaOfImpacts', this.state.selectedAreaOfImpacts);
-            //         }
-            //     );
-
                 //check required
                 if(this.state.question.show_comment_field){
 
@@ -1563,133 +1530,11 @@ class TextQuestionForm extends React.Component<Props, IState, any> {
                             </table>
                         </div>
 
-                        {/* <div className="questionSetting starTable" style={{ borderBottom: 'solid 1px lightgray' }}>
-                            <label className="switch" style={{ display: 'inline-block', fontSize: '14px', fontWeight: 'bold' }}>Area of impact</label>
-                            <div className="clearfix" style={{ display: 'inline-block', width: '80%', padding: '15px 25px 5px 25px' }}>
-                                <Select
-                                    mode="multiple"
-                                    placeholder="Please select Area Of Impacts for this question"
-                                    value={selectedAreaOfImpacts}
-                                    onChange={this.handleAddAreaOfImpactChange}
-                                    style={{ width: '100%' }}
-                                >
-                                    {filteredAreaOfImpactsOptions.map((item: any) => (
-                                    <Select.Option key={item} value={item}>
-                                        {item}
-                                    </Select.Option>
-                                    ))}
-                                </Select>
-                            </div>
-                        </div> */}
-
-                        {/* <div className="questionSetting starTable" style={{ paddingBottom: '0' }}>
-                            <table>
-                                <tbody className="question-title-box">
-                                    { this.state.survey.multi_lang ?
-                                    <tr className="title-row">
-                                        <td className="questionNum">
-                                            <strong>Hint : </strong>
-                                        </td>
-                                        <td className="questionText" style={{ paddingLeft: '0' }}>
-                                            <Form.Item {...formItemLayout} >
-                                                {getFieldDecorator('hint', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter question text.',
-                                                    },
-                                                    ],
-                                                })(<Input disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded } className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Enter your hint text" />)}
-                                            </Form.Item>
-                                        </td>
-                                        <td className="questionText" style={{ paddingLeft: '0' }}>
-                                            <Form.Item {...formItemLayout} >
-                                                {getFieldDecorator('hint_EN', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter question text.',
-                                                    },
-                                                    ],
-                                                })(<Input disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded } className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Enter your hint text" />)}
-                                            </Form.Item>
-                                        </td>
-                                    </tr>
-                                    :
-                                    <tr className="title-row">
-                                        <td className="questionNum">
-                                            <strong>Hint : </strong>
-                                        </td>
-                                        <td className="questionText" style={{ paddingLeft: '0' }}>
-                                            <Form.Item {...formItemLayout} >
-                                                {getFieldDecorator('hint', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter question text.',
-                                                    },
-                                                    ],
-                                                })(<Input disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded } className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Enter your hint text" />)}
-                                            </Form.Item>
-                                        </td>
-                                    </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div> */}
-
                         <div className="questionSetting starTable comment-box-setting-container" style={{ paddingTop: '0' }}>
 
                             <div className="clearfix" style={{ padding: '25px', paddingTop: '0' }}>
 
-                                { this.state.survey.multi_lang ? 
-                                <div style={{ marginTop: '35px' }}>
-                                    <label className="sm-label sm-label--stretch"><b>Hint</b></label>
-                                    <Form.Item label="TH" {...formItemLayout} >
-                                        <RichTextEditor
-                                            xSite={this.props.match.params.xSite}
-                                            id={`hint`}
-                                            theme={'snow'}
-                                            fontColor={this.state.fontColor}
-                                            defaultValue={this.state.question.hint_html ? this.state.question.hint_html : `<p>${this.state.question.hint}</p>`} 
-                                            disableAlign={true}
-                                            onChange={this.onQuestionRichChange}
-                                            placeholder={'Please enter comment field label...'}
-                                        />
-                                        {getFieldDecorator('hint', {
-                                            rules: [
-                                            {
-                                                // required: true,
-                                                // message: 'You must enter a hint message.',
-                                            },
-                                            ],
-                                        })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Please enter a hint." *//>)}
-                                    </Form.Item>
-                                    <Form.Item style={{display: 'none'}}> {getFieldDecorator('hint_html')(<Input/>)} </Form.Item>
-
-                                    <Form.Item label="EN" {...formItemLayout} >
-                                        <RichTextEditor
-                                            xSite={this.props.match.params.xSite}
-                                            id={`hint_EN`}
-                                            theme={'snow'}
-                                            fontColor={this.state.fontColor}
-                                            defaultValue={this.state.question.hint_EN_html ? this.state.question.hint_EN_html : ( this.props.question.hint_EN ? `<p>${this.props.question.hint_EN}</p>` : this.state.question.hint ? `<p>${this.state.question.hint}</p>` : '<p></p>' )} 
-                                            disableAlign={true}
-                                            onChange={this.onQuestionRichChange}
-                                            placeholder={'Please enter comment field hint...'}
-                                        />
-                                        {getFieldDecorator('hint_EN', {
-                                            rules: [
-                                            {
-                                                // required: true,
-                                                // message: 'You must enter a hint message.',
-                                            },
-                                            ],
-                                        })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Please enter a hint." *//>)}
-                                    </Form.Item>
-                                    <Form.Item style={{display: 'none'}}> {getFieldDecorator('hint_EN_html')(<Input/>)} </Form.Item>
-                                </div>
-                                : 
+                                
                                 <div style={{ marginTop: '35px' }}>
                                     <label className="sm-label sm-label--stretch"><b>Hint</b></label>
                                     <Form.Item {...formItemLayout} >
@@ -1714,7 +1559,7 @@ class TextQuestionForm extends React.Component<Props, IState, any> {
                                     </Form.Item>
                                     <Form.Item style={{display: 'none'}}> {getFieldDecorator('hint_html')(<Input/>)} </Form.Item>
                                 </div>
-                                }
+                                
 
                             </div>
                         </div>
@@ -1730,54 +1575,7 @@ class TextQuestionForm extends React.Component<Props, IState, any> {
                             { this.state.question.required ? 
 
                             <div className="clearfix" style={{ padding: '25px' }}>
-                                { this.state.survey.multi_lang ? 
-                                <div>
-                                    <label className="sm-label sm-label--stretch"><b>Display this error message when this question is not answered.</b></label>
-                                    <Form.Item label="TH" {...formItemLayout} >
-                                        <RichTextEditor
-                                            xSite={this.props.match.params.xSite}
-                                            id={`required_label`}
-                                            theme={'snow'}
-                                            fontColor={this.state.fontColor}
-                                            defaultValue={this.state.question.required_label_html ? this.state.question.required_label_html : `<p>${this.state.question.required_label ? this.state.question.required_label : ''}</p>`} 
-                                            disableAlign={true}
-                                            onChange={this.onQuestionRichChange}
-                                            placeholder={'You must enter an error message...'}
-                                        /> 
-                                        {getFieldDecorator('required_label', {
-                                            rules: [
-                                            {
-                                                required: true,
-                                                message: 'You must enter an error message.',
-                                            },
-                                            ],
-                                        })(<Input style={{display: 'none'}}/*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="When a textbox is not answered, display this error message."*/ />)}
-                                    </Form.Item>
-                                    <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_html')(<Input/>)} </Form.Item>
-
-                                    <Form.Item label="EN" {...formItemLayout} >
-                                        <RichTextEditor
-                                            xSite={this.props.match.params.xSite}
-                                            id={`required_label_EN`}
-                                            theme={'snow'}
-                                            fontColor={this.state.fontColor}
-                                            defaultValue={this.state.question.required_label_EN_html ? this.state.question.required_label_EN_html : ( this.props.question.required_label_EN ? `<p>${this.props.question.required_label_EN}</p>` : this.state.question.required_label ? `<p>${this.state.question.required_label}</p>` : '<p></p>' )} 
-                                            disableAlign={true}
-                                            onChange={this.onQuestionRichChange}
-                                            placeholder={'You must enter an error message...'}
-                                        /> 
-                                        {getFieldDecorator('required_label_EN', {
-                                            rules: [
-                                            {
-                                                required: true,
-                                                message: 'You must enter an error message.',
-                                            },
-                                            ],
-                                        })(<Input style={{display: 'none'}}className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="When a textbox is not answered, display this error message." />)}
-                                    </Form.Item>
-                                    <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_EN_html')(<Input/>)} </Form.Item>
-                                </div>
-                                :
+                                
                                 <div>
                                     <label className="sm-label sm-label--stretch"><b>Display this error message when this question is not answered.</b></label>
                                     <Form.Item {...formItemLayout} >
@@ -1802,7 +1600,7 @@ class TextQuestionForm extends React.Component<Props, IState, any> {
                                     </Form.Item>
                                     <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_html')(<Input/>)} </Form.Item>
                                 </div>
-                                }
+                                
                             </div>
 
                             : null }

@@ -844,11 +844,7 @@ export default class CollectorLink extends React.Component<IProps, IState> {
                             </nav>
 
                             <main>
-                                <span>Nickname <Tooltip title={'ผู้ใช้งานระบบเท่านั้นถึงจะเห็นชื่อนี้'}><Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/></Tooltip> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit nickname">{this.state.collector.nickname}</h1><span><Icon type="edit" onClick={()=>this.showModal(this.state.collector.type)}/></span></span>
-                                <br></br>
-                                <br></br>
-                                <span>Display name <Tooltip title={'ผู้ทำแบบสอบถามจะเห็นชื่อนี้ในแบบสอบถาม'}><Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/></Tooltip> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit display name">{this.state.collector.name}</h1><span><Icon type="edit" onClick={()=>this.showModal(this.state.collector.type)}/></span></span>
-
+                                
                                 <span id="collector-created-date">Link created: {this.state.collector.created_date}</span>
                                 
                                 <section className="weblink">

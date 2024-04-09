@@ -778,43 +778,6 @@ class ChoiceQuestionForm extends React.Component<Props, IState, any> {
         });
     };
 
-    // onAnswerChoiceRichChange = (id: any, richTextEditor: any, index: any, realIndex: any) => {
-    //     console.log(`onAnswerChoiceRichChange id ${id} index ${index} realIndex ${realIndex} richTextEditor`, richTextEditor);
-
-    //     // console.log(`onFieldQuestionValueChange ${id}[${index}]`, richTextEditor.text.trim());
-    //     // console.log(`onFieldQuestionValueChange ${id}_html[${index}]`, richTextEditor.html.trim());
-    //     this.onFieldQuestionValueChange(`${id}[${index}]`, richTextEditor.text.trim()); 
-    //     this.props.form.setFieldsValue({
-    //         [`${id}[${index}]`]: richTextEditor.length === 1 ? '' :richTextEditor.text.trim(),
-    //         [`${id}_html[${index}]`]: richTextEditor.length === 1 ? '' :richTextEditor.html.trim()
-    //     }, () => {
-    //         this.onFieldQuestionValueChange(`${id}_html[${index}]`, richTextEditor.html.trim()); 
-            
-    //         //update <RichTextEditor> defaultValue when remove one
-    //         if(id === 'answer_choice_EN'){
-    //             let answerChoiceHtmlArr = this.state.choicesHtml;
-    //             answerChoiceHtmlArr[realIndex] = richTextEditor.length === 1 ? '' :richTextEditor.html.trim()
-
-    //             this.setState({
-    //                 choicesHtml: answerChoiceHtmlArr,
-    //             },  () => { 
-    //                 console.log(`onAnswerChoiceRichChange after removeImage index[${index}] this.state.choicesHtml`, this.state.choicesHtml);
-    //             });
-    //         }
-    //         else{
-    //             let answerChoiceENHtmlArr = this.state.choicesENHtml;
-    //             answerChoiceENHtmlArr[realIndex] = richTextEditor.length === 1 ? '' :richTextEditor.html.trim()
-
-    //             this.setState({
-    //                 choicesENHtml: answerChoiceENHtmlArr,
-    //             },  () => { 
-    //                 console.log(`onAnswerChoiceRichChange after removeImage index[${index}] this.state.choicesENHtml`, this.state.choicesENHtml);
-    //             });
-    //         }
-
-    //     });
-    // };
-    
     onFieldQuestionValueChange = (fieldName: string, value: any) => { 
         const nextState = {
             ...this.state,
@@ -1194,49 +1157,6 @@ class ChoiceQuestionForm extends React.Component<Props, IState, any> {
                 }, () => { 
                     // console.log('setFieldsValue question_label')
                 });
-
-            //     //set question label EN
-            //     if(this.state.survey.multi_lang){
-            //         this.props.form.setFieldsValue({
-            //             question_label_EN: this.props.question.question_label_EN ? this.props.question.question_label_EN : this.props.question.question_label ? this.props.question.question_label : '',
-            //             question_label_EN_html: this.state.question.question_label_EN_html ? this.state.question.question_label_EN_html : ( this.props.question.question_label_EN ? `<p>${this.props.question.question_label_EN}</p>` : this.state.question.question_label ? `<p>${this.state.question.question_label}</p>` : '<p></p>' ),
-            //         }, () => { 
-            //             // console.log('setFieldsValue question_label_EN')
-            //         });
-            //     }
-
-            //     let selectedAreaOfImpactsName = [];
-            //     const areaOfImpacts = this.state.question.area_of_impact_id.includes(',') ? this.state.question.area_of_impact_id.split(',') : [this.state.question.area_of_impact_id];
-            //     let allAreaOfImpactName = this.props.survey.name_area_of_impacts.includes(",") ? this.props.survey.name_area_of_impacts.split(',') : [this.props.survey.name_area_of_impacts];
-
-            // // console.log('areaOfImpacts', areaOfImpacts);
-            // // console.log('allAreaOfImpactName', allAreaOfImpactName);
-
-            //     //replace &amp; with & character
-            //     allAreaOfImpactName = allAreaOfImpactName.map((name: any) => { return name.includes('&amp;') ? name.replace('&amp;', '&') : name; });
-
-            //     selectedAreaOfImpactsName = areaOfImpacts.map((selectedAreaOfImpactId: any, selectedAreaOfImpactIndex: any) => {
-            //         // console.log(`selectedAreaOfImpactId ${selectedAreaOfImpactId} selectedAreaOfImpactIndex ${selectedAreaOfImpactIndex}`);
-            //         let selectedAreaOfImpactName;
-            //         allAreaOfImpactName.map((areaOfImpactName: any, areaOfImpactIndex: any) => {
-            //         const areaOfImpactNameSplit = areaOfImpactName.split('~')[0];
-            //         const areaOfImpactId = parseInt(areaOfImpactName.split('~')[1]);
-            //         // console.log(`areaOfImpactName ${areaOfImpactName} areaOfImpactId ${areaOfImpactId} areaOfImpactIndex ${areaOfImpactIndex} no ${areaOfImpactIndex+1}`);
-            //         // console.log(`selectedAreaOfImpactId ${selectedAreaOfImpactId} === areaOfImpactId ${areaOfImpactId}`, parseInt(selectedAreaOfImpactId) === areaOfImpactId);
-            //             if(parseInt(selectedAreaOfImpactId) === areaOfImpactId) {
-            //                 // console.log('in if areaOfImpactNameSplit', areaOfImpactNameSplit);
-            //                 selectedAreaOfImpactName = areaOfImpactNameSplit;
-            //                 return;
-            //             }
-            //         });
-            //         return selectedAreaOfImpactName;
-            //     });
-
-            // // console.log('selectedAreaOfImpactsName', selectedAreaOfImpactsName);
-            //     this.setState( { selectedAreaOfImpacts: selectedAreaOfImpactsName, allAreaOfImpactName: allAreaOfImpactName }, () => {
-            //         // console.log('after selectedAreaOfImpacts', this.state.selectedAreaOfImpacts);
-            //         }
-            //     );
 
                 //check required
                 if(this.state.question.show_comment_field){
@@ -1626,195 +1546,6 @@ class ChoiceQuestionForm extends React.Component<Props, IState, any> {
             </tr>
         );
     }
-
-    // getAnswerChoiceRow = (answerChoiceKeys: any) => {
-    //     const { getFieldDecorator } = this.props.form;
-    //     const answerChoiceItem = answerChoiceKeys.map((k: any, index: any) => {
-    //         return (
-    //             this.state.survey.multi_lang ?
-    //             <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
-    //                 <td className="choiceText" style={{ width: '40%' }}>
-    //                     <Form.Item {...formItemLayout} >
-    //                         {getFieldDecorator(`answer_choice`, {
-    //                             rules: [
-    //                             {
-    //                                 required: true,
-    //                                 message: 'You must enter an answer choice.',
-    //                             },
-    //                             ],
-    //                         })(<Input disabled={!this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length} className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                     </Form.Item>
-    //                 </td>
-    //                 <td className="choiceText" style={{ width: '40%' }}>
-    //                     <Form.Item {...formItemLayout} >
-    //                         {getFieldDecorator(`answer_choice_EN`, {
-    //                             rules: [
-    //                             {
-    //                                 required: true,
-    //                                 message: 'You must enter an answer choice.',
-    //                             },
-    //                             ],
-    //                         })(<Input disabled={!this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length} className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                     </Form.Item>
-    //                 </td>
-    //                 <td>
-
-    //                     { answerChoiceKeys.length > 2 && this.state.isNotTemplateQuestion && !this.state.alreadyResponded ? (
-    //                         <Icon
-    //                             className={"dynamic-delete-button"}
-    //                             type="minus-circle-o"
-    //                             onClick={() => this.removeAnswerChoice(k, index)}
-    //                             style={{ paddingRight: '10px'}}
-    //                         />
-    //                     ) : null }
-
-    //                     { answerChoiceKeys.length === index + 1 && this.state.isNotTemplateQuestion ? (
-    //                         <Icon
-    //                             className={"dynamic-delete-button"}
-    //                             type="plus-circle-o"
-    //                             onClick={() => this.addAnswerChoice()}
-    //                         />
-    //                     ) : null }
-
-    //                 </td>
-    //             </tr>
-    //             :
-    //             <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
-    //                 <td className="choiceText" style={{ width: '90%' }}>
-    //                     <Form.Item {...formItemLayout} >
-    //                         {getFieldDecorator(`answer_choice`, {
-    //                             rules: [
-    //                             {
-    //                                 required: true,
-    //                                 message: 'You must enter an answer choice.',
-    //                             },
-    //                             ],
-    //                         })(<Input disabled={!this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length} className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                     </Form.Item>
-    //                 </td>
-    //                 <td>
-
-    //                     { answerChoiceKeys.length > 2 && this.state.isNotTemplateQuestion && !this.state.alreadyResponded ? (
-    //                         <Icon
-    //                             className={"dynamic-delete-button"}
-    //                             type="minus-circle-o"
-    //                             onClick={() => this.removeAnswerChoice(k, index)}
-    //                             style={{ paddingRight: '10px'}}
-    //                         />
-    //                     ) : null }
-
-    //                     { answerChoiceKeys.length === index + 1 && this.state.isNotTemplateQuestion ? (
-    //                         <Icon
-    //                             className={"dynamic-delete-button"}
-    //                             type="plus-circle-o"
-    //                             onClick={() => this.addAnswerChoice()}
-    //                         />
-    //                     ) : null }
-
-    //                 </td>
-    //             </tr>
-    //         );
-    //     });
-
-    //     return answerChoiceItem;
-    // }
-
-    // getAllAnswerChoiceRow = () => {
-
-    //   // console.log('getAllAnswerChoiceRow');
-    //     const { getFieldDecorator, getFieldValue  } = this.props.form;
-    //     getFieldDecorator('answerChoiceKeys', { initialValue: [] });
-    //     const answerChoiceKeys = getFieldValue('answerChoiceKeys');
-    //   // console.log('answerChoiceKeys', answerChoiceKeys);
-    //     // answerChoiceKeys.push(answerChoiceId++);
-    //     const answerChoiceItems = answerChoiceKeys.map((k: any, index: any) => (
-
-    //         this.state.survey.multi_lang ?
-    //         <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
-    //             <td className="choiceText" style={{ width: '40%' }}>
-    //                 <Form.Item {...formItemLayout} >
-    //                     {getFieldDecorator(`answer_choice[${index}]`, {
-    //                         rules: [
-    //                         {
-    //                             required: true,
-    //                             message: 'You must enter an answer choice.',
-    //                         },
-    //                         ],
-    //                     })(<Input disabled={!this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length} className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                 </Form.Item>
-    //             </td>
-    //             <td className="choiceText" style={{ width: '40%' }}>
-    //                 <Form.Item {...formItemLayout} >
-    //                     {getFieldDecorator(`answer_choice_EN[${index}]`, {
-    //                         rules: [
-    //                         {
-    //                             required: true,
-    //                             message: 'You must enter an answer choice.',
-    //                         },
-    //                         ],
-    //                     })(<Input disabled={!this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length} className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                 </Form.Item>
-    //             </td>
-    //             <td>
-
-    //                 { answerChoiceKeys.length > 2 && this.state.isNotTemplateQuestion && !this.state.alreadyResponded ? (
-    //                     <Icon
-    //                         className={"dynamic-delete-button"}
-    //                         type="minus-circle-o"
-    //                         onClick={() => this.removeAnswerChoice(k, index)}
-    //                         style={{ paddingRight: '10px'}}
-    //                     />
-    //                 ) : null }
-
-    //                 { answerChoiceKeys.length === index + 1 && this.state.isNotTemplateQuestion ? (
-    //                     <Icon
-    //                         className={"dynamic-delete-button"}
-    //                         type="plus-circle-o"
-    //                         onClick={() => this.addAnswerChoice()}
-    //                     />
-    //                 ) : null }
-
-    //             </td>
-    //         </tr>
-    //         :
-    //         <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
-    //             <td className="choiceText" style={{ width: '90%' }}>
-    //                 <Form.Item {...formItemLayout} >
-    //                     {getFieldDecorator(`answer_choice[${index}]`, {
-    //                         rules: [
-    //                         {
-    //                             required: true,
-    //                             message: 'You must enter an answer choice.',
-    //                         },
-    //                         ],
-    //                     })(<Input disabled={!this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length} className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                 </Form.Item>
-    //             </td>
-    //             <td>
-
-    //                 { answerChoiceKeys.length > 2 && this.state.isNotTemplateQuestion && !this.state.alreadyResponded ? (
-    //                     <Icon
-    //                         className={"dynamic-delete-button"}
-    //                         type="minus-circle-o"
-    //                         onClick={() => this.removeAnswerChoice(k, index)}
-    //                         style={{ paddingRight: '10px'}}
-    //                     />
-    //                 ) : null }
-
-    //                 { answerChoiceKeys.length === index + 1 && this.state.isNotTemplateQuestion ? (
-    //                     <Icon
-    //                         className={"dynamic-delete-button"}
-    //                         type="plus-circle-o"
-    //                         onClick={() => this.addAnswerChoice()}
-    //                     />
-    //                 ) : null }
-
-    //             </td>
-    //         </tr>
-    //     ));
-
-    //     return answerChoiceItems;
-    // }
 
     getQuestionOptionRow = async (no: any, jwt: any) => {
       // console.log (`question no.${no}`);
@@ -2878,54 +2609,7 @@ class ChoiceQuestionForm extends React.Component<Props, IState, any> {
                                 { this.state.question.show_comment_field ? 
                                     
                                     <div className="clearfix" style={{ padding: '25px' }}>
-                                        { this.state.survey.multi_lang ?
-                                        <div>
-                                            <label className="sm-label sm-label--stretch"><b>Label</b></label>
-                                            <Form.Item label="TH" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_label`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_label_html ? this.state.question.comment_field_label_html : `<p>${this.state.question.comment_field_label ? this.state.question.comment_field_label : ''}</p>`} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field label...'}
-                                                />
-                                                {getFieldDecorator('comment_field_label', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a label.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Other (please specify)" *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_label_html')(<Input/>)} </Form.Item>
-
-                                            <Form.Item label="EN" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_label_EN`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_label_EN_html ? this.state.question.comment_field_label_EN_html : ( this.props.question.comment_field_label_EN ? `<p>${this.props.question.comment_field_label_EN}</p>` : this.state.question.comment_field_label ? `<p>${this.state.question.comment_field_label}</p>` : '<p></p>' )} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field label...'}
-                                                />
-                                                {getFieldDecorator('comment_field_label_EN', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a label.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Other (please specify)" *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_label_EN_html')(<Input/>)} </Form.Item>
-                                        </div>
-                                        : 
+                                        
                                         <div>
                                             <label className="sm-label sm-label--stretch"><b>Label</b></label>
                                             <Form.Item {...formItemLayout} >
@@ -2950,56 +2634,9 @@ class ChoiceQuestionForm extends React.Component<Props, IState, any> {
                                             </Form.Item>
                                             <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_label_html')(<Input/>)} </Form.Item>
                                         </div>
-                                        }
+                                        
 
-                                        { this.state.survey.multi_lang ? 
-                                        <div style={{ marginTop: '35px' }}>
-                                            <label className="sm-label sm-label--stretch"><b>Hint</b></label>
-                                            <Form.Item label="TH" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_hint`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_hint_html ? this.state.question.comment_field_hint_html : `<p>${this.state.question.comment_field_hint ? this.state.question.comment_field_hint : ''}</p>`} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field hint...'}
-                                                />
-                                                {getFieldDecorator('comment_field_hint', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a hint message.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Please enter a hint." *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_hint_html')(<Input/>)} </Form.Item>
-
-                                            <Form.Item label="EN" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_hint_EN`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_hint_EN_html ? this.state.question.comment_field_hint_EN_html : ( this.props.question.comment_field_hint_EN ? `<p>${this.props.question.comment_field_hint_EN}</p>` : this.state.question.comment_field_hint ? `<p>${this.state.question.comment_field_hint}</p>` : '<p></p>' )} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field hint...'}
-                                                />
-                                                {getFieldDecorator('comment_field_hint_EN', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a hint message.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Please enter a hint." *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_hint_EN_html')(<Input/>)} </Form.Item>
-                                        </div>
-                                        : 
+                                        
                                         <div style={{ marginTop: '35px' }}>
                                             <label className="sm-label sm-label--stretch"><b>Hint</b></label>
                                             <Form.Item {...formItemLayout} >
@@ -3024,7 +2661,7 @@ class ChoiceQuestionForm extends React.Component<Props, IState, any> {
                                             </Form.Item>
                                             <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_hint_html')(<Input/>)} </Form.Item>
                                         </div>
-                                        }
+                                        
 
                                     </div>
 
@@ -3045,54 +2682,7 @@ class ChoiceQuestionForm extends React.Component<Props, IState, any> {
                             { this.state.question.required ? 
 
                             <div className="clearfix" style={{ padding: '25px' }}>
-                                { this.state.survey.multi_lang ? 
-                                <div>
-                                    <label className="sm-label sm-label--stretch"><b>Display this error message when this question is not answered.</b></label>
-                                    <Form.Item label="TH" {...formItemLayout} >
-                                        <RichTextEditor
-                                            xSite={this.props.match.params.xSite}
-                                            id={`required_label`}
-                                            theme={'snow'}
-                                            fontColor={this.state.fontColor}
-                                            defaultValue={this.state.question.required_label_html ? this.state.question.required_label_html : `<p>${this.state.question.required_label ? this.state.question.required_label : ''}</p>`} 
-                                            disableAlign={true}
-                                            onChange={this.onQuestionRichChange}
-                                            placeholder={'You must enter an error message...'}
-                                        /> 
-                                        {getFieldDecorator('required_label', {
-                                            rules: [
-                                            {
-                                                required: true,
-                                                message: 'You must enter an error message.',
-                                            },
-                                            ],
-                                        })(<Input style={{display: 'none'}}/*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="When a textbox is not answered, display this error message."*/ />)}
-                                    </Form.Item>
-                                    <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_html')(<Input/>)} </Form.Item>
-
-                                    <Form.Item label="EN" {...formItemLayout} >
-                                        <RichTextEditor
-                                            xSite={this.props.match.params.xSite}
-                                            id={`required_label_EN`}
-                                            theme={'snow'}
-                                            fontColor={this.state.fontColor}
-                                            defaultValue={this.state.question.required_label_EN_html ? this.state.question.required_label_EN_html : ( this.props.question.required_label_EN ? `<p>${this.props.question.required_label_EN}</p>` : this.state.question.required_label ? `<p>${this.state.question.required_label}</p>` : '<p></p>' )} 
-                                            disableAlign={true}
-                                            onChange={this.onQuestionRichChange}
-                                            placeholder={'You must enter an error message...'}
-                                        /> 
-                                        {getFieldDecorator('required_label_EN', {
-                                            rules: [
-                                            {
-                                                required: true,
-                                                message: 'You must enter an error message.',
-                                            },
-                                            ],
-                                        })(<Input style={{display: 'none'}}className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="When a textbox is not answered, display this error message." />)}
-                                    </Form.Item>
-                                    <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_EN_html')(<Input/>)} </Form.Item>
-                                </div>
-                                :
+                                
                                 <div>
                                     <label className="sm-label sm-label--stretch"><b>Display this error message when this question is not answered.</b></label>
                                     <Form.Item {...formItemLayout} >
@@ -3117,7 +2707,7 @@ class ChoiceQuestionForm extends React.Component<Props, IState, any> {
                                     </Form.Item>
                                     <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_html')(<Input/>)} </Form.Item>
                                 </div>
-                                }
+                                
                             </div>
 
                             : null }
@@ -3141,34 +2731,6 @@ class ChoiceQuestionForm extends React.Component<Props, IState, any> {
 
                     <TabPane tab="LOGIC" key="logic">
 
-                        {/* <div className="questionSetting starTable" style={{ borderBottom: 'solid 1px #D0D2D3' }}>
-
-                            <Checkbox onChange={this.onAddCommentLogicChange.bind(this)} checked={this.state.question.show_comment_field_logic}>Comment Box:  Make the comment box appear once the customer answer matches the choice(s) set below.&nbsp;
-                                <Tooltip title="Let your customer voice be heard. You can set the comment box to appear when customer answer matches the choice(s) below.">
-                                    <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/> 
-                                </Tooltip>
-                            </Checkbox>
-
-                            { this.state.question.show_comment_field_logic ? 
-                                
-                                <div className="clearfix" style={{ padding: '0 25px 25px 25px' }}>
-                                    <Select
-                                        mode="multiple"
-                                        placeholder="Please select choices to Add a Comment box for this question"
-                                        value={selectedItems}
-                                        onChange={this.handleAddCommentLogicChange}
-                                        style={{ width: '100%' }}
-                                    >
-                                        {filteredOptions.map((item: any) => (
-                                        <Select.Option key={item} value={item}>
-                                            {item}
-                                        </Select.Option>
-                                        ))}
-                                    </Select>
-                                </div>
-
-                                : null }
-                        </div> */}
 
                         <div id={"question-"+this.state.question.order_no+"-skip-logic"}></div>
                     </TabPane>

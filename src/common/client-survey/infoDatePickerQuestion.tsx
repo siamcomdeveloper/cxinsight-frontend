@@ -35,7 +35,6 @@ class DatePickerQuestion extends React.Component<IProps, IState> {
             answerText: '',
             requiredLabelState: false,
         };
-        // console.log('infoDropdownInstitutionQuestion constructor', props);
     }
 
     public componentDidMount() { 

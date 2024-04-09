@@ -57,32 +57,6 @@ class UserForm extends React.Component<IProps, IState, any> {
         try{
             const selectedRoleOptions = this.props.userData.role_id;
 
-            // const actionProjectOptions = [
-            //     { label: 'Project HR', value: '1' },
-            //     { label: 'Project CRM', value: '2' },
-            //     { label: 'Project Real Estate', value: '3' },
-            // ]
-            // const actionProjectOptions = this.props.projects.map(function (project: any, i: any) {
-            //     // console.log('i', i);
-            //     // console.log('project', project);
-            //     return { label: project.name, value: `'${project.id}'` };
-            // });
-
-            // console.log('actionProjectOptions', actionProjectOptions);
-
-            // console.log('this.props.userData.responsible_project_id', this.props.userData.responsible_project_id);
-
-            // let selectedProjectOptions = [] as any;
-            // if(this.props.userData.responsible_project_id){
-            //     if( this.props.userData.responsible_project_id.includes('/') ) selectedProjectOptions = this.props.userData.responsible_project_id.split('/').map((value: any, i: any) => { return `'${value}'`; });
-            //     else selectedProjectOptions = `'${this.props.userData.responsible_project_id}'`;
-            // }
-            // console.log('selectedProjectOptions', selectedProjectOptions);
-
-            // const actionSurveyOptions = [
-            //     { label: 'Survey HR', value: '1' },
-            //     { label: 'Survey CRM', value: '2' },
-            //     { label: 'Survey Real Estate', value: '3' },
             // ]
             const actionSurveyOptions = this.props.surveys.map(function (survey: any, i: any) {
                 // console.log('i', i);
@@ -91,13 +65,6 @@ class UserForm extends React.Component<IProps, IState, any> {
             });
           // console.log('actionSurveyOptions', actionSurveyOptions);
 
-            // console.log('this.props.userData.responsible_survey_id', this.props.userData.responsible_survey_id);
-            // let selectedSurveyOptions = [] as any;
-            // if(this.props.userData.responsible_survey_id){
-            //     if( this.props.userData.responsible_survey_id.includes('/') ) selectedSurveyOptions = this.props.userData.responsible_survey_id.split('/').map((value: any, i: any) => { return `${value}`; });
-            //     else selectedSurveyOptions = [`${this.props.userData.responsible_survey_id}`];
-            // }
-            // console.log('selectedSurveyOptions', selectedSurveyOptions);
             
             this.setState({ 
                 selectedRoleOptions: selectedRoleOptions,
@@ -183,23 +150,6 @@ class UserForm extends React.Component<IProps, IState, any> {
                     }
                 );
 
-                // this.setState({ isLoading: true });
-
-                // BaseService.post("/auth/register/", values).then(
-                //     (rp) => {
-                //       // console.log('rp', rp);
-                //         if (rp.Status) {
-                //             this.setState({ isLoading: false });
-                //             toastr.success(rp.Messages);
-                //             setTimeout(function(this: any){ this.props.handleHistoryPush('/login'); }.bind(this), 500);
-                //         } else {
-                //             this.setState({ isLoading: false });
-                //             toastr.error(rp.Messages);
-                //             console.log("Messages: " + rp.Messages);
-                //             console.log("Exception: " + rp.Exception);
-                //         }
-                //     }
-                // );
             }
         });
     };

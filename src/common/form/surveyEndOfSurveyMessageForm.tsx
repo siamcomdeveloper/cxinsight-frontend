@@ -91,12 +91,6 @@ class EditForm extends React.Component<Props, IState, any> {
                                   end_of_survey_image_width: this.state.survey.end_of_survey_image_width,
                               }, () => { /*console.log('after')*/ });
         
-                              if(this.state.survey.multi_lang) {
-                                  this.props.form.setFieldsValue({
-                                      end_of_survey_message_EN: this.state.survey.end_of_survey_message_EN,
-                                  }, () => { /*console.log('after')*/ });
-                              }
-
                           });
                       });
 
@@ -217,12 +211,9 @@ class EditForm extends React.Component<Props, IState, any> {
               
           
 
-          if(this.state.survey.multi_lang){
-            fields = ['end_of_survey_enable_src_type', 'end_of_survey_logo_alignment', 'end_of_survey_image_src', 'end_of_survey_banner_src', 'end_of_survey_image_width', 'end_of_survey_message', 'end_of_survey_message_EN'];
-          }
-          else{
-            fields = ['end_of_survey_enable_src_type', 'end_of_survey_logo_alignment', 'end_of_survey_image_src', 'end_of_survey_banner_src', 'end_of_survey_image_width', 'end_of_survey_message'];
-          }
+          
+          fields = ['end_of_survey_enable_src_type', 'end_of_survey_logo_alignment', 'end_of_survey_image_src', 'end_of_survey_banner_src', 'end_of_survey_image_width', 'end_of_survey_message'];
+         
 
           const jwt = getJwtToken();
 
@@ -484,76 +475,6 @@ class EditForm extends React.Component<Props, IState, any> {
                   
                 : null }
           </Radio.Group>
-
-          { this.state.survey.multi_lang ? 
-          <div className="languages-setting-form-container">
-            <Form.Item label="TH" {...formItemLayout} style={{ marginTop: '15px' }}>
-              <RichTextEditor 
-                xSite={this.props.match.params.xSite}
-                id={`end_of_survey_message`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.state.survey.end_of_survey_message} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the end of survey message...'}
-              /> 
-              {getFieldDecorator('end_of_survey_message', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the end of survey message',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Footer Description" />)}
-              // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Footer Description" rows={5}/>)}
-              })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
-            </Form.Item>
-
-            <Form.Item label="EN" {...formItemLayout} >
-              <RichTextEditor 
-                xSite={this.props.match.params.xSite}
-                id={`end_of_survey_message_EN`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.state.survey.end_of_survey_message_EN} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the end of survey message...'}
-              /> 
-              {getFieldDecorator('end_of_survey_message_EN', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the end of survey message',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Footer Description" />)}
-              // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Footer Description" rows={5}/>)}
-              })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
-            </Form.Item>
-          </div>
-          :
-          <Form.Item {...formItemLayout} style={{ marginTop: '15px' }}>
-            <RichTextEditor 
-                xSite={this.props.match.params.xSite}
-                id={`end_of_survey_message`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.state.survey.end_of_survey_message} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the end of survey message...'}
-            /> 
-            {getFieldDecorator('end_of_survey_message', {
-              rules: [
-                {
-                  required: true,
-                  message: 'Please input the end of survey message',
-                },
-              ],
-            // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Footer Description" />)}
-            // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Footer Description" rows={5}/>)}
-            })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
-          </Form.Item>
-          }
 
           <footer className="wds-modal__foot">
             <div className="wds-modal__actions-right">

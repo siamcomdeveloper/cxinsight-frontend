@@ -179,44 +179,23 @@ class surveyRow extends React.Component<IProps, IState> {
             <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
                 <li><div>
                     <span className="si-token-large">{ this.props.surveys.total_responses ? this.props.surveys.total_responses : 0 }</span>Responses<span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'normal' }}></span>
-                     {/* <Tooltip title={'คือ จำนวนผู้ทำแบบสอบถามที่ทำแบบสอบถามจบ (คำนวณจากช่องทางจัดเก็บชนิด OPEN และ CLOSED) ยกตัวอย่างเช่น ผู้ทำแบบสอบถามที่คลิกลิงค์เข้ามายังหน้าทำแบบสอบถาม 100 คน แต่ทำแบบสอบถามจบเพียง 50 คน เพราะฉะนั้น Responses (Completed) ของแบบสอบถามทั้งหมดจะเท่ากับ 50'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> */}
+                     
                 </div></li>
             </Col>
             <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
                 <li><div>
                     <span className="si-token-large">{ this.props.surveys.completion_rate ? this.props.surveys.completion_rate : 0 }%</span><span>Completion rate </span>
-                    {/* <Tooltip title={'คือ จำนวน % ผู้ทำแบบสอบถามที่ทำแบบสอบถามจบ (คำนวณจากช่องทางจัดเก็บชนิด OPEN และ CLOSED) ยกตัวอย่างเช่น ผู้ทำแบบสอบถามที่คลิกลิงค์เข้ามายังหน้าทำแบบสอบถาม 100 คน แต่ทำแบบสอบถามจบเพียง 50 คน เพราะฉะนั้น Completion rate ของแบบสอบถามทั้งหมดจะเท่ากับ 50%'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> */}
+                    
                 </div></li>
             </Col>
             <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
                 <li><div>
                     <span className="si-token-large">{ this.props.surveys.time_spent ? this.props.surveys.time_spent : 0 } mins</span>Average time spent<span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'normal' }}></span>
-                    {/* <Tooltip title={'คือ เวลาที่ผู้ทำแบบสอบถามใช้ในการทำแบบสอบถามจบในแต่ละครั้ง (คำนวณจากช่องทางจัดเก็บชนิด OPEN และ CLOSED ทั้งหมด) ยกตัวอย่างเช่น ผู้ทำแบบสอบถามที่คลิกลิงค์เข้ามายังหน้าทำแบบสอบถาม 100 คน แต่ทำแบบสอบถามจบเพียง 50 คน โดยใช้เวลาคนละใช้เวลา 1 นาที เพราะฉะนั้น Average time spent ของแบบสอบถามนี้จะเท่ากับ 1 นาที'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> */}
+                   
                 </div></li>
             </Col>
         </Row>
     )
-
-    // surveyOpenStatistic = (
-    //     <Row gutter={[16, 16]} style={{ height: '100%', margin: '0'}}>
-    //         <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
-    //             {/* <li><div><span className="si-token-large">{ this.props.surveys.total_responses }</span>Responses</div></li> */}
-    //             <li style={{ paddingBottom: '5px' }}><div><span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '2px' }}>{ this.props.surveys.project_name }</span><span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'normal' }}>Project</span></div></li>
-    //             <li><div><span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '2px' }}>{ this.props.surveys.touchpoint_name }</span><span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'normal' }}>Touchpoint</span></div></li>
-    //         </Col>
-    //         <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
-    //             <li><div><span className="si-token-large">{ this.props.surveys.completion_rate }%</span>Completion rate</div></li>
-    //         </Col>
-    //         <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
-    //             <li><div><span className="si-token-large">{ this.props.surveys.time_spent } mins</span>Typical time spent</div></li>
-    //         </Col>
-    //         <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
-    //             <li>
-    //                 { this.alertResponses(this.props.surveys.alert_status) }
-    //             </li>
-    //         </Col>
-    //     </Row>
-    // )
 
     surveyClosedStatistic = (
         <Row gutter={[16, 16]} style={{ height: '100%', margin: '0'}}>
@@ -228,19 +207,19 @@ class surveyRow extends React.Component<IProps, IState> {
             <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
                 <li><div>
                     <span className="si-token-large">{ this.props.surveys.total_responses ? this.props.surveys.total_responses : 0 }</span>Responses<span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'normal' }}></span>
-                    {/* <Tooltip title={'คือ จำนวนผู้ทำแบบสอบถามที่ทำแบบสอบถามจบ (คำนวณจากช่องทางจัดเก็บชนิด OPEN และ CLOSED) ยกตัวอย่างเช่น ผู้ทำแบบสอบถามที่คลิกลิงค์เข้ามายังหน้าทำแบบสอบถาม 100 คน แต่ทำแบบสอบถามจบเพียง 50 คน เพราะฉะนั้น Responses (Completed) ของแบบสอบถามทั้งหมดจะเท่ากับ 50'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> */}
+                    
                 </div></li>
             </Col>
             <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
                 <li><div>
                     <span className="si-token-large">{ this.props.surveys.completion_rate ? this.props.surveys.completion_rate : 0 }%</span><span>Completion rate </span>
-                    {/* <Tooltip title={'คือ จำนวน % ผู้ทำแบบสอบถามที่ทำแบบสอบถามจบ (คำนวณจากช่องทางจัดเก็บชนิด OPEN และ CLOSED) ยกตัวอย่างเช่น ผู้ทำแบบสอบถามที่คลิกลิงค์เข้ามายังหน้าทำแบบสอบถาม 100 คน แต่ทำแบบสอบถามจบเพียง 50 คน เพราะฉะนั้น Completion rate ของแบบสอบถามทั้งหมดจะเท่ากับ 50%'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> */}
+                    
                 </div></li>
             </Col>
             <Col span={12} xs={12} md={6} lg={6} className="si-metadata">
                 <li><div>
                     <span className="si-token-large">{ this.props.surveys.time_spent ? this.props.surveys.time_spent : 0 } mins</span>Average time spent<span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'normal' }}></span>
-                    {/* <Tooltip title={'คือ เวลาที่ผู้ทำแบบสอบถามใช้ในการทำแบบสอบถามจบในแต่ละครั้ง (คำนวณจากช่องทางจัดเก็บชนิด OPEN และ CLOSED ทั้งหมด) ยกตัวอย่างเช่น ผู้ทำแบบสอบถามที่คลิกลิงค์เข้ามายังหน้าทำแบบสอบถาม 100 คน แต่ทำแบบสอบถามจบเพียง 50 คน โดยใช้เวลาคนละใช้เวลา 1 นาที เพราะฉะนั้น Average time spent ของแบบสอบถามนี้จะเท่ากับ 1 นาที'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> */}
+                   
                 </div></li>
             </Col>
         </Row>

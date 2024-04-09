@@ -29,9 +29,6 @@ import '../css/anweb-summary-webpack-bundle-min.3bdc0105.css';
 import '../css/anweb-analyze-bundle-min.e5376b09.css';
 import '../css/anweb-summary-bundle-min.7d57dd0a.css';
 
-// import * as FileSaver from 'file-saver';
-// import * as XLSX from 'xlsx';
-
 import SurveyReNicknameModal from '../common/modal/surveyRenicknameModal';
 
 const { RangePicker } = DatePicker;
@@ -243,7 +240,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                     // console.log(`${entity} === ${tags10[index].name}`, entity === tags10[index].name);
                                     if(entity === tags[index].name){
                                         // console.log('matched');
-                                        tags[index].value += 1;
+                                        tags[index].value += 10;
                                         matched = true;
                                     }
                                 });
@@ -274,7 +271,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                 // console.log(`${entity} === ${tags10[index].name}`, entity === tags10[index].name);
                                 if(data.analyze_entity === tags[index].name){
                                     // console.log('matched');
-                                    tags[index].value += 1;
+                                    tags[index].value += 10;
                                     matched = true;
                                 }
                             });
@@ -334,7 +331,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                         // if(tags_negative[index].name.localeCompare(item.name) === 0){
                                         if(entity === tags_negative[index].name){
                                         // console.log('matched');
-                                            tags_negative[index].value += 1;
+                                            tags_negative[index].value += 10;
                                             matched = true;
                                         }
                                     });
@@ -366,7 +363,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                         // if(tags_positive[index].name.localeCompare(item.name) === 0){
                                         if(entity === tags_positive[index].name){
                                         // console.log('matched');
-                                            tags_positive[index].value += 1;
+                                            tags_positive[index].value += 10;
                                             matched = true;
                                         }
                                     });
@@ -465,82 +462,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                             //find some question id which is matched with area of impact filter list
                             let isFoundedAreaOfImpact = this.state.checkedAreaOfImpactstList.some( (ai: any) => questionAreaOfImpactsIdArr.includes(ai) );
 
-                            // Filter department
-                            let departmentMatchedWithFilterName = '';
-                            let tmpCountEmptyDepartment = this.state.countEmptyDepartment;
-                            if(this.state.filterDepartment && this.state.checkedDepartmentList.length && (!questionEnabledKPI || !isFoundedDepartment)){
-                                //Skip the question when the question no department matched with filter with Department & All questions are empty show alert
-                                tmpCountEmptyDepartment++;
-                                if(tmpCountEmptyDepartment === this.state.numQuestion){
-                                    return (
-                                        <div className="sm-question-view clearfix sm-corner-a " sm-question-id="438586089" view-role="summaryQuestionViewContainer">
-                                            <div sm-questionview-content="" className="sm-questionview-content " view-role="summaryMatrixRatingQuestionView" style={{ minHeight: '407px', padding: '15px', textAlign: 'center'}}>
-                                                <h1 question-heading="" className="sm-questiontitle" title="">กรุณาตั้งค่าข้อคำถามที่จะให้เป็นคะแนน KIP ของแผนกใดในหน้า Design โดยผู้ใช้สามารถกำหนดถาม KPI แต่ละข้อได้ โดยเปิดใช้ฟังก์ชัน Enable KPI และเลือกแผนกที่ต้องการ</h1>
-                                                <Button style={{ marginLeft: 15 }}>
-                                                    <a href={`/cxm/platform/${this.props.match.params.xSite}/design/${surveyId}`}>Go to DESIGN SURVEY</a>
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    );
-                                }
-                                this.setState({ countEmptyDepartment: tmpCountEmptyDepartment });
-                                return;
-                            } else if(this.state.filterDepartment && this.state.checkedDepartmentList.length && questionEnabledKPI && isFoundedDepartment){
-
-                                const surveyDepartmentNameArr =  this.state.survey.name_departments ? this.state.survey.name_departments.includes(",") ? this.state.survey.name_departments.split(',') : [this.state.survey.name_departments] : [];
-                                const surveyDepartmentIdArr = this.state.survey.id_departments ? this.state.survey.id_departments.includes(",") ? this.state.survey.id_departments.split(',') : [this.state.survey.id_departments] : [];
-                                // console.log('surveyDepartmentNameArr', surveyDepartmentNameArr);
-                                // console.log('surveyDepartmentIdArr', surveyDepartmentIdArr);
-
-                                const departmentMatchedWithFilterId = this.state.checkedDepartmentList.filter(function(f: any){ return questionDepartmentIdArr.includes(f); });
-                                // console.log('departmentMatchedWithFilterId', departmentMatchedWithFilterId);
-                                
-                                departmentMatchedWithFilterName = departmentMatchedWithFilterId.map(function (departmentId: any) {
-                                    for(let i = 0; i < surveyDepartmentIdArr.length; i++){
-                                        if(parseInt(departmentId) === parseInt(surveyDepartmentIdArr[i])){
-                                            return surveyDepartmentNameArr[i];
-                                        }
-                                    }
-                                }).join(', ');
-                                // console.log('departmentMatchedWithFilterName', departmentMatchedWithFilterName);
-                            }
-
-                            // Filter area of impact
-                            let areaOfImpactMatchedWithFilterName = '';
-                            let tmpCountEmptyAreaOfImpact = this.state.countEmptyAreaOfImpact;
-                            if(this.state.filterAreaOfImpact && this.state.checkedAreaOfImpactstList.length && !isFoundedAreaOfImpact){
-                                //Skip the question when the question no Area of impact matched with filter with Area of impact & All questions are empty show alert
-                                tmpCountEmptyAreaOfImpact++;
-                                if(tmpCountEmptyAreaOfImpact === this.state.numQuestion){
-                                    return (
-                                        <div className="sm-question-view clearfix sm-corner-a " sm-question-id="438586089" view-role="summaryQuestionViewContainer">
-                                            <div sm-questionview-content="" className="sm-questionview-content " view-role="summaryMatrixRatingQuestionView" style={{ minHeight: '407px', padding: '15px', textAlign: 'center'}}>
-                                                <h1 question-heading="" className="sm-questiontitle" title="">กรุณาตั้งค่าข้อคำถาม Area of impact ในหน้า Design</h1>
-                                                <Button style={{ marginLeft: 15 }}>
-                                                    <a href={`/cxm/platform/${this.props.match.params.xSite}/design/${surveyId}`}>Go to DESIGN SURVEY</a>
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    );
-                                }
-                                this.setState({ countEmptyAreaOfImpact: tmpCountEmptyAreaOfImpact });
-                                return;
-                            } else if(this.state.filterAreaOfImpact && this.state.checkedAreaOfImpactstList.length && isFoundedAreaOfImpact){
-
-                                const surveyAreaOfImpactsArr = this.state.survey.name_area_of_impacts ? this.state.survey.name_area_of_impacts.includes(",") ? this.state.survey.name_area_of_impacts.split(',') : [this.state.survey.name_area_of_impacts] : [];
-                                const surveyAreaOfImpactsNameArr = surveyAreaOfImpactsArr.map(function (list: any) { return list.slice(0, list.indexOf('~')) });
-                                const surveyAreaOfImpactsIDArr =  surveyAreaOfImpactsArr.map(function (list: any) { return list.slice(list.indexOf('~')+1) });
-
-                                const areaOfImpactMatchedWithFilterId = this.state.checkedAreaOfImpactstList.filter(function(f: any){ return questionAreaOfImpactsIdArr.includes(f); });
-                                
-                                areaOfImpactMatchedWithFilterName = areaOfImpactMatchedWithFilterId.map(function (id: any) {
-                                    for(let i = 0; i < surveyAreaOfImpactsIDArr.length; i++){
-                                        if(parseInt(id) === parseInt(surveyAreaOfImpactsIDArr[i])){
-                                            return surveyAreaOfImpactsNameArr[i];
-                                        }
-                                    }
-                                }).join(', ');
-                            }
+                           
 
                             // console.log(`get question ${i} id = `, questionId);
                             // console.log(`get question ${i} type id = `, questionTypeId);
@@ -655,8 +577,6 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                                     analyze_entity: questionAnalyzeEntity,
                                                     analyze_sentiment: questionAnalyzeSentiment,
                                                     showLabel: questionShowLabel,
-                                                    departmentMatchedWithFilterName: departmentMatchedWithFilterName,
-                                                    areaOfImpactMatchedWithFilterName: areaOfImpactMatchedWithFilterName
                                                 }
 
                                                 const answerObj = {
@@ -686,8 +606,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                                     choices: choices,
                                                     weights: weights,
                                                     analyze_entity: questionAnalyzeEntity,
-                                                    analyze_sentiment: questionAnalyzeSentiment,
-                                                    areaOfImpactMatchedWithFilterName: areaOfImpactMatchedWithFilterName
+                                                    analyze_sentiment: questionAnalyzeSentiment
                                                 } 
 
                                                 const answerObj = {
@@ -704,8 +623,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                                     choices: choices,
                                                     weights: weights,
                                                     analyze_entity: questionAnalyzeEntity,
-                                                    analyze_sentiment: questionAnalyzeSentiment,
-                                                    areaOfImpactMatchedWithFilterName: areaOfImpactMatchedWithFilterName
+                                                    analyze_sentiment: questionAnalyzeSentiment
                                                 } 
 
                                                 const answerObj = {
@@ -720,9 +638,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                                     no: questionNo,
                                                     label: questionLabel,
                                                     analyze_entity: questionAnalyzeEntity,
-                                                    analyze_sentiment: questionAnalyzeSentiment,
-                                                    departmentMatchedWithFilterName: departmentMatchedWithFilterName,
-                                                    areaOfImpactMatchedWithFilterName: areaOfImpactMatchedWithFilterName
+                                                    analyze_sentiment: questionAnalyzeSentiment
                                                 }
 
                                                 const answerObj = {
@@ -773,8 +689,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                                     no: questionNo,
                                                     label: questionLabel,
                                                     analyze_entity: questionAnalyzeEntity,
-                                                    analyze_sentiment: questionAnalyzeSentiment,
-                                                    areaOfImpactMatchedWithFilterName: areaOfImpactMatchedWithFilterName
+                                                    analyze_sentiment: questionAnalyzeSentiment
                                                 }
 
                                                 const answerObj = {
@@ -1161,619 +1076,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
             BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: 'cumulative renderQuestionAnswerRow catch', message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
         }
 
-        // const filterObj = {
-        //     dailyRangePicker: {
-        //         apply: this.state.dailyRangePicker,
-        //         dailyStartDate: moment(this.state.datesValue[0]).format('YYYY-MM-DD HH:mm:ss'),
-        //         dailyEndDate: moment(this.state.datesValue[1]).format('YYYY-MM-DD HH:mm:ss')
-        //     },
-        //     monthlyRangePicker: {
-        //         apply: this.state.monthlyRangePicker,
-        //         monthlyStartDate: moment(this.state.monthsValue[0]).format('YYYY-MM-DD HH:mm:ss'),
-        //         monthlyEndDate: moment(this.state.monthsValue[1]).format('YYYY-MM-DD HH:mm:ss')
-        //     },
-        //     filterCollector: {
-        //         apply: this.state.filterCollector,
-        //         collectorId: this.state.checkedCollectorList
-        //     },
-        // }
-
-        // console.log('response filterObj', filterObj);
-        // //get response coun
-        // BaseService.getWithBody<SurveyResponse>(this.props.match.params.xSite, '/response/rangepicker/', this.props.match.params.id, filterObj, this.state.jwtToken).then(
-        //     (rp) => {
-        //         try{
-        //             if (rp.Status) {
-        //                 console.log('get SurveyResponse', rp.Messages);
-        //                 console.log('get SurveyResponse', rp.Data);
-        //                 console.log('get SurveyResponse count = ', rp.Data.recordset.length);
-
-        //                 if(rp.Data.recordset){
-        //                     if(rp.Data.recordset.length){
-        //                         this.setState({ 
-        //                             respondents: rp.Data.recordset[0].total_respondents, 
-        //                             total_responses: rp.Data.recordset.length 
-        //                         });
-        //                     }
-        //                     else{
-        //                         this.setState({ 
-        //                             respondents: 0,
-        //                             total_responses: 0
-        //                         });
-        //                     }
-        //                 }
-                        
-        //                 this.setState({ isLoadingAnalyze: false });
-
-        //             } else {
-        //                 this.setState({ isLoadingAnalyze: false });
-        //                 toastr.error(rp.Messages);
-        //                 console.log("Messages: " + rp.Messages);
-        //                 console.log("Exception: " + rp.Exception);
-        //             }
-        //         }catch(error){ 
-        //             this.setState({ isLoadingAnalyze: false });
-        //             toastr.error(error);
-        //             console.log("Exception: " + error); 
-        //         }
-        //     }
-        // );
     }
-
-    /*
-    exportToCSV = (csvData: any, fileName: any) => {
-        try{
-            // exportToCSV = () => {
-            // console.log('exportToCSV exportData', this.state.exportData);
-            
-            // const csvData = this.state.exportData;
-            // const fileName = 'export-' + this.getDateTime();
-
-            const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-            const fileExtension = '.xlsx';
-
-            const ws = XLSX.utils.json_to_sheet(csvData);
-            const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
-            const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-            const data = new Blob([excelBuffer], {type: fileType});
-            FileSaver.saveAs(data, fileName + fileExtension);
-        }catch(error){
-            toastr.error('Something went wrong!, please refresh the page or try again later.');
-            BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: 'cumulative exportToCSV catch', message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-        }
-    }
-    
-    exportHandler(defaultActiveKey: any, questionNo?: any){
-        // console.log(`exportHandler defaultActiveKey ${defaultActiveKey} questionNo`, questionNo);
-
-        //clear export data array
-        this.setState({ 
-            exportData: [],
-            isLoadingAnalyze: true
-        }, async () => {
-              // console.log('exportHandler exportData', this.state.exportData);
-                try{
-                    const startTime = performance.now();
-
-                    const surveyId = this.props.match.params.id;
-                    const numQuestion = questionNo ? 1 : this.state.numQuestion;
-
-                    let nodeArr = new Array<any>(numQuestion);
-                    for(let i = 0; i < nodeArr.length; i++) { nodeArr[i] = ''; }
-
-                    // const jwt = getJwtToken();
-                    const allExportArr = nodeArr.map((obj, i) => this.exportQuestionAnswer(surveyId, questionNo ? questionNo : i+1, defaultActiveKey));
-
-                    const allExportPromise = await Promise.all(allExportArr);
-                    // console.log('allExportPromise', allExportPromise);
-                    // console.log('exportAll this.state.exportData', this.state.exportData);
-
-                    const exportDataAnswered = this.state.exportData.filter(function (item: any) { return item.answered === 'Yes'; });
-                    // console.log('exportAll exportDataAnswered', exportDataAnswered);
-
-                    const fileName = questionNo ? 'export-' + this.getDateTime() : 'export-all-' + this.getDateTime();
-                    this.exportToCSV(this.state.exportData, fileName);
-
-                    this.setState({ isLoadingAnalyze: false });
-
-                    const endTime = performance.now();
-                    // console.log('Its took ' + (endTime - startTime) + ' ms.');
-                }catch(error){
-                    toastr.error('Something went wrong!, please refresh the page or try again later.');
-                    BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: 'cumulative exportHandler catch', message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-                }
-                
-            }
-        );
-
-    }
-
-    exportQuestionAnswer = async (surveyId: any, i: any, defaultActiveKey: any) => {
-      // console.log ("exportQuestionAnswer question no." + i);
-
-        return await BaseService.get<Question>(this.props.match.params.xSite, '/question/', surveyId + '/' + i, this.state.jwtToken).then(
-            async (rp) => {
-                try{
-                    if (rp.Status) {
-
-                      // console.log(`exportQuestionAnswer question ${i}`, rp.Messages);
-                      // console.log(`exportQuestionAnswer question ${i}`, rp.Data);
-                      // console.log(`exportQuestionAnswer question ${i} count = `, rp.Data.recordset.length);
-
-                        if(rp.Data.recordset.length){
-
-                            const questionId = rp.Data.recordset[0].id[0];
-                            const questionTypeId = rp.Data.recordset[0].type_id;
-                            const questionNo = rp.Data.recordset[0].order_no;
-                            const questionLabel = rp.Data.recordset[0].question_label;
-
-                          // console.log(`exportQuestionAnswer question ${i} id = `, questionId);
-                          // console.log(`exportQuestionAnswer question ${i} type id = `, questionTypeId);
-                          // console.log(`exportQuestionAnswer question ${i} no = `, questionNo);
-                          // console.log(`exportQuestionAnswer question ${i} label = `, questionLabel);
-
-                            let questionTypeName = '';
-
-                            switch (questionTypeId) {
-                                case 1: questionTypeName = 'Rating'; break;
-                                case 2: questionTypeName = 'Multiple Choice'; break;
-                                case 3: questionTypeName = 'Checkbox'; break;
-                                case 4: questionTypeName = 'Net Promoter Score'; break;
-                                case 5: questionTypeName = 'Text'; break;
-                                case 6: questionTypeName = 'Dropdown'; break;
-                                default: break;
-                            }
-
-                            //Star Rating & Multiple choicevariables
-                            let choices = [] as any;
-                            let weights = [] as any;
-
-                            if(questionTypeId === 1 || questionTypeId === 2 || questionTypeId === 3 || questionTypeId === 6){
-                                
-                                const questionChoice = rp.Data.recordset[0].choice.split(',');
-                              // console.log(`exportQuestionAnswer question ${i} choice = `, questionChoice);
-
-                                choices = [] as any;
-                                weights = [] as any;
-                                for (let i = 0; i < questionChoice.length; i++) {
-                                    if (i % 2 === 0) {
-                                        choices.push(questionChoice[i]);
-                                    } 
-                                    else {
-                                        weights.push(questionChoice[i]);
-                                    }
-                                }
-
-                              // console.log(`exportQuestionAnswer question ${i} choices = `, choices);
-                              // console.log(`exportQuestionAnswer question ${i} weights = `, weights);
-                            }
-                                        
-                          // console.log(`exportQuestionAnswer answer ${i} element`);
-
-                            let element: any;
-
-                            const filterObj = {
-                                dailyRangePicker: {
-                                    apply: this.state.dailyRangePicker,
-                                    dailyStartDate: moment(this.state.datesValue[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-                                    dailyEndDate: moment(this.state.datesValue[1]).endOf('day').format('YYYY-MM-DD HH:mm:ss')
-                                },
-                                monthlyRangePicker: {
-                                    apply: this.state.monthlyRangePicker,
-                                    monthlyStartDate: moment(this.state.monthsValue[0]).startOf('month').format("YYYY-MM-DD HH:mm:ss"),
-                                    monthlyEndDate: moment(this.state.monthsValue[1]).endOf('month').format("YYYY-MM-DD HH:mm:ss")
-                                },
-                                filterCollector: {
-                                    apply: this.state.filterCollector,
-                                    collectorId: this.state.checkedCollectorList
-                                },
-                                filterProject: {
-                                    apply: this.state.filterProject,
-                                    projectId: this.state.checkedProjectList
-                                },
-                                // filterDepartment: {
-                                //     apply: this.state.filterDepartment,
-                                //     departmentId: this.state.checkedDepartmentList
-                                // },
-                                filterRespondentMetadata: {
-                                    apply: this.state.filterRespondentMetadata,
-                                    filterCustomerId: this.state.filterCustomerId.trim(),
-                                    filterLineId: this.state.filterLineId.trim(),
-                                    filterIdCard4Digit: this.state.filterIdCard4Digit.trim(),
-                                    filterRoomNumber: this.state.filterRoomNumber.trim(),
-                                    filterMobileNumber: this.state.filterMobileNumber.trim(),
-                                    filterFirstName: this.state.filterFirstName.trim(),
-                                    filterLastName: this.state.filterLastName.trim(),
-                                    filterEmail: this.state.filterEmail.trim(),
-                                    filterCustomGroup: this.state.filterCustomGroup.trim(),
-                                    filterIPAddress: this.state.filterIPAddress.trim(),
-                                    filterInstitutionName: this.state.filterInstitutionName.trim(),
-                                    filterCompanyName: this.state.filterCompanyName.trim(),
-                                    filterDepartment: this.state.filterDepartmentName.trim(),
-                                    filterPosition: this.state.filterPosition.trim(),
-                                }
-                            }
-
-                            // console.log('answer/export filterObj', filterObj);
-                            //get a answer just 1 time and wait for each type of the answer process
-                            element = await BaseService.getWithBody<Answer>(this.props.match.params.xSite, '/answer/rangepicker/export/', surveyId + '/' + questionId + '/' + questionTypeId, filterObj, this.state.jwtToken).then(
-                                (rp) => {
-                                    try{
-                                        if (rp.Status) {
-                                            // console.log(`exportQuestionAnswer answer rp ${i}`, rp);
-                                            // console.log(`exportQuestionAnswer answer Messages ${i}`, rp.Messages);
-                                            // console.log(`exportQuestionAnswer answer Data ${i}`, rp.Data);
-                                            // console.log(`exportQuestionAnswer answer ${i} count = `, rp.Data.recordsets.length);
-
-                                            //Star Rating
-                                            if(questionTypeId === 1){
-
-                                                if(rp.Data){
-
-                                                    const rpDataRecordset = defaultActiveKey === 'daily' ? rp.Data.recordsets[0] : defaultActiveKey === 'monthly' ? rp.Data.recordsets[1] : rp.Data.recordsets[2];
-
-                                                    // console.log('rpDataRecordset', rpDataRecordset);
-                                                    
-                                                    rpDataRecordset.map((data: any) => {
-                                                    // console.log('data', data);
-                                                        // console.log('answer', data.answer);
-                                                        // console.log('skip_status', data.skip_status);
-
-                                                        const skip = data.skip_status;
-                                                        const answer = data.answer;
-                                                        const comment = data.comment;
-                                                        let choice = '';
-
-                                                        if(data.skip_status === 0){
-                                                            //for equal of choice number
-                                                            for (let i = 0; i < choices.length; i++) {
-                                                                // console.log(`data.answer = ${data.answer} === weights[${i}] = `, weights[i]);
-                                                                if(parseInt(data.answer) === parseInt(weights[i])){ 
-                                                                    choice = choices[i];
-                                                                    // console.log('answer choice', choice);
-                                                                    // return;
-                                                                }   
-                                                            }
-                                                        }
-                                                        
-                                                        let exportDataArr = this.state.exportData;
-                                                        exportDataArr.push({
-                                                            complete_status: this.checkCompleteStatus(data.complete_status),
-                                                            collector_name: data.collector_name,
-                                                            collector_type: this.checkCollectorType(data.collector_type),
-                                                            time_spent: moment.utc(moment.duration(data.time_spent, "seconds").asMilliseconds()).format("HH:mm:ss"),
-                                                            started: data.started,
-                                                            last_modified: data.last_modified ? data.last_modified : data.started,
-                                                            ip: data.ip_address,
-                                                            email: data.email_address,
-                                                            mobile: data.mobile_number,
-                                                            name_title: data.name_title,
-                                                            first_name: data.first_name,
-                                                            last_name: data.last_name,
-                                                            birthdate: data.birthdate,
-                                                            line_id: data.line_id,
-                                                            id_card_4_digit: data.id_card_4_digit,
-                                                            room_number: data.room_number,
-                                                            institution_name: data.institution_name,
-                                                            customer_id: data.customer_id,
-                                                            custom_group: data.custom_group,
-                                                            question_no: questionNo,
-                                                            question_name: questionLabel,
-                                                            question_type: questionTypeName,
-                                                            answered: skip ? 'No' : 'Yes',
-                                                            answer_weight: answer,
-                                                            answer_choice: choice,
-                                                            comment: comment,
-                                                        });
-                
-                                                        this.setState({
-                                                            exportData: exportDataArr,
-                                                        },  () => { 
-                                                                // console.log(`after exportData`, this.state.exportData);
-                                                            } 
-                                                        );
-
-                                                    });
-                                                }
-                                                    
-                                                return true;
-                                            }
-                                            else if(questionTypeId === 2 || questionTypeId === 6){
-                                                
-                                                if(rp.Data){
-                                                    const rpDataRecordset = defaultActiveKey === 'daily' ? rp.Data.recordsets[0] : defaultActiveKey === 'monthly' ? rp.Data.recordsets[1] : rp.Data.recordsets[2];
-
-                                                    // console.log('rpDataRecordset', rpDataRecordset);
-                                                    
-                                                    rpDataRecordset.map((data: any) => {
-                                                    // console.log('data', data);
-                                                        // console.log('answer', data.answer);
-                                                        // console.log('skip_status', data.skip_status);
-
-                                                        const skip = data.skip_status;
-                                                        const answer = data.answer;
-                                                        const comment = data.comment;
-                                                        let choice = '';
-
-                                                        if(data.skip_status === 0){
-                                                            //for equal of choice number
-                                                            for (let i = 0; i < choices.length; i++) {
-                                                                // console.log(`data.answer = ${data.answer} === weights[${i}] = `, weights[i]);
-                                                                if(parseInt(data.answer) === parseInt(weights[i])){ 
-                                                                    choice = choices[i];
-                                                                    // console.log('answer choice', choice);
-                                                                    // return;
-                                                                }   
-                                                            }
-                                                        }
-
-                                                        let exportDataArr = this.state.exportData;
-                                                        exportDataArr.push({
-                                                            complete_status: this.checkCompleteStatus(data.complete_status),
-                                                            collector_name: data.collector_name,
-                                                            collector_type: this.checkCollectorType(data.collector_type),
-                                                            time_spent: moment.utc(moment.duration(data.time_spent, "seconds").asMilliseconds()).format("HH:mm:ss"),
-                                                            started: data.started,
-                                                            last_modified: data.last_modified ? data.last_modified : data.started,
-                                                            ip: data.ip_address,
-                                                            email: data.email_address,
-                                                            mobile: data.mobile_number,
-                                                            name_title: data.name_title,
-                                                            first_name: data.first_name,
-                                                            last_name: data.last_name,
-                                                            birthdate: data.birthdate,
-                                                            line_id: data.line_id,
-                                                            id_card_4_digit: data.id_card_4_digit,
-                                                            room_number: data.room_number,
-                                                            institution_name: data.institution_name,
-                                                            customer_id: data.customer_id,
-                                                            custom_group: data.custom_group,
-                                                            question_no: questionNo,
-                                                            question_name: questionLabel,
-                                                            question_type: questionTypeName,
-                                                            answered: skip ? 'No' : 'Yes',
-                                                            answer_weight: answer,
-                                                            answer_choice: choice,
-                                                            comment: comment,
-                                                        });
-
-                                                        this.setState({
-                                                            exportData: exportDataArr,
-                                                        },  () => { 
-                                                                // console.log(`after exportData`, this.state.exportData);
-                                                            } 
-                                                        );
-                                                        
-                                                    });
-                                                }
-                                                
-                                                return true;
-                                            }
-                                            else if(questionTypeId === 3){
-
-                                                if(rp.Data){
-                                                    const rpDataRecordset = defaultActiveKey === 'daily' ? rp.Data.recordsets[0] : defaultActiveKey === 'monthly' ? rp.Data.recordsets[1] : rp.Data.recordsets[2];
-
-                                                    // console.log('rpDataRecordset', rpDataRecordset);
-                                                    
-                                                    rpDataRecordset.map((data: any) => {
-                                                    // console.log('data', data);
-                                                        // console.log('answer', data.answer);
-                                                        // console.log('skip_status', data.skip_status);
-                                                        // console.log('checkbox choices', choices);
-
-                                                        const skip = data.skip_status;
-                                                        const answer = data.answer ? data.answer.split(',').filter(function (item: any) { return item !== null && item !== ''; }).join(', ') : '';
-                                                        const comment = data.comment;
-                                                        let choice = '';
-
-                                                        if(data.skip_status === 0){
-                                                            //for equal of choice number
-                                                            for (let i = 0; i < choices.length; i++) {
-                                                                for (let j = 0; j < data.answer.length; j++) {
-                                                                    // console.log(`data.answer[${j}] = ${data.answer[j]} === weights[${i}] = `, weights[i]);
-                                                                    if(parseInt(data.answer[j]) === parseInt(weights[i])){ 
-                                                                        choice += choices[i] + ', ';
-                                                                    }
-                                                                }
-                                                            }
-                                                            // console.log('checkbox choices answer', choice);
-                                                        }
-                                                        
-                                                        let exportDataArr = this.state.exportData;
-                                                        exportDataArr.push({
-                                                            complete_status: this.checkCompleteStatus(data.complete_status),
-                                                            collector_name: data.collector_name,
-                                                            collector_type: this.checkCollectorType(data.collector_type),
-                                                            time_spent: moment.utc(moment.duration(data.time_spent, "seconds").asMilliseconds()).format("HH:mm:ss"),
-                                                            started: data.started,
-                                                            last_modified: data.last_modified ? data.last_modified : data.started,
-                                                            ip: data.ip_address,
-                                                            email: data.email_address,
-                                                            mobile: data.mobile_number,
-                                                            name_title: data.name_title,
-                                                            first_name: data.first_name,
-                                                            last_name: data.last_name,
-                                                            birthdate: data.birthdate,
-                                                            line_id: data.line_id,
-                                                            id_card_4_digit: data.id_card_4_digit,
-                                                            room_number: data.room_number,
-                                                            institution_name: data.institution_name,
-                                                            customer_id: data.customer_id,
-                                                            custom_group: data.custom_group,
-                                                            question_no: questionNo,
-                                                            question_name: questionLabel,
-                                                            question_type: questionTypeName,
-                                                            answered: skip ? 'No' : 'Yes',
-                                                            answer_weight: answer,
-                                                            answer_choice: choice,
-                                                            comment: comment,
-                                                        });
-
-                                                        this.setState({
-                                                            exportData: exportDataArr,
-                                                        },  () => { 
-                                                                // console.log(`after exportData`, this.state.exportData);
-                                                            } 
-                                                        );
-
-                                                    });
-                                                }
-
-                                                return true;
-                                            }
-                                            else if(questionTypeId === 4){
-
-                                                if(rp.Data){
-                                                    const rpDataRecordset = defaultActiveKey === 'daily' ? rp.Data.recordsets[0] : defaultActiveKey === 'monthly' ? rp.Data.recordsets[1] : rp.Data.recordsets[2];
-
-                                                    // console.log('rpDataRecordset', rpDataRecordset);
-                                                    
-                                                    rpDataRecordset.map((data: any) => {
-                                                    // console.log('data', data);
-                                                        // console.log('answer', data.answer);
-                                                        // console.log('skip_status', data.skip_status);
-
-                                                        const skip = data.skip_status;
-                                                        const answer = data.answer;
-                                                        const comment = data.comment;
-                                                        let choice = '';
-
-                                                        let exportDataArr = this.state.exportData;
-                                                        exportDataArr.push({
-                                                            complete_status: this.checkCompleteStatus(data.complete_status),
-                                                            collector_name: data.collector_name,
-                                                            collector_type: this.checkCollectorType(data.collector_type),
-                                                            time_spent: moment.utc(moment.duration(data.time_spent, "seconds").asMilliseconds()).format("HH:mm:ss"),
-                                                            started: data.started,
-                                                            last_modified: data.last_modified ? data.last_modified : data.started,
-                                                            ip: data.ip_address,
-                                                            email: data.email_address,
-                                                            mobile: data.mobile_number,
-                                                            name_title: data.name_title,
-                                                            first_name: data.first_name,
-                                                            last_name: data.last_name,
-                                                            birthdate: data.birthdate,
-                                                            line_id: data.line_id,
-                                                            id_card_4_digit: data.id_card_4_digit,
-                                                            room_number: data.room_number,
-                                                            institution_name: data.institution_name,
-                                                            customer_id: data.customer_id,
-                                                            custom_group: data.custom_group,
-                                                            question_no: questionNo,
-                                                            question_name: questionLabel,
-                                                            question_type: questionTypeName,
-                                                            answered: skip ? 'No' : 'Yes',
-                                                            answer_weight: answer,
-                                                            answer_choice: choice,
-                                                            comment: comment,
-                                                        });
-
-                                                        this.setState({
-                                                            exportData: exportDataArr,
-                                                        },  () => { 
-                                                                // console.log(`after exportData`, this.state.exportData);
-                                                            } 
-                                                        );
-                                                    });
-                                                }
-                                                
-                                                return true;
-                                            }
-                                            else if(questionTypeId === 5){
-
-                                                if(rp.Data)
-                                                rp.Data.recordset.map((data: any) => {
-                                                  // console.log('data', data);
-                                                    // console.log('answer', data.answer);
-                                                    // console.log('skip_status', data.skip_status);
-
-                                                    const skip = data.skip_status;
-                                                    const answer = data.answer;
-
-                                                    let exportDataArr = this.state.exportData;
-                                                    exportDataArr.push({
-                                                        complete_status: this.checkCompleteStatus(data.complete_status),
-                                                        collector_name: data.collector_name,
-                                                        collector_type: this.checkCollectorType(data.collector_type),
-                                                        time_spent: moment.utc(moment.duration(data.time_spent, "seconds").asMilliseconds()).format("HH:mm:ss"),
-                                                        started: data.started,
-                                                        last_modified: data.last_modified ? data.last_modified : data.started,
-                                                        ip: data.ip_address,
-                                                        email: data.email_address,
-                                                        mobile: data.mobile_number,
-                                                        name_title: data.name_title,
-                                                        first_name: data.first_name,
-                                                        last_name: data.last_name,
-                                                        birthdate: data.birthdate,
-                                                        line_id: data.line_id,
-                                                        id_card_4_digit: data.id_card_4_digit,
-                                                        room_number: data.room_number,
-                                                        institution_name: data.institution_name,
-                                                        customer_id: data.customer_id,
-                                                        custom_group: data.custom_group,
-                                                        question_no: questionNo,
-                                                        question_name: questionLabel,
-                                                        question_type: questionTypeName,
-                                                        answered: skip ? 'No' : 'Yes',
-                                                        answer_weight: '',
-                                                        answer_choice: '',
-                                                        comment: answer,
-                                                    });
-
-                                                    this.setState({
-                                                        exportData: exportDataArr,
-                                                    },  () => { 
-                                                            // console.log(`after exportData`, this.state.exportData);
-                                                        } 
-                                                    );
-                                                });
-
-                                                return true
-                                            }
-                                            
-                                            return false;
-
-                                        } else {
-                                            this.setState({ isLoading: false });
-                                            // toastr.error(rp.Messages);
-                                            toastr.error('Something went wrong!, please refresh the page or try again later.');
-                                            BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `cumulative exportQuestionAnswer BaseService.getWithBody<Answer> /answer/rangepicker/export/${surveyId}/${questionId}/${questionTypeId} catch`, message: `Messages: ${rp.Messages} | Exception: ${rp.Exception}` }, getJwtToken()).then( (rp) => { console.log(`Messages: ${rp.Messages} | Exception: ${rp.Exception}`); });
-                                            return false;
-                                        }
-                                    }catch(error){ 
-                                        this.setState({ isLoading: false });
-                                        // toastr.error(error);
-                                        toastr.error('Something went wrong!, please refresh the page or try again later.');
-                                        BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `cumulative exportQuestionAnswer BaseService.getWithBody<Answer> /answer/rangepicker/export/${surveyId}/${questionId}/${questionTypeId} catch`, message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-                                     }
-                                }//(rp)
-                            );//call answer api to element
-
-                          // console.log(`got answer ${i} element`, element);
-                            return element;
-                        }//end if (rp.Data.recordset.length)
-                        else{
-                            return false;
-                        }
-
-                    } else {
-                        this.setState({ isLoadingAnalyze: false });
-                        // toastr.error(rp.Messages);
-                        toastr.error('Something went wrong!, please refresh the page or try again later.');
-                        BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `cumulative exportQuestionAnswer BaseService.get<Question> /question/${surveyId}/${i} else`, message: `Messages: ${rp.Messages} | Exception: ${rp.Exception}` }, getJwtToken()).then( (rp) => { console.log(`Messages: ${rp.Messages} | Exception: ${rp.Exception}`); });
-                        return false;
-                    }
-                }catch(error){ 
-                    this.setState({ isLoadingAnalyze: false });
-                    // toastr.error(error);
-                    toastr.error('Something went wrong!, please refresh the page or try again later.');
-                    BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `cumulative exportQuestionAnswer BaseService.get<Question> /question/${surveyId}/${i} catch`, message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-                }
-            }//async (rp)
-        );//call question api
-
-    }*/
 
     checkCollectorType(collectorTypeId: number){
         switch (collectorTypeId) {
@@ -2389,159 +1692,6 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                                         </li>
                                                         : null }
 
-                                                        {/* check if the survey has some department to do a department filter */}
-                                                        {/* { this.state.departmentCheckboxOptions.length ? 
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Filter by KPI Department</span>
-                                                                { !this.state.filterDepartment ? 
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }} onClick={ (e) => { e.preventDefault(); this.setState({ filterDepartment: true }) } }>APPLY</span>
-                                                                : null }
-                                                            </a>
-
-                                                            { this.state.filterDepartment ? 
-                                                            <div id='filter-department'>
-                                                                <section id="panel-send-date" style={{height: 'auto'}}>
-                                                                    <div id="send-date-module" className="clearfix">
-                                                                        <div>
-                                                                            <CheckboxGroup options={this.state.departmentCheckboxOptions} value={this.state.checkedDepartmentList} onChange={this.onDepartmentOptionsChange}/>
-                                                                        </div>
-                                                                        <div className="btn-float-right" style={{ paddingTop: '15px' }}>
-                                                                            <a className="wds-button wds-button--primary wds-button--sm apply-btn " style={{ cursor: 'pointer' }} onClick={ (e) => { e.preventDefault(); this.applyFilterDepartment() } }>APPLY</a>
-                                                                            <a className="wds-button wds-button--util wds-button--sm cancel-btn" style={{ cursor: 'pointer', marginLeft: '20px' }} onClick={ (e) => { e.preventDefault(); this.cancelFilterDepartment() } }>CANCEL</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </section>
-                                                            </div>
-                                                            : null }
-                                                        </li>
-                                                        : null } */}
-
-                                                        {/* check if the survey has some Area of impact to do a Area of impact filter */}
-                                                        {/* { this.state.areaOfImpactsCheckboxOptions.length ? 
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Filter by Area of impact</span>
-                                                                { !this.state.filterAreaOfImpact ? 
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }} onClick={ (e) => { e.preventDefault(); this.setState({ filterAreaOfImpact: true }) } }>APPLY</span>
-                                                                : null }
-                                                            </a>
-
-                                                            { this.state.filterAreaOfImpact ? 
-                                                            <div id='filter-areaOfImpacts'>
-                                                                <section id="panel-send-date" style={{height: 'auto'}}>
-                                                                    <div id="send-date-module" className="clearfix">
-                                                                        <div>
-                                                                            <CheckboxGroup options={this.state.areaOfImpactsCheckboxOptions} value={this.state.checkedAreaOfImpactstList} onChange={this.onAreaOfImpactOptionsChange}/>
-                                                                        </div>
-                                                                        <div className="btn-float-right" style={{ paddingTop: '15px' }}>
-                                                                            <a className="wds-button wds-button--primary wds-button--sm apply-btn " style={{ cursor: 'pointer' }} onClick={ (e) => { e.preventDefault(); this.applyFilterAreaOfImpact() } }>APPLY</a>
-                                                                            <a className="wds-button wds-button--util wds-button--sm cancel-btn" style={{ cursor: 'pointer', marginLeft: '20px' }} onClick={ (e) => { e.preventDefault(); this.cancelFilterAreaOfImpact() } }>CANCEL</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </section>
-                                                            </div>
-                                                            : null }
-                                                        </li>
-                                                        : null } */}
-                                                        
-                                                        {/* <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Filter by Question and Answer</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>APPLY</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Filter by Collector</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>APPLY</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Filter by Completeness</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>APPLY</span>
-                                                            </a>
-                                                        </li>*/}
-                                                        
-                                                        {/* <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Filter by Respondent Metadata</span>
-                                                                { !this.state.filterRespondentMetadata ? 
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }} onClick={ (e) => { e.preventDefault(); this.setState({ filterRespondentMetadata: true }) } }>APPLY</span>
-                                                                : null }
-                                                            </a>
-
-                                                            { this.state.filterRespondentMetadata ? 
-                                                            <div id='filter-time-period'>
-                                                                <section id="panel-send-date" style={{height: 'auto'}}>
-                                                                    <div id="send-date-module" className="clearfix">
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Customer ID : </span>
-                                                                            <Input placeholder="Customer ID" allowClear onChange={this.onFilterCustomerIdChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Line ID : </span>
-                                                                            <Input placeholder="Line ID" allowClear onChange={this.onFilterLineIdChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>ID Card 4 last digits : </span>
-                                                                            <Input placeholder="ID Card 4 last digits" allowClear onChange={this.onFilterIdCard4DigitChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Room Number : </span>
-                                                                            <Input placeholder="Room Number" allowClear onChange={this.onFilterRoomNumberChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Mobile Number : </span>
-                                                                            <Input placeholder="Mobile Number" allowClear onChange={this.onFilterMobileNumberChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Email : </span>
-                                                                            <Input placeholder="Email" allowClear onChange={this.onFilterEmailChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>First Name : </span>
-                                                                            <Input placeholder="First Name" allowClear onChange={this.onFilterFirstNameChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Last Name : </span>
-                                                                            <Input placeholder="Last Name" allowClear onChange={this.onFilterLastNameChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Custom Group : </span>
-                                                                            <Input placeholder="Custom Group" allowClear onChange={this.onFilterCustomGroupChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>IP Address : </span>
-                                                                            <Input placeholder="IP Address" allowClear onChange={this.onFilterIPAddressChange} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Institution Name : </span>
-                                                                            <Input placeholder="Institution Name" allowClear onChange={this.onFilterInstitutionName} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Company Name : </span>
-                                                                            <Input placeholder="Company Name" allowClear onChange={this.onFilterCompanyName} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Department : </span>
-                                                                            <Input placeholder="Department" allowClear onChange={this.onFilterDepartment} />
-                                                                        </div>
-                                                                        <div>
-                                                                            <span className="timezone" style={{ position: 'static', fontSize: '12px', display: 'block', paddingTop: '10px', paddingBottom: '5px' }}>Position : </span>
-                                                                            <Input placeholder="Position" allowClear onChange={this.onFilterPosition} />
-                                                                        </div>
-                                                                        <div className="btn-float-right" style={{ paddingTop: '15px' }}>
-                                                                            <a className="wds-button wds-button--primary wds-button--sm apply-btn " style={{ cursor: 'pointer' }} onClick={ (e) => { e.preventDefault(); this.applyFilterRespondentMetadata() } }>APPLY</a>
-                                                                            <a className="wds-button wds-button--util wds-button--sm cancel-btn" style={{ cursor: 'pointer', marginLeft: '20px' }} onClick={ (e) => { e.preventDefault(); this.cancelFilterRespondentMetadata() } }>CANCEL</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </section>
-                                                            </div>
-                                                            : null }
-                                                        </li> */}
-
                                                     </ul>
                                                 </div>
                                             </section>
@@ -2553,18 +1703,6 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                 <div className="live-preview-wrapper" style={{ padding: '0' }}> 
                                     <div id="livePreview" className="livePreview" style={{ maxWidth: '100%' }}>
                                         <div id="pageid-110955719" className="page v3theme      first-page      last-page">
-
-                                            {/* <div className="analyze-mode-header sm-corner-a" view-role="AnalyzeHeaderView">
-                                                <div className="stats-header clearfix sm-corner-t " view-role="statsHeaderView" style={{width: '900px'}}>
-                                                    <h4 className="sm-float-l">
-                                                            RESPONDENTS: {this.state.respondents} of {this.state.total_responses} 
-                                                    </h4>
-                                                    <div global-share-menu="" className="persistent-buttons sm-float-r">
-                                                    <a href="#" className="wds-button wds-button--icon-right wds-button--sm" onClick={(e) => this.exportHandler()}>Export All</a>
-                                                        <a href="#" className="wds-button wds-button--icon-right wds-button--sm wds-button--arrow-down" onClick={(e) => this.exportHandler()}>SAVE AS</a>
-                                                    </div>
-                                                </div>
-                                            </div> */}
 
                                             <div className="analyze-pages-content-wrapper" view-role="analyzeContentWrapperView" style={{ width: '900px' }}>
                                                 <div className="analyze-pages-content" view-role="analyzeContentView">

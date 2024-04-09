@@ -132,19 +132,6 @@ export default class CollectorLink extends React.Component<IProps, IState> {
 
     }
 
-    // private onFieldValueChange(fieldName: string, value: any) { 
-    //     const nextState = {
-    //         ...this.state,
-    //         collector: {
-    //             ...this.state.collector,
-    //             [fieldName]: value,
-    //         }
-    //     };
-
-    //     this.setState(nextState);
-    //   // console.log('Create onFieldValueChange', this.state.survey);
-    // }
-
     componentDidMount() { 
 
         const jwt = getJwtToken();
@@ -184,19 +171,6 @@ export default class CollectorLink extends React.Component<IProps, IState> {
 
                     );
 
-                    // BaseService.get<Surveys>(this.props.match.params.xSite, "/collector/statusName/", rp.Data.recordset[0].status, jwt).then(
-                    //     (rp) => {
-                    //         if (rp.Status) {
-                    //             // console.log('statusName', rp.Data.recordset[0].name);
-                    //             this.setState({ collectorStatus: rp.Data.recordset[0].name });
-                    //         } else {
-                    //             toastr.error(rp.Messages);
-                    //             console.log("Messages: " + rp.Messages);
-                    //             console.log("Exception: " + rp.Exception);
-                    //         }
-                    //     }
-                    // );
-
                     BaseService.getAll<Project>(this.props.match.params.xSite, '/projects/', jwt).then(
                     (rp) => {
                         try{
@@ -229,25 +203,6 @@ export default class CollectorLink extends React.Component<IProps, IState> {
         );
 
     }
-
-    // onSave = () => { 
-    //   // console.log(`onSave`, this.state.survey.id);
-    //   // console.log(`onSave`, this.state.collector);
-
-    //     BaseService.create<Collector>(this.props.match.params.xSite, "/collectors/", this.state.collector).then(
-    //         (rp) => {
-    //             if (rp.Status) {
-    //                 toastr.success('Collector created.'); 
-    //                 // this.history.push('/collectors/'+this.state.survey.id);
-    //                 window.location.reload();
-    //             } else {
-    //                 toastr.error(rp.Messages);
-    //                 console.log("Messages: " + rp.Messages);
-    //                 console.log("Exception: " + rp.Exception);
-    //             }
-    //         }
-    //     );
-    // }
 
     // public onCreate = (typeNum: any) => { 
     showModal = (typeId: any) => {
@@ -498,11 +453,7 @@ export default class CollectorLink extends React.Component<IProps, IState> {
                             </nav>
 
                             <main>
-                                <span>Nickname <Tooltip title={'ผู้ใช้งานระบบเท่านั้นถึงจะเห็นชื่อนี้'}><Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/></Tooltip> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit nickname">{this.state.collector.nickname}</h1><span id="edit-name-icon" onClick={()=>this.showModal(this.state.collector.type)} className="smf-icon notranslate">W</span></span>
-                                <br></br>
-                                <br></br>
-                                <span>Display name <Tooltip title={'ผู้ทำแบบสอบถามจะเห็นชื่อนี้ในแบบสอบถาม'}><Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/></Tooltip> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit display name">{this.state.collector.name}</h1><span id="edit-name-icon" onClick={()=>this.showModal(this.state.collector.type)} className="smf-icon notranslate">W</span></span>
-
+                                
                                 <span id="collector-created-date">Link created: {this.state.collector.created_date}</span>
                                 
                                 <section className="weblink">
@@ -534,73 +485,12 @@ export default class CollectorLink extends React.Component<IProps, IState> {
                                                 <button id="copy-link-btn" onClick={this.toClipboard}className="wds-button wds-button--sm" data-clipboard-target="#weblink-url">COPY</button>
                                             </div> */}
                                         </div>
-
-                                        {/* <div id="collector-info" className="customize hidden-toggle" collector-id="255031776" old-slug="V6FZ8C3">
-                                            <div className="buttons">
-                                                <a href="# " className="hidden-toggle wds-button wds-button--upgrade wds-button--sm" href="/pricing/upgrade/?ut_source=wall_custom_link&amp;ut_source2=weblink">UPGRADE</a><a id="slug-save" className="wds-button wds-button--sm">SAVE</a><a id="slug-cancel" className="wds-button wds-button--ghost wds-button--ghost-filled wds-button--sm">CANCEL</a>
-                                            </div>
-                                            <span className="weblink-domain" data-icon="Ç">
-                                                
-                                                    <a id="domain-select" className="wds-button wds-button--icon-right wds-button--util wds-button--arrow-down notranslate" domaintype="iconcxm">
-                                                        <b className="notranslate" id="weblink-domain-prefixes">https://</b><b className="notranslate" id="weblink-domain">www.iconcxm.com</b>
-                                                    </a>
-                                                
-                                                <span className="notranslate">/r/</span>
-                                            </span>
-                                            <input id="weblink-slug" size="12" type="text" name="slug" value="V6FZ8C3" readonly="readonly" className="notranslate bg-upgrade" maxlength="100">
-                                        </div>
-                                         
-                                        <p className="chars_remaining wds-type--product-ui wds-type-weight--regular">Up to <span className="sl_plural">100</span>
-                                            letters and numbers, underscores, and hyphens. (<span id="characters_left"><span className="sl_plural">93</span> <span className="counter-name">characters</span></span> remaining).</p>
-                                        */}
-                                        
-                                        <div className="share-button-container">
-                                            <a  role="button" className="share-button-social-btns twitter-share-button " target="_blank" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.iconcxm.com%2Fr%2FT8SBGGV&amp;text=Please%20take%20the%20survey%20titled%20%22Survey%20Test%22.%20%20Your%20feedback%20is%20important!">
-                                                <Icon type="twitter" />
-                                            </a>
-                                            <a  role="button" className="share-button-social-btns linkedin-share-button " target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.iconcxm.com%2Fr%2FT8SBGGV&amp;title=Can%20you%20spare%20a%20few%20moments%20to%20take%20my%20survey%3F&amp;summary=Please%20take%20the%20survey%20titled%20%22Survey%20Test%22.%20%20Your%20feedback%20is%20important!">
-                                                <Icon type="linkedin" />
-                                            </a>
-                                            <a  role="button" className="share-button-social-btns fb-share-button" target="_blank" href="# ">
-                                                <Icon type="facebook" />
-                                            </a>
-                                        </div>
                                         
                                     </div>
                                 </section>
 
                                 <section className="collector-options weblink" style={{ width: '100%' }}>
                                     <div className="accordion options">
-
-                                        {/* <div className="key open">
-                                            <header>
-                                                <h3>
-                                                    <a  href="# " target="#panel-make-anonymous" style={{cursor: 'default'}} className="keyOpener">
-                                                        <b>ANONYMOUS RESPONSES:</b><span className="collapsed-text" style={{display: 'none'}}>Off</span>
-                                                    </a>
-                                                </h3>
-                                            </header>
-
-                                            <section id="panel-make-anonymous" style={{ height: 'auto'}}>
-                                                <div className="anonymous-responses-setting-info"></div>
-                                                <ul>
-                                                    <li>
-                                                        <label>
-                                                            <input data-model-property="anonymous_type" name="make-anonymous" value="fully_anonymous" type="radio" className="sm-input" data-translate="On" />
-                                                            <span className="default-anon-label sm-label">On, your respondents will be anonymous</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label>
-                                                            <input data-model-property="anonymous_type" name="make-anonymous" value="not_anonymous" type="radio" className="sm-input" data-translate="Off" />
-                                                            <span className="default-anon-label sm-label">Off, include respondents' IP addresses in your survey results</span>
-                                                            <span className="sso-anon-label sm-label hide">Off, include respondents' SSO profile</span>
-                                                        </label>
-                                                    </li>
-                                                </ul>
-                                            </section>
-
-                                        </div> */}
 
                                         <div className="key open" style={{ maxHeight: '100%', borderTop: '1px solid lightgray' }}>
                                             <header>

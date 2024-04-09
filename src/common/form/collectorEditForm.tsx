@@ -76,24 +76,6 @@ class EditForm extends React.Component<Props, IState, any> {
 
     }
 
-    // componentWillReceiveProps(props: any) {
-    //   // console.log('CreateForm componentWillReceiveProps', props);
-    //     // console.log(this.state);
-    //     // this.setState({
-    //     //     surveyTemplate: props.surveyTemplate,
-    //     //     surveyTemplateId: props.surveyTemplateId
-    //     // });
-    //     // this.props.form.setFieldsValue({
-    //     //   // name: this.props.surveys.name,
-    //     //   template_id: this.props.surveyTemplate
-    //     // }, () => console.log('after'));
-    //     // console.log('before');
-    // }
-    
-    // state = {
-    //   checkNick: false,
-    // };
-
     selectUpdate = (obj: any, selectKeys: any, params: any) => {
         const clone = Object.assign({}, obj);
 
@@ -153,37 +135,12 @@ class EditForm extends React.Component<Props, IState, any> {
       });
     };
   
-    // handleChange = (e: { target: { checked: any; }; }) => {
-    //   this.setState(
-    //     {
-    //       checkNick: e.target.checked,
-    //     },
-    //     () => {onSave
-    //       this.props.form.validateFields(['nickname'], { force: true });
-    //     },
-    //   );
-    // };
-
     onChange = (e: React.ChangeEvent<HTMLInputElement>)=> {
       // console.log('onChange id', e.target.id);
       // console.log('onChange value', e.target.value);
       this.onFieldValueChange(e.target.id, e.target.value)
     }
 
-    // onChangeNum = (e: React.ChangeEvent<HTMLInputElement>)=> {
-    //   this.props.onChange(e.target.id, parseInt(e.target.value))
-    // }
-  
-    // handleSelectChange = (status: any) => {
-    // // console.log(`handleSelectChange`, status);
-
-    //   this.props.onChange('template_id', status, status);
-    //   // this.props.onChange('template_id', parseInt(status));
-    //   this.setState({
-    //       surveyTemplateId: status
-    //     }
-    // );
-  // };
     onFieldValueChange = (fieldName: string, value: any) => { 
       const nextState = {
           ...this.state,
@@ -207,7 +164,7 @@ class EditForm extends React.Component<Props, IState, any> {
       return (
         <div>
           <Form.Item  style={{ paddingBottom: 0 }} >
-            <label className="label-create">Nickname: </label><Tooltip title={'ผู้ใช้งานระบบเท่านั้นที่จะเห็นชื่อที่ต้ังนี้'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip>
+            <label className="label-create">Nickname: </label>
           </Form.Item>
           <Form.Item style={{ paddingTop: 0 }}>
             {getFieldDecorator('nickname', {
@@ -223,21 +180,7 @@ class EditForm extends React.Component<Props, IState, any> {
 
           <Form.Item style={{ paddingBottom: 0 }} >
             <label className="label-create">Display name: </label>
-            {/* <Tooltip title={'ผู้ทำแบบสอบถามจะเห็นชื่อที่ต้ังนี้'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> */}
-
-            <Tooltip overlayStyle={{ whiteSpace: 'pre-line' }} 
-                title={`ผู้ทำแบบสอบถามจะเห็นชื่อที่ต้ังนี้
-
-                + ผู้ใช้งานระบบสามารถใส่ ตัวแปร สำหรับแสดงผลข้อมูลได้ดังนี้
-                - ชื่อโครงการ : \${ProjectName}
-                - ชื่อช่องทางจัดเก็บ : \${CollectorName}
-                - ชื่อ (ผู้ทำแบบสอบถาม) : \${FirstName}
-                - นามสกุล (ผู้ทำแบบสอบถาม) : \${LastName}
-
-                * โดยระบบจะดึงข้อมูลจากช่องทางการจัดเก็บ (Collector)
-                ตามที่ผู้ใช้งานระบบได้ตั้งค่าไว้แทน ตัวแปร ข้างต้น`}>
-                <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/>
-            </Tooltip> 
+            
 
           </Form.Item>
           <Form.Item style={{ paddingTop: 0 }} >

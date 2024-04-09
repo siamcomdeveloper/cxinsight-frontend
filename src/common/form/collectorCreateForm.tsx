@@ -27,56 +27,11 @@ class CreateForm extends React.Component<Props, IState, any> {
     constructor(props: Props & FormComponentProps) {
       super(props);
 
-      // console.log('constructor', props);
-
-      // this.state = {
-      //     // collectors: {
-      //     //     name: '',
-      //     //     template_id: '',
-      //     // },
-      //     collectorType: this.props.collectorType,
-      //     collectorTypeId: this.props.collectorTypeId
-      // }
     }
 
     componentDidMount() { 
 
-    // console.log('CreateForm componentDidMount');
-      // console.log(this.props);
-      // console.log(this.props.collectorType);
-      // console.log(this.props.collectorTypeId);
-      // this.setState({
-      //     collectorType: this.props.collectorType,
-      //     collectorTypeId: this.props.collectorTypeId
-      // });
-
-      // console.log(this.state.collectorType);
-      // console.log(this.state.collectorTypeId);
-      // this.props.form.setFieldsValue({
-      //   name: this.props.collectors.name,
-      //   template_id: this.state.collectorType
-      // }, () => console.log('after'));
-      // console.log('before');
-
     }
-
-    // componentWillReceiveProps(props: any) {
-    //   // console.log('CreateForm componentWillReceiveProps', props);
-    //     // console.log(this.state);
-    //     // this.setState({
-    //     //     collectorType: props.collectorType,
-    //     //     collectorTypeId: props.collectorTypeId
-    //     // });
-    //     // this.props.form.setFieldsValue({
-    //     //   // name: this.props.collectors.name,
-    //     //   template_id: this.props.collectorType
-    //     // }, () => console.log('after'));
-    //     // console.log('before');
-    // }
-    
-    // state = {
-    //   checkNick: false,
-    // };
   
     check = () => {
       this.props.form.validateFields(err => {
@@ -87,17 +42,6 @@ class CreateForm extends React.Component<Props, IState, any> {
       });
     };
   
-    // handleChange = (e: { target: { checked: any; }; }) => {
-    //   this.setState(
-    //     {
-    //       checkNick: e.target.checked,
-    //     },
-    //     () => {onSave
-    //       this.props.form.validateFields(['nickname'], { force: true });
-    //     },
-    //   );
-    // };
-
     onChange = (e: React.ChangeEvent<HTMLInputElement>)=> {
       this.props.onFieldValueChange(e.target.id, e.target.value)
     }
@@ -112,39 +56,14 @@ class CreateForm extends React.Component<Props, IState, any> {
       this.props.onFieldValueChange('project_id', projectId);
     }
 
-    // onChangeNum = (e: React.ChangeEvent<HTMLInputElement>)=> {
-    //   this.props.onChange(e.target.id, parseInt(e.target.value))
-    // }
-  
-    // handleSelectChange = (status: any) => {
-    // // console.log(`handleSelectChange`, status);
-
-    //   this.props.onChange('template_id', status, status);
-    //   // this.props.onChange('template_id', parseInt(status));
-    //   this.setState({
-    //       collectorTypeId: status
-    //     }
-    // );
-  // };
-
     render() {
       const { getFieldDecorator } = this.props.form;
 
       return (
         <div>
-          {/* <Form.Item label="Collector Name:">
-            {getFieldDecorator('name', {
-              rules: [
-                {
-                  required: true,
-                  message: 'Please input the collector name',
-                },
-              ],
-            })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Collector name" />)}
-          </Form.Item> */}
 
           <Form.Item  style={{ paddingBottom: 0 }} >
-            <label className="label-create">Nickname: </label><Tooltip title={'ผู้ใช้งานระบบเท่านั้นที่จะเห็นชื่อที่ต้ังนี้'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip>
+            <label className="label-create">Nickname: </label>
           </Form.Item>
           <Form.Item style={{ paddingTop: 0 }}>
             {getFieldDecorator('nickname', {
@@ -158,7 +77,7 @@ class CreateForm extends React.Component<Props, IState, any> {
           </Form.Item>
 
           <Form.Item style={{ paddingBottom: 0 }} >
-            <label className="label-create">Display name: </label><Tooltip title={'ผู้ทำแบบสอบถามจะเห็นชื่อที่ต้ังนี้ (ถ้าผู้ใช้เปิดใหัผู้ทำแบบสอบถามสามารถเห็นชื่อที่ตั้งนี้ได้ ในหน้าออกแบบแบบอสอบถาม)'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip>
+            <label className="label-create">Display name: </label>
           </Form.Item>
           <Form.Item style={{ paddingTop: 0 }} >
             {getFieldDecorator('name', {

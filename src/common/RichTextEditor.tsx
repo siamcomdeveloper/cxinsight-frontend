@@ -163,64 +163,9 @@ class RichTextEditor extends Component<IProps, IState> {
 					}
 
 				}
-				// handlers: {
-				// 	'color': (value: any) => {
-				// 		if (value == 'custom-color') { 
-				// 			value = window.prompt('Enter Hex Color Code');
-				// 			console.log('color value', value);
-				// 		}
-				// 		// Quill.format('color', value);
-				// 		// let fields = [] as any;
-              
-				// 		// if(this.state.survey.multi_lang) fields = ['end_of_survey_message', 'end_of_survey_message_EN'];
-				// 		// else fields = ['end_of_survey_message'];
-
-				// 		// const jwt = getJwtToken();
-				// 		// BaseService.update(props.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [this.state.survey.end_of_survey_message, this.state.survey.end_of_survey_message_EN]), jwt).then(
-				// 		// 		(rp) => {
-				// 		// 				try{
-				// 		// 						if (rp.Status) {
-				// 		// 								// console.log(rp);
-				// 		// 								toastr.success(rp.Messages);
-				// 		// 								setTimeout(function(){ window.location.reload(); }, 500);
-				// 		// 						} else {
-				// 		// 								toastr.error(rp.Messages);
-				// 		// 								BaseService.post("/frontendlog/", { method: `surveyEndOfSurveyMessageForm check BaseService.update /surveys/${this.state.survey.id} else`, message: `Messages: ${rp.Messages} | Exception: ${rp.Exception}` }, getJwtToken()).then( (rp) => { console.log(`Messages: ${rp.Messages} | Exception: ${rp.Exception}`); });
-				// 		// 						}
-				// 		// 				}catch(error){ 
-				// 		// 						BaseService.post("/frontendlog/", { method: `surveyEndOfSurveyMessageForm check BaseService.update /surveys/${this.state.survey.id} catch`, message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-				// 		// 				}
-				// 		// 		}
-				// 		// );
-				// 	}
-				// }
-				// handlers: {
-				// 		"placeholder": (value: any) => { 
-				// 				if (value) {
-				// 						const cursorPosition = this.quill.getSelection().index;
-				// 						this.quill.insertText(cursorPosition, value);
-				// 						this.quill.setSelection(cursorPosition + value.length);
-				// 				}
-				// 		}
-				// }
+				
 			},
-			// keyboard: {
-			// 	bindings: {
-			// 		tab: false,
-			// 		custom: {
-			// 			key: 13,
-			// 			shiftKey: true,
-			// 			handler: function () { /** do nothing */ }
-			// 		},
-			// 		handleEnter: {
-			// 			key: 13,
-			// 			handler: function () { /** do nothing */ }
-			// 		}
-			// 	}
-			// },
-			// 'emoji-toolbar': true,
-			// 'emoji-textarea': true,
-			// 'emoji-shortname': true,
+			
 		};
 	
 

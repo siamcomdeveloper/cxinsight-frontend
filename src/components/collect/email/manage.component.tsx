@@ -13,7 +13,6 @@ import moment from 'moment';
 import HeaderSurvey from '../../../common/header';
 
 import '../../../css/wds-react.4_16_1.min.css';
-// import '../../../css/collectweb-collector_list-bundle-min.5e29c8fb.css';
 import '../../../css/smlib.globaltemplates-base_nonresponsive-bundle-min.125b4dd4.css';
 import '../../../css/smlib.ui-global-bundle-min.9feec1b6.css';
 import '../../../css/collectweb-collector_get-bundle-min.ea15b72a.css';
@@ -48,74 +47,7 @@ const { read, write, utils } = XLSX;
 
 const { SubMenu } = Menu;
 
-// const options = {
-//     title: {
-//         text: 'My chart'
-//     },
-//     series: [{
-//         type: 'line',
-//         data: [1, 2, 3]
-//     }]
-// }
-// Load the exporting module.
-// import * as Exporting from 'highcharts/modules/exporting';
-// Module with declaration:
-// import AccessibilityModule from 'highcharts/modules/accessibility';
-// Module with any type:
-// import NewModule from 'highcharts/modules/new';
-
-// import '../css/wds-charts.4_16_1.min.css';
-// import '../css/survey-summary.css';
-// import '../css/side-bar.css';
-// import '../css/survey-info-stats.css';
-// import '../css/status-card-survey-status.css';
-// import '../css/status-card-response-count.css';
-// import '../css/collector-list.css';
-// const { Option } = Select;
 const { TabPane } = Tabs;
-
-// const menu = (id: any) => (
-//     <Menu>
-//         <Menu.Item key="edit">
-//             <a href={'/cxm/platform/${this.props.match.params.xSite}/edit/' + id} style={{ textDecoration: 'none' }}><Icon type="edit" /> Edit collector</a>
-//         </Menu.Item>
-//         <Menu.Item key="close">
-//             {/* <Link to={"/edit/" + id}><Icon type="edit" />  Edit</Link> */}
-//             <a  href="# " onClick={()=>Close(Number(id))} style={{ textDecoration: 'none' }}><Icon type="close" /> Close collector</a>
-//         </Menu.Item>
-//         <Menu.Item key="delete">
-//             {/* <Link to={"#"} onClick={()=>Del(Number(id))}><Icon type="delete" />  Delete</Link> */}
-//             <a  href="# " onClick={()=>Del(Number(id))} style={{ textDecoration: 'none' }}><Icon type="delete" />  Delete collector</a>
-//         </Menu.Item>
-//         <Menu.Item key="rename">
-//             <a  href="# " onClick={()=>Rename(Number(id))} style={{ textDecoration: 'none' }}><Icon type="edit" />  Rename collector</a>
-//         </Menu.Item>
-//     </Menu>
-// );
-
-// function Del(ID:number) {
-//   // console.log("Del click", ID);
-//     // BaseService.delete(this.props.match.params.xSite, "/surveys/", ID).then(
-//     //     (rp) => {
-//     //         if (rp.Status) {
-//     //             toastr.success(rp.Messages);    
-//     //             window.location.reload();
-//     //         } else { 
-//     //             toastr.error(rp.Messages);
-//     //             console.log("Messages: " + rp.Messages);
-//     //             console.log("Exception: " + rp.Exception);
-//     //         }
-//     //     }
-//     // );
-// }
-
-// function Rename(ID:number) {
-//   // console.log("Rename click", ID);
-// }
-
-// function Close(ID:number) {
-//   // console.log("Close click", ID);
-// }
 
 interface IProps { 
     history: History;
@@ -253,19 +185,6 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
 
     }
 
-    // private onFieldValueChange(fieldName: string, value: any) { 
-    //     const nextState = {
-    //         ...this.state,
-    //         collector: {
-    //             ...this.state.collector,
-    //             [fieldName]: value,
-    //         }
-    //     };
-
-    //     this.setState(nextState);
-    //   // console.log('Create onFieldValueChange', this.state.survey);
-    // }
-
     componentDidMount() { 
 
         const jwt = getJwtToken();
@@ -316,22 +235,6 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
 
                         );
 
-                        // BaseService.get<Surveys>(this.props.match.params.xSite, "/collector/statusName/", rp.Data.recordset[0].status, jwt).then(
-                        //     (rp) => {
-                        //         try{
-                        //             if (rp.Status) {
-                        //                 // console.log('statusName', rp.Data.recordset[0].name);
-                        //                 this.setState({ collectorStatus: rp.Data.recordset[0].name });
-                        //             } else {
-                        //                 toastr.error(rp.Messages);
-                        //                 BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `collect email manage componentDidAmount BaseService.get<Surveys> /collector/statusName/${rp.Data.recordset[0].status} else`, message: `Messages: ${rp.Messages} | Exception: ${rp.Exception}` }, getJwtToken()).then( (rp) => { console.log(`Messages: ${rp.Messages} | Exception: ${rp.Exception}`); });
-                        //             }
-                        //         }catch(error){ 
-                        //             BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `collect email manage componentDidAmount BaseService.get<Surveys> /collector/statusName/${rp.Data.recordset[0].status} catch`, message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-                        //         }
-                        //     }
-                        // );
-
                         BaseService.getAll<Project>(this.props.match.params.xSite, '/projects/', jwt).then(
                         (rp) => {
                             try{
@@ -371,24 +274,7 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
 
     }
 
-    // messageContent = () => {
-    //   // console.log(`messageContent`);
-    //     try{
-    //         ReactDOM.render(<div><p>{this.state.collector.message}</p></div>, document.getElementById('message-content'));
-    //     }
-    //     catch(e){
-    //       // console.log(e);
-    //     }
-    // }
-
     handleTableChange = (pagination: PaginationProps, filters: Partial<Record<string | number | symbol, string[]>>, sorter: SorterResult<never>, extra: any) => {
-      // console.log('params', pagination, filters, sorter, extra, extra.currentDataSource.length);
-        // const paginationChange = { total: 1, ...this.state.pagination };
-
-        // const pagination = { ...this.state.pagination };
-        // Read total count from server
-        // pagination.total = data.totalCount;
-        // pagination.total = 200;
 
         this.setState({
             // data: extra.currentDataSource,
@@ -399,46 +285,9 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
         });
     }
     
-    // handleTableChange = (pagination: PaginationProps, filters: Partial<Record<string | number | symbol, string[]>>, sorter: SorterResult<never>) => {
-    //     const pager = { current: pagination.current, ...this.state.pagination };
-    //     // pager.current = pagination.current;
-
-    //     // pagination={{ pageSize: 50 }}
-
-    //     this.setState({
-    //         pagination: pager,
-    //     });
-    //     this.fetch({
-    //         results: 2,
-    //         page: pagination.current,
-    //         sortField: sorter.field,
-    //         sortOrder: sorter.order,
-    //         ...filters,
-    //     });
-    // };
-
     fetch = (params = {}) => {
       // console.log('fetch params:', params);
         this.setState({ loading: true });
-        // reqwest({
-        //   url: 'https://randomuser.me/api',
-        //   method: 'get',
-        //   data: {
-        //     results: 10,
-        //     ...params,
-        //   },
-        //   type: 'json',
-        // }).then(data => {
-        //     const pagination = { ...this.state.pagination };
-        //     // Read total count from server
-        //     // pagination.total = data.totalCount;
-        //     pagination.total = 200;
-        //     this.setState({
-        //         loading: false,
-        //         data: data.results,
-        //         pagination,
-        //     });
-        // });
       // console.log('fetch', this.state.data);
         const jwt = getJwtToken();
         // BaseService.getJSON(this.props.match.params.xSite, "/email/list/", this.props.match.params.id, this.state.data).then(
@@ -495,22 +344,6 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                         const completedResponsesPercent = totalRecipients ? parseFloat(af.format((completedResponses / totalRecipients) * 100)) : 0 ;
                         const partialResponsesPercent = totalRecipients ? parseFloat(af.format((partialResponses / totalRecipients) * 100)) : 0 ;
                         const noResponsesPercent = totalRecipients ? parseFloat(af.format((noResponses / totalRecipients) * 100)) : 0 ;
-
-                      // console.log('totalRecipients', totalRecipients);
-                      // console.log('invitedRecipients', invitedRecipients);
-                      // console.log('noInvitedRecipients', noInvitedRecipients);
-                        
-                      // console.log('totalResponses', totalResponses);
-                      // console.log('completedResponses', completedResponses);
-                      // console.log('partialResponses', partialResponses);
-                      // console.log('noResponses', noResponses);
-
-                      // console.log('invitedRecipientsPercent', invitedRecipientsPercent);
-                      // console.log('noInvitedRecipientsPercent', noInvitedRecipientsPercent);
-
-                      // console.log('completedResponsesPercent', completedResponsesPercent);
-                      // console.log('partialResponsesPercent', partialResponsesPercent);
-                      // console.log('noResponsesPercent', noResponsesPercent);
 
                         this.setState({
                             loading: false,
@@ -666,15 +499,6 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
             visibleMessageModal: false,
             visibleCollectorModal: false,
         });
-        // jsonObj.members.viewers[newUser] = newValue ;
-
-        // this.state.dataImport.forEach((selectKey: any, index: any) => {
-        //   // console.log(`dataImport ${index}`, this.state.dataImport[index]);
-        //     this.setState({ email: this.state.dataImport[index] });
-        //   // console.log(`email ${index}`, this.state.email.email_address);
-        //   // console.log(this.selectUpdate(this.state.dataImport, ['email_address', 'first_name', 'last_name', 'collector_id'], [this.state.email.email_address, this.state.email.first_name, this.state.email.last_name, this.state.email.collector_id]));
-            
-        // });
 
         const jwt = getJwtToken();
         this.state.dataImport.map( (object: any, i: any) => {
@@ -718,22 +542,6 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
             // console.log(this.selectUpdate(object, ['email_address', 'first_name', 'last_name', 'collector_id'], [object.email_address, object.first_name, object.last_name, object.collector_id]));
         });
 
-        // console.log('Import Completed!');
-        // toastr.success('Import Completed!'); 
-
-        // BaseService.create<Email>("/email/", this.selectUpdate(this.state.dataImport, ['cutoff_date'], [datetime])).then(
-        //     (rp) => {
-        //         if (rp.Status) {
-        //             toastr.success('Collector created.'); 
-        //             // this.history.push('/collectors/'+this.state.survey.id);
-        //             window.location.reload();
-        //         } else {
-        //             toastr.error(rp.Messages);
-        //             console.log("Messages: " + rp.Messages);
-        //             console.log("Exception: " + rp.Exception);
-        //         }
-        //     }
-        // );
     }
 
     // public onCreate = (typeNum: any) => { 
@@ -1600,10 +1408,11 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                             <main>
                                 {/* <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit nickname">{this.state.collector.name}</h1><span id="edit-name-icon" onClick={()=>this.showCollectorModal(this.state.collector.type)} className="smf-icon notranslate">W</span> */}
 
-                                <span>Nickname <Tooltip title={'ผู้ใช้งานระบบเท่านั้นถึงจะเห็นชื่อนี้'}><Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/></Tooltip> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit nickname">{this.state.collector.nickname}</h1> <span><Icon type="edit" onClick={()=>this.showCollectorModal(this.state.collector.type)}/></span></span>
+                                <span>Nickname <Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit nickname">{this.state.collector.nickname}</h1> <span><Icon type="edit" onClick={()=>this.showCollectorModal(this.state.collector.type)}/></span></span>
                                 <br></br>
                                 <br></br>
-                                <span>Display name <Tooltip title={'ผู้ทำแบบสอบถามจะเห็นชื่อนี้ในแบบสอบถาม'}><Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/></Tooltip> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit display name">{this.state.collector.name}</h1> <span><Icon type="edit" onClick={()=>this.showCollectorModal(this.state.collector.type)}/></span></span>
+                                <span>Display name <Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit display name">{this.state.collector.name}</h1> <span><Icon type="edit" onClick={()=>this.showCollectorModal(this.state.collector.type)}/></span></span>
+
 
                                 <span id="collector-created-date">Created: {this.state.collector.created_date}</span>
                                 
@@ -1840,11 +1649,7 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                                                     <h3>
                                                         <a  href="# " target="#panel-compose-message" style={{cursor: 'default'}} className="keyOpener">
                                                             <b>COMPOSE MESSAGE:
-                                                                &nbsp;
-                                                                <Tooltip overlayStyle={{ whiteSpace: 'pre-line' }} 
-                                                                    title={`หัวเรื่อง และข้อความ ที่ตั้งค่านี้จะถูกส่งไปยังอีเมลของผู้ทำแบบสอบถามที่อยู่ในลิสต์อีเมล`}>
-                                                                    <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/>
-                                                                </Tooltip>
+                                                                
                                                             </b>
                                                         </a>
                                                     </h3>
@@ -1858,16 +1663,7 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                                                             <h5>
                                                                 <label className="sm-label">{label}
                                                                     &nbsp;
-                                                                    <Tooltip overlayStyle={{ whiteSpace: 'pre-line' }} 
-                                                                        title={`ผู้ใช้งานระบบสามารถใส่ ตัวแปร สำหรับแสดงผลข้อมูลได้ดังนี้
-                                                                        - ชื่อโครงการ : \${ProjectName}
-                                                                        - ชื่อช่องทางจัดเก็บ : \${CollectorName}
-                                                                        - ชื่อ (ผู้ทำแบบสอบถาม) : \${FirstName}
-                                                                        - นามสกุล (ผู้ทำแบบสอบถาม) : \${LastName}
-                                                                        * โดยระบบจะดึงข้อมูลจากช่องทางการจัดเก็บ (Collector)
-                                                                        ตามที่ผู้ใช้งานระบบได้ตั้งค่าไว้แทน ตัวแปร ข้างต้น`}>
-                                                                        <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/>
-                                                                    </Tooltip> 
+                                                                    
                                                                 </label>
                                                             </h5>
                                                         </header>
@@ -1877,16 +1673,7 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                                                         <header className="message-header" style={{ background: 'none', marginTop: '25px' }}>
                                                             <h5 className="sm-label">MESSAGE:
                                                                 &nbsp;
-                                                                <Tooltip overlayStyle={{ whiteSpace: 'pre-line' }} 
-                                                                    title={`ผู้ใช้งานระบบสามารถใส่ ตัวแปร สำหรับแสดงผลข้อมูลได้ดังนี้
-                                                                    - ชื่อโครงการ : \${ProjectName}
-                                                                    - ชื่อช่องทางจัดเก็บ : \${CollectorName}
-                                                                    - ชื่อ (ผู้ทำแบบสอบถาม) : \${FirstName}
-                                                                    - นามสกุล (ผู้ทำแบบสอบถาม) : \${LastName}
-                                                                    * โดยระบบจะดึงข้อมูลจากช่องทางการจัดเก็บ (Collector)
-                                                                    ตามที่ผู้ใช้งานระบบได้ตั้งค่าไว้แทน ตัวแปร ข้างต้น`}>
-                                                                    <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/>
-                                                                </Tooltip> 
+                                                                
                                                             </h5>
                                                         </header>
 
@@ -2042,85 +1829,6 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                                         </div>
                                     </TabPane>
 
-                                    {/* <TabPane tab="Options" key="3">
-                                        <div className="accordion options">
-
-                                            <div className="key open" style={{ maxHeight: '100%', borderTop: '1px solid lightgray' }}>
-                                                <header>
-                                                    <h3>
-                                                        <a  href="# " target="#panel-cutoff-date" style={{cursor: 'default'}} className="keyOpener">
-                                                            <b>CUTOFF DATE AND TIME:</b>
-                                                            <span className="collapsed-text" style={{display: 'none'}}>
-                                                                On, Wednesday, March 04, 2020 2:45 PM GMT+07:00
-                                                            </span>
-                                                        </a>
-                                                    </h3>
-                                                </header>
-
-                                                <section id="panel-cutoff-date" style={{height: 'auto'}}>
-                                                    <p>Set a cutoff date and time when this collector will close and stop accepting responses.</p>
-
-                                                    <Radio.Group onChange={this.onRadioCutoffChange} value={this.state.radioCutoffValue}>
-                                                        <Radio style={radioStyle} value={1}>
-                                                            This collector will close at the following date and time
-                                                        </Radio>
-                                                        { this.state.radioCutoffValue === 1 ? 
-                                                            
-                                                            <div id="cutoff-date-module" className="clearfix">
-                                                                <div>
-                                                                    <label className="sm-label sm-label--stretch"><b>DATE-TIME:</b></label>
-                                                                    <DatePicker showTime={{ format: 'DD-MM-YYYY HH:mm' }} format="DD-MM-YYYY HH:mm" defaultValue={this.state.cutoffDateTime ? moment(this.state.cutoffDateTime, "YYYY-MM-DD HH:mm:ss") : null} onChange={this.onChangeCutoff} onOk={this.onCutoffOk} />
-                                                                    <span className="timezone" style={{ position: 'static', marginLeft: '15px' }}>Time Zone: GMT+0700 (Bangkok Time)</span>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            : null }
-                                                        <Radio style={radioStyle} value={0}>
-                                                            Accept responses until you manually close this collector
-                                                        </Radio>
-                                                    </Radio.Group>
-                                                        
-                                                </section>
-                                            </div>
-
-                                            <div className="key open" style={{ maxHeight: '100%', borderTop: '1px solid lightgray', marginTop: '20px' }}>
-                                                <header>
-                                                    <h3>
-                                                        <a  href="# " target="#panel-send-date" style={{cursor: 'default'}} className="keyOpener">
-                                                            <b>SEND SURVEY DATE AND TIME:</b>
-                                                        </a>
-                                                    </h3>
-                                                </header>
-
-                                                <section id="panel-send-date" style={{height: 'auto'}}>
-                                                    <p>Set a send survey date and time for this collector.</p>
-
-                                                    <Radio.Group onChange={this.onRadioSendChange} value={this.state.radioSendValue}>
-                                                        <Radio style={radioStyle} value={1}>
-                                                            On, send this survey on a specified date and time
-                                                        </Radio>
-                                                        { this.state.radioSendValue === 1 ? 
-                                                            
-                                                            <div id="send-date-module" className="clearfix">
-                                                                <div>
-                                                                    <label className="sm-label sm-label--stretch"><b>DATE-TIME:</b></label>
-                                                                    <DatePicker showTime={{ format: 'DD-MM-YYYY HH:mm' }} format="DD-MM-YYYY HH:mm" defaultValue={this.state.sendDateTime ? moment(this.state.sendDateTime, "YYYY-MM-DD HH:mm:ss") : null} onChange={this.onChangeSend} onOk={this.onSendOk} />
-                                                                    <span className="timezone" style={{ position: 'static', marginLeft: '15px' }}>Time Zone: GMT+0700 (Bangkok Time)</span>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            : null }
-                                                        <Radio style={radioStyle} value={0}>
-                                                            Off, manually send
-                                                        </Radio>
-                                                    </Radio.Group>
-                                                        
-                                                </section>
-                                            </div>
-
-                                        </div>
-                                    </TabPane> */}
-                                    
                                 </Tabs>
                             </main>
 

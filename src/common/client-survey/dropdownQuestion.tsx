@@ -177,15 +177,6 @@ class DropdownQuestion extends React.Component<IProps, IState> {
         }
     }
 
-    TheSelectComponent(){
-        let currentValue = this.props.answer || '';
-        //console.log('TheSelectComponent currentValue = ', currentValue);
-        return(
-            <select id={"question-"+this.props.question.no+"-dropdown-option"} value={currentValue} className="select no-touch" style={{ fontFamily: this.props.question.globalFont, fontSize: this.props.question.globalFontSize }} onChange={ (e) => this.onMouseClickDropdownOptionHandler(e) }>
-                <option value="" className="user-generated"></option><option value="1" className="user-generated">ไม่เคยเลย</option><option value="2" className="user-generated">นานๆครั้ง</option><option value="3" className="user-generated">ปกติ</option><option value="4" className="user-generated">เป็นประจำ</option><option value="5" className="user-generated">เสมอ</option>
-            </select>
-       )
-   }
     render() {
      //console.log('render');
         return (
@@ -218,7 +209,6 @@ class DropdownQuestion extends React.Component<IProps, IState> {
                             <div id={"image-src-"+this.props.question.no}></div>
 
                             <div className="question-body question-dropdown-option notranslate">
-                                {/* {this.TheSelectComponent()} */}
                                 <select id={"question-"+this.props.question.no+"-dropdown-option"} className="select no-touch" style={{ fontFamily: this.props.question.globalFont, fontSize: this.props.question.globalFontSize }} onChange={ (e) => this.onMouseClickDropdownOptionHandler(e) }>
                                 </select>
                             </div>

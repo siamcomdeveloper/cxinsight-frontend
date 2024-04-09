@@ -1,7 +1,7 @@
 import BaseService from "../service/base.service";
 
 export const getJwtToken = () => {
-    return localStorage.getItem('iconcxmuser');
+    return localStorage.getItem('cxmuser');
 }
 
 export const refreshJwtToken = async (xSite: any, jwt: any) => {
@@ -10,16 +10,12 @@ export const refreshJwtToken = async (xSite: any, jwt: any) => {
         (rp) => {
             try{
                 if (rp.Status) {
-                  // console.log('getUserToken rp', rp);
-                  // console.log('getUserToken rp.Data', rp.Data);
-                  // console.log('rp.Data.userToken', rp.Data.userToken);
-                    localStorage.setItem('iconcxmuser', rp.Data.userToken);
+                    localStorage.setItem('cxmuser', rp.Data.userToken);
                     return rp.Data.userToken;
                 } else {
                     BaseService.post(xSite, "/frontendlog/", { method: `jwt.helper refreshJwtToken BaseService.getUserToken(${jwt}) else`, message: `Messages: ${rp.Messages} | Exception: ${rp.Exception}` }, getJwtToken()).then( (rp) => { console.log(`Messages: ${rp.Messages} | Exception: ${rp.Exception}`); });
-                    localStorage.removeItem('iconcxmuser');
+                    localStorage.removeItem('cxmuser');
                     return false;
-                    // this.props.history.push(`/${this.props.match.params.xSite}/login`);
                 }
             }catch(error){ 
                 toastr.error('Something went wrong!, please refresh the page or try again later.');
@@ -27,6 +23,4 @@ export const refreshJwtToken = async (xSite: any, jwt: any) => {
             }
         }
     );
-
-    // return localStorage.getItem('iconcxmuser');
 }

@@ -25,11 +25,8 @@ export default class Collector {
     created_at?: Date;
     modified_at?: Date;
     deleted_at?: Date;
-    // template_name?: string;
-    // status_name?: string;
     created_date?: string;
     modified_date?: string;
-    // rem_lnk?: string;
 
     constructor(
         id: string,

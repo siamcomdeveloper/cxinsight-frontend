@@ -26,22 +26,6 @@ import Question from '../models/questions';
 import RatingRow from "../common/analyze/ratingRow";
 import TextRow from "../common/analyze/textRow";
 
-// import '../css/wds-react.4_16_1.min.css';
-// import '../css/wds-charts.4_16_1.min.css';
-// import '../css/survey-summary.css';
-// import '../css/side-bar.css';
-// import '../css/survey-info-stats.css';
-// import '../css/status-card-survey-status.css';
-// import '../css/status-card-response-count.css';
-// import '../css/collector-list.css';
-// import '../css/createweb-global-bundle-min.ff71e50a.css';
-// import '../css/createweb-step2-bundle-min.32c5304d.css';
-// import '../css/createweb-common-bundle-min.37aebfc8.css';
-// import '../css/createweb-step2-bundle-min.99ad07cd.css';
-// import '../css/createweb-e48ff77e3f70.css';
-// import '../css/create-themes-e48ff77e3f70.css';
-// import '../css/surveytemplates-datepicker_lazyload-bundle-min.b2a77b7a.css';
-
 import '../css/smlib.ui-global-bundle-min.471d0b30.css';
 import '../css/anweb-summary-webpack-bundle-min.3bdc0105.css';
 import '../css/anweb-analyze-bundle-min.e5376b09.css';
@@ -229,7 +213,7 @@ export default class Analyze extends React.Component<IProps, IState> {
                                     // console.log(`${entity} === ${tags10[index].name}`, entity === tags10[index].name);
                                     if(entity === tags[index].name){
                                         // console.log('matched');
-                                        tags[index].value += 1;
+                                        tags[index].value += 10;
                                         matched = true;
                                     }
                                 });
@@ -260,7 +244,7 @@ export default class Analyze extends React.Component<IProps, IState> {
                                 // console.log(`${entity} === ${tags10[index].name}`, entity === tags10[index].name);
                                 if(data.analyze_entity === tags[index].name){
                                     // console.log('matched');
-                                    tags[index].value += 1;
+                                    tags[index].value += 10;
                                     matched = true;
                                 }
                             });
@@ -320,7 +304,7 @@ export default class Analyze extends React.Component<IProps, IState> {
                                         // if(tags_negative[index].name.localeCompare(item.name) === 0){
                                         if(entity === tags_negative[index].name){
                                         // console.log('matched');
-                                            tags_negative[index].value += 1;
+                                            tags_negative[index].value += 10;
                                             matched = true;
                                         }
                                     });
@@ -352,7 +336,7 @@ export default class Analyze extends React.Component<IProps, IState> {
                                         // if(tags_positive[index].name.localeCompare(item.name) === 0){
                                         if(entity === tags_positive[index].name){
                                         // console.log('matched');
-                                            tags_positive[index].value += 1;
+                                            tags_positive[index].value += 10;
                                             matched = true;
                                         }
                                     });
@@ -1463,101 +1447,6 @@ export default class Analyze extends React.Component<IProps, IState> {
         }
     }
 
-    /*
-    exportToCSV = (csvData: any, fileName: any) => {
-        try{
-            // exportToCSV = () => {
-            // console.log('exportToCSV exportData', this.state.exportData);
-            
-            // const csvData = this.state.exportData;
-            // const fileName = 'export-' + this.getDateTime();
-
-            const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-            const fileExtension = '.xlsx';
-
-            const ws = XLSX.utils.json_to_sheet(csvData);
-            const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
-            const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-            const data = new Blob([excelBuffer], {type: fileType});
-            FileSaver.saveAs(data, fileName + fileExtension);
-        }catch(error){
-            toastr.error('Something went wrong!, please refresh the page or try again later.');
-            BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `analyze exportToCSV catch`, message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-        }
-    }*/
-    
-    /*
-    exportHandler(questionNo?: any){
-      // console.log(`exportHandler questionNo`, questionNo);
-
-        //clear export data array
-        this.setState({ 
-            exportData: [],
-            isLoadingAnalyze: true
-        }, async () => {
-                // console.log('exportHandler exportData', this.state.exportData);
-                try{
-                    const startTime = performance.now();
-
-                    const surveyId = this.props.match.params.id;
-                    const numQuestion = questionNo ? 1 : this.state.numQuestion;
-
-                    let nodeArr = new Array<any>(numQuestion);
-                    for(let i = 0; i < nodeArr.length; i++) { nodeArr[i] = ''; }
-
-                    // const jwt = getJwtToken();
-                    const allExportArr = nodeArr.map((obj, i) => this.exportQuestionAnswer(surveyId, questionNo ? questionNo : i+1));
-
-                    const allExportPromise = await Promise.all(allExportArr);
-                    // console.log('allExportPromise', allExportPromise);
-                    // console.log('exportAll this.state.exportData', this.state.exportData);
-
-                    const exportDataAnswered = this.state.exportData.filter(function (item: any) { return item.answered === 'Yes'; });
-                    // console.log('exportAll exportDataAnswered', exportDataAnswered);
-
-                    const fileName = questionNo ? 'export-' + this.getDateTime() : 'export-all-' + this.getDateTime();
-                    this.exportToCSV(this.state.exportData, fileName);
-
-                    this.setState({ isLoadingAnalyze: false });
-
-                    const endTime = performance.now();
-                    // console.log('Its took ' + (endTime - startTime) + ' ms.');
-                }catch(error){
-                    toastr.error('Something went wrong!, please refresh the page or try again later.');
-                    BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `analyze exportHandler catch`, message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-                }
-                
-            }
-        );
-
-    }*/
-
-    // async exportAll(){
-    //   // console.log('exportAll');
-    //     this.setState({ isLoadingAnalyze: true });
-    //     const startTime = performance.now();
-
-    //     const surveyId = this.props.match.params.id;
-    //     let nodeArr = new Array<any>(this.state.numQuestion);
-
-    //     for(let i = 0; i < nodeArr.length; i++) { nodeArr[i] = ''; }
-
-    //     const allExportArr = nodeArr.map((obj, i) => this.exportQuestionAnswer(surveyId, i+1));
-    //     const allExportPromise = await Promise.all(allExportArr);
-    //   // console.log('allExportPromise', allExportPromise);
-    //   // console.log('exportAll this.state.exportData', this.state.exportData);
-
-    //     const exportDataAnswered = this.state.exportData.filter(function (item: any) { return item.answered === 'Yes'; });
-    //   // console.log('exportAll exportDataAnswered', exportDataAnswered);
-
-    //     this.exportToCSV(this.state.exportData, 'export-all-' + this.getDateTime());
-
-    //     this.setState({ isLoadingAnalyze: false });
-
-    //     const endTime = performance.now();
-    //   // console.log('Its took ' + (endTime - startTime) + ' ms.');
-    // }
-
     exportQuestionAnswer = async (surveyId: any, i: any) => {
       // console.log ("exportQuestionAnswer question no." + i);
 
@@ -2611,70 +2500,6 @@ export default class Analyze extends React.Component<IProps, IState> {
                                                 </div>
                                             </section>
                                         </div>
-
-                                        {/* <div id="accBuilder" className={ this.state.sidebarTool === "show" ? "key open" : "key hidden" } style={{ display: 'block', maxHeight: '100%' }}>
-                                            <header>
-                                                <h3 className="accordionLabel">
-                                                    <a href="# " onClick={ (e) => { e.preventDefault() } } className="press keyOpener" target="#accPanelBuilder" data-action="surveyBuilder">SHOW</a>
-                                                </h3>
-                                                
-                                            </header>
-                                            <section className="acContent" id="accPanelBuilder">
-                                                <div id="builderQuestionContainer" className="setting" style={{ height: 'calc(100vh - 200px)', overflowY: 'auto'}}>
-                                                    <ul className="addList">
-                                                    <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q1: How satisfied are you with the location of this project?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q2: How likely is it that you would recommend this project to a friend?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 cta dta chat-mode-unsupported acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q3: How satisfied are you with our project?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q4: How would you rate the interior design of the unit?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q5: How satisfied are you with the common area (or facilities) in this project?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q6: How would you rate your overall satisfaction towards our sales representative?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q7: The information that is provided to you by the sales staff is relavant towards your purchase decision?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q8: Overall, how satisfied are you with the price and promotional offer from the project?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </section>
-                                        </div> */}
 
                                     </div>
                                 </aside>

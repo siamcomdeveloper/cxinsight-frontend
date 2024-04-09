@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 
-// import 'toastr/build/toastr.min.css'; 
 import Dashboard from './components/dashboard.component';
 import Create from './components/create.component';
 import FooterSurvey from './common/footer';
@@ -17,12 +16,7 @@ import Comparison from './components/comparison.component';
 import Design from './components/design.component';
 import CollectorList from './components/collect/list.component';
 import CollectorWeblink from './components/collect/weblink.component';
-import CollectorSocial from './components/collect/social.component';
-import CollectorBanner from './components/collect/banner.component';
 import CollectorEmail from './components/collect/email/manage.component';
-import CollectorSMS from './components/collect/sms/manage.component';
-// import ExecutiveReport from './components/executive-report.component';
-// import RedirectClientSurvey from './components/redirect-client-survey.component';
 import PreviewClientSurvey from './components/preview-client-survey.component';
 import Login from './components/login.component';
 import Register from './components/register.component';
@@ -51,7 +45,6 @@ const App: React.FC = () => {
                     <Route path='/:xSite/create' component={ Create } />
                     <Route path='/:xSite/preview/:id' component={ Preview } />
                     <Route path='/:xSite/summary/:id' component={ Summary } />
-                    {/* <Route path='/:xSite/sv' component={ RedirectClientSurvey } /> */}
                     <Route path='/:xSite/sv-preview/:surveyId/:size' component={ PreviewClientSurvey } />
                     <Route path='/:xSite/comparison/:id' component={ Comparison } />
                     <Route path='/:xSite/cumulative/:id' component={ Cumulative } />
@@ -60,11 +53,7 @@ const App: React.FC = () => {
                     <Route path='/:xSite/design/:surveyId' component={ Design } />
                     <Route path='/:xSite/collect/list/:id' component={ CollectorList } />
                     <Route path='/:xSite/collect/weblink/:id' component={ CollectorWeblink } />
-                    <Route path='/:xSite/collect/social/:id' component={ CollectorSocial } />
-                    <Route path='/:xSite/collect/banner/:id' component={ CollectorBanner } />
-                    <Route path='/:xSite/collect/sms/:id' component={ CollectorSMS } />
                     <Route path='/:xSite/collect/email/:id' component={ CollectorEmail } />
-                    {/* <Route path='/:xSite/executive-report' component={ ExecutiveReport } /> */}
                     <Route path='/:xSite/dashboard' component={ Dashboard } />
                     <Route path='/:xSite/' component={ Dashboard } />
                 </Switch>

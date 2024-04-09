@@ -56,34 +56,6 @@ class ResetPasswordForm extends React.Component<IProps, IState, any> {
           // console.log('after setState userEmail', this.state.userEmail);
         });
         
-        // BaseService.post("/auth/confirm/", token).then(
-        //     (rp) => {
-        //     // console.log('rp', rp);
-        //         if (rp.Status) {
-        //           // console.log('rp.Data', rp.Data);
-        //             // localStorage.setItem('iconcxmuser', rp.Data.userToken);
-        //             this.setState({ isLoading: false });
-        //             setTimeout(function(this: any){ this.props.history.push(`/${this.props.match.params.xSite}/login`); }.bind(this), 500);
-        //         } else {
-        //             toastr.error(rp.Messages);
-        //             setTimeout(function(this: any){ this.props.history.push('/register'); }.bind(this), 500);
-        //             console.log("Messages: " + rp.Messages);
-        //             console.log("Exception: " + rp.Exception);
-        //         }
-        //     }
-        // );
-
-        // const token = await refreshJwtToken(this.props.match.params.xSite, getJwtToken());
-        // if(!token) this.props.history.push(`/${this.props.match.params.xSite}/login`);
-
-        // const userData = jwt.decode(token) as any;
-        // if(userData){
-        //     this.setState({
-        //         userId: userData.id,
-        //         userEmail: userData.email,
-        //         reportAuthorized: (userData.ro === 3 && !userData.rs) ? false : true
-        //     });
-        // }
     }
 
     handleSubmit = (e: any) => {

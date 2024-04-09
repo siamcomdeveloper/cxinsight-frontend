@@ -137,11 +137,6 @@ class EditForm extends React.Component<Props, IState, any> {
                                         this.props.form.setFieldsValue({
                                             header_description: this.state.currentHeaderDescription,
                                         });
-                                        if(this.state.survey.multi_lang) {
-                                            this.props.form.setFieldsValue({
-                                                header_description_EN: this.state.currentHeaderDescriptionEN,
-                                            });
-                                        }
                                     });
                                 });
 
@@ -172,11 +167,6 @@ class EditForm extends React.Component<Props, IState, any> {
                                         this.props.form.setFieldsValue({
                                             header_description: this.state.currentHeaderDescription,
                                         });
-                                        if(this.state.survey.multi_lang) {
-                                            this.props.form.setFieldsValue({
-                                                header_description_EN: this.state.currentHeaderDescriptionEN,
-                                            });
-                                        }
                                     });
 
                                 });
@@ -257,8 +247,7 @@ class EditForm extends React.Component<Props, IState, any> {
 
             let fields = [] as any;
                 
-            if(this.state.survey.multi_lang) fields = ['header_description', 'header_description_EN'];
-            else fields = ['header_description'];
+            fields = ['header_description'];
 
             const jwt = getJwtToken();
             BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [modifiedHeaderDescription, modifiedHeaderDescriptionEN]), jwt).then(
@@ -366,122 +355,7 @@ class EditForm extends React.Component<Props, IState, any> {
       }
       return (
         <div>
-          { this.state.survey.multi_lang ? 
-          <div className="languages-setting-form-container">
-            {/* <Editor
-              placeholder={'Write something...'}
-              value={this.state.value}
-              hideToolbar={this.state.hideToolbar}
-              onChange={this.handleOnChange}
-              onBlur={this.handleBlur}
-              onFocus={this.handleFocus}
-            /> */}
-            
-            <Form.Item label="TH" {...formItemLayout} >
-              {/* <Editor
-                apiKey="ha75ta6ghg451m3lwxk7qda75xkmiibqt04pjk6rbnxdlczt"
-                initialValue="<p>This is the initial content of the editor</p>"
-                init={{
-                  height: 200,
-                  menubar: true,
-                  // plugins: [
-                  //   'advlist autolink lists link image charmap print preview anchor',
-                  //   'searchreplace visualblocks code fullscreen',
-                  //   'insertdatetime media table paste code help wordcount'
-                  // ],
-                  plugins: [],
-                  // font_formats:
-                  //   "Andale Mono=andale mono,times; Arial=arial,helvetica,sans-serif; Arial Black=arial black,avant garde; Book Antiqua=book antiqua,palatino; Comic Sans MS=comic sans ms,sans-serif; Courier New=courier new,courier; Georgia=georgia,palatino; Helvetica=helvetica; Impact=impact,chicago; Symbol=symbol; Tahoma=tahoma,arial,helvetica,sans-serif; Terminal=terminal,monaco; Times New Roman=times new roman,times; Trebuchet MS=trebuchet ms,geneva; Verdana=verdana,geneva; Webdings=webdings; Wingdings=wingdings,zapf dingbats",
-                  // content_style:
-                  //   "@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');",
-                  toolbar:
-                    '| bold italic underline | forecolor backcolor | \
-                    alignleft aligncenter alignright alignjustify | \
-                    removeformat '
-                  // toolbar:
-                  //   'undo redo | fontformats fontsizes formatselect | bold italic underline | forecolor backcolor | \
-                  //   alignleft aligncenter alignright alignjustify | \
-                  //   removeformat'
-                  // toolbar:
-                  //   'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align | forecolor backcolor | removeformat'
-                }}
-                onEditorChange={this.handleEditorChange}
-              /> */}
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`header_description`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.state.currentHeaderDescription} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the survey header description...'}
-                // hideToolbar={this.state.hideToolbar}
-                // onBlur={this.handleBlur}
-                // onFocus={this.handleFocus}
-              /> 
-              {getFieldDecorator('header_description', {
-                rules: [
-                  {
-                    // required: true,
-                    message: 'Please input the survey header description',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Header Description" />)}
-            })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/*onChange={this.onTextAreaChange} placeholder="Survey Header Description" rows={5}*//>)}
-            </Form.Item>
-
-            <Form.Item label="EN" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`header_description_EN`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.state.currentHeaderDescriptionEN} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the survey header description...'}
-                // hideToolbar={this.state.hideToolbar}
-                // onBlur={this.handleBlur}
-                // onFocus={this.handleFocus}
-              /> 
-              {getFieldDecorator('header_description_EN', {
-                rules: [
-                  {
-                    // required: true,
-                    message: 'Please input the survey header description',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Header Description" />)}
-            // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Header Description" rows={5}/>)}
-            })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
-            </Form.Item>
-          </div>
-          :
-          <Form.Item {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`header_description`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.state.currentHeaderDescription}
-                onChange={this.onRichChange}
-                placeholder={'Please input the survey header description...'}
-                // hideToolbar={this.state.hideToolbar}
-                // onBlur={this.handleBlur}
-                // onFocus={this.handleFocus}
-              /> 
-              {getFieldDecorator('header_description', {
-                rules: [
-                  {
-                    // required: true,
-                    message: 'Please input the survey header description',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Header Description" />)}
-            // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Header Description" rows={5}/>)}
-            })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
-          </Form.Item>
-          }
-
+          
           <footer className="wds-modal__foot">
             <div className="wds-modal__actions-right">
               <Button type="primary" className="wds-button wds-button--primary wds-button--solid wds-button--md" id="newSurvey" onClick={this.check}>

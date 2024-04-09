@@ -1223,74 +1223,6 @@ class RatingQuestionForm extends React.Component<Props, IState, any> {
 
                 this.setChoiceWeightWhenChecked();
                 
-                // let selectedAreaOfImpactsName = [];
-                // const areaOfImpacts = this.state.question.area_of_impact_id.includes(',') ? this.state.question.area_of_impact_id.split(',') : [this.state.question.area_of_impact_id];
-                // let allAreaOfImpactName = this.props.survey.name_area_of_impacts.includes(",") ? this.props.survey.name_area_of_impacts.split(',') : [this.props.survey.name_area_of_impacts];
-                
-                // // console.log('areaOfImpacts', areaOfImpacts);
-                // // console.log('allAreaOfImpactName', allAreaOfImpactName);
-
-                // //replace &amp; with & character
-                // allAreaOfImpactName = allAreaOfImpactName.map((name: any) => { return name.includes('&amp;') ? name.replace('&amp;', '&') : name; });
-
-                // selectedAreaOfImpactsName = areaOfImpacts.map((selectedAreaOfImpactId: any, selectedAreaOfImpactIndex: any) => {
-                //     // console.log(`selectedAreaOfImpactId ${selectedAreaOfImpactId} selectedAreaOfImpactIndex ${selectedAreaOfImpactIndex}`);
-                //     let selectedAreaOfImpactName;
-                //     allAreaOfImpactName.map((areaOfImpactName: any, areaOfImpactIndex: any) => {
-                //     const areaOfImpactNameSplit = areaOfImpactName.split('~')[0];
-                //     const areaOfImpactId = parseInt(areaOfImpactName.split('~')[1]);
-                //     // console.log(`areaOfImpactName ${areaOfImpactName} areaOfImpactId ${areaOfImpactId} areaOfImpactIndex ${areaOfImpactIndex} no ${areaOfImpactIndex+1}`);
-                //     // console.log(`selectedAreaOfImpactId ${selectedAreaOfImpactId} === areaOfImpactId ${areaOfImpactId}`, parseInt(selectedAreaOfImpactId) === areaOfImpactId);
-                //         if(parseInt(selectedAreaOfImpactId) === areaOfImpactId) {
-                //             // console.log('in if areaOfImpactNameSplit', areaOfImpactNameSplit);
-                //             selectedAreaOfImpactName = areaOfImpactNameSplit;
-                //             return;
-                //         }
-                //     });
-                //     return selectedAreaOfImpactName;
-                // });
-
-                // let selectedDepartmentsName = [];
-                // const Departments = this.state.question.department_id ? this.state.question.department_id.includes(',') ? this.state.question.department_id.split(',') : [this.state.question.department_id] : [];
-                // let allDepartmentName = this.props.survey.name_departments.includes(",") ? this.props.survey.name_departments.split(',') : [this.props.survey.name_departments];
-                // // console.log('Departments', Departments);
-                // // console.log('allDepartmentName', allDepartmentName);
-
-                // //replace &amp; with & character
-                // allDepartmentName = allDepartmentName.map((name: any) => { return name.includes('&amp;') ? name.replace('&amp;', '&') : name; });
-
-                // selectedDepartmentsName = Departments.map((selectedDepartmentId: any, selectedDepartmentIndex: any) => {
-                // // console.log(`selectedDepartmentId ${selectedDepartmentId} selectedDepartmentIndex ${selectedDepartmentIndex}`);
-                //     let selectedDepartmentsName;
-                //     allDepartmentName.map((departmentName: any, departmentIndex: any) => {
-                //     // console.log(`departmentName ${departmentName} departmentIndex ${departmentIndex} no ${departmentIndex+1}`);
-                //     // console.log(`selectedDepartmentId ${selectedDepartmentId} === no ${departmentIndex+1}`, parseInt(selectedDepartmentId) === (departmentIndex+1));
-                //         if(parseInt(selectedDepartmentId) === (departmentIndex+1)) {
-                //         // console.log('in if departmentName', departmentName);
-                //             selectedDepartmentsName = departmentName;
-                //             return;
-                //         }
-                //     });
-                //     return selectedDepartmentsName;
-                // });
-
-                // // console.log('selectedAreaOfImpactsName', selectedAreaOfImpactsName);
-                // // console.log('selectedDepartmentsName', selectedDepartmentsName);
-
-                // this.setState( 
-                //     { 
-                //         selectedAreaOfImpacts: selectedAreaOfImpactsName, 
-                //         allAreaOfImpactName: allAreaOfImpactName,
-                        
-                //         selectedDepartments: selectedDepartmentsName, 
-                //         allDepartmentName: allDepartmentName,
-                //     }, () => {
-                //     //   console.log('after selectedAreaOfImpacts', this.state.selectedAreaOfImpacts);
-                //     //   console.log('after allAreaOfImpactName', this.state.allAreaOfImpactName);
-                //     //   console.log('after selectedDepartments', this.state.selectedDepartments);
-                //     //   console.log('after allDepartmentName', this.state.allDepartmentName);
-                //     }
-                // );
 
                 //check required
                 if(this.state.question.show_comment_field){
@@ -2727,33 +2659,7 @@ class RatingQuestionForm extends React.Component<Props, IState, any> {
                                 { this.state.question.show_comment_field ? 
                                     
                                     <div className="clearfix" style={{ padding: '25px' }}>
-                                        { this.state.survey.multi_lang ?
-                                        <div>
-                                            <label className="sm-label sm-label--stretch"><b>Label</b></label>
-                                            <Form.Item label="TH" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_label`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_label_html ? this.state.question.comment_field_label_html : `<p>${this.state.question.comment_field_label ? this.state.question.comment_field_label : ''}</p>`} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field label...'}
-                                                />
-                                                {getFieldDecorator('comment_field_label', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a label.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Other (please specify)" *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_label_html')(<Input/>)} </Form.Item>
-                                           
-                                        </div>
-                                        : 
+                                        
                                         <div>
                                             <label className="sm-label sm-label--stretch"><b>Label</b></label>
                                             <Form.Item {...formItemLayout} >
@@ -2778,34 +2684,9 @@ class RatingQuestionForm extends React.Component<Props, IState, any> {
                                             </Form.Item>
                                             <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_label_html')(<Input/>)} </Form.Item>
                                         </div>
-                                        }
+                                        
 
-                                        { this.state.survey.multi_lang ? 
-                                        <div style={{ marginTop: '35px' }}>
-                                            <label className="sm-label sm-label--stretch"><b>Hint</b></label>
-                                            <Form.Item label="TH" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_hint`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_hint_html ? this.state.question.comment_field_hint_html : `<p>${this.state.question.comment_field_hint ? this.state.question.comment_field_hint : ''}</p>`} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field hint...'}
-                                                />
-                                                {getFieldDecorator('comment_field_hint', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a hint message.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Please enter a hint." *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_hint_html')(<Input/>)} </Form.Item>
-                                        </div>
-                                        : 
+                                        
                                         <div style={{ marginTop: '35px' }}>
                                             <label className="sm-label sm-label--stretch"><b>Hint</b></label>
                                             <Form.Item {...formItemLayout} >
@@ -2830,7 +2711,7 @@ class RatingQuestionForm extends React.Component<Props, IState, any> {
                                             </Form.Item>
                                             <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_hint_html')(<Input/>)} </Form.Item>
                                         </div>
-                                        }
+                                        
 
                                     </div>
 
@@ -2851,32 +2732,7 @@ class RatingQuestionForm extends React.Component<Props, IState, any> {
                             { this.state.question.required ? 
 
                             <div className="clearfix" style={{ padding: '25px' }}>
-                                { this.state.survey.multi_lang ? 
-                                <div>
-                                    <label className="sm-label sm-label--stretch"><b>Display this error message when this question is not answered.</b></label>
-                                    <Form.Item label="TH" {...formItemLayout} >
-                                        <RichTextEditor
-                                            xSite={this.props.match.params.xSite}
-                                            id={`required_label`}
-                                            theme={'snow'}
-                                            fontColor={this.state.fontColor}
-                                            defaultValue={this.state.question.required_label_html ? this.state.question.required_label_html : `<p>${this.state.question.required_label ? this.state.question.required_label : ''}</p>`} 
-                                            disableAlign={true}
-                                            onChange={this.onQuestionRichChange}
-                                            placeholder={'You must enter an error message...'}
-                                        /> 
-                                        {getFieldDecorator('required_label', {
-                                            rules: [
-                                            {
-                                                required: true,
-                                                message: 'You must enter an error message.',
-                                            },
-                                            ],
-                                        })(<Input style={{display: 'none'}}/*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="When a textbox is not answered, display this error message."*/ />)}
-                                    </Form.Item>
-                                    <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_html')(<Input/>)} </Form.Item>
-                                </div>
-                                :
+                                
                                 <div>
                                     <label className="sm-label sm-label--stretch"><b>Display this error message when this question is not answered.</b></label>
                                     <Form.Item {...formItemLayout} >
@@ -2901,7 +2757,7 @@ class RatingQuestionForm extends React.Component<Props, IState, any> {
                                     </Form.Item>
                                     <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_html')(<Input/>)} </Form.Item>
                                 </div>
-                                }
+                                
                             </div>
 
                             : null }
@@ -2936,34 +2792,7 @@ class RatingQuestionForm extends React.Component<Props, IState, any> {
 
                     <TabPane tab="LOGIC" key="logic">
 
-                        {/* <div className="questionSetting starTable" style={{ borderBottom: 'solid 1px #D0D2D3' }}>
-
-                            <Checkbox onChange={this.onAddCommentLogicChange.bind(this)} checked={this.state.question.show_comment_field_logic}>Comment Box:  Make the comment box appear once the customer answer matches the choice(s) set below.&nbsp;
-                                <Tooltip title="Let your customer voice be heard. You can set the comment box to appear when customer answer matches the choice(s) below.">
-                                    <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/> 
-                                </Tooltip>
-                            </Checkbox>
-
-                            { this.state.question.show_comment_field_logic ? 
-                                
-                                <div className="clearfix" style={{ padding: '0 25px 25px 25px' }}>
-                                    <Select
-                                        mode="multiple"
-                                        placeholder="Please select rating choices to Add a Comment box for this question"
-                                        value={selectedItems}
-                                        onChange={this.handleAddCommentLogicChange}
-                                        style={{ width: '100%' }}
-                                    >
-                                        {filteredOptions.map(item => (
-                                        <Select.Option key={item} value={item}>
-                                            {item}
-                                        </Select.Option>
-                                        ))}
-                                    </Select>
-                                </div>
-
-                                : null }
-                        </div> */}
+                        
 
                         <div id={"question-"+this.state.question.order_no+"-skip-logic"}></div>
                     </TabPane>

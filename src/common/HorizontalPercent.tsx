@@ -47,22 +47,6 @@ const HorizontalPercent: React.StatelessComponent<IProps> = (props) => {
       color.push(colorCode);
     }
 
-    // const data = [
-    //   {
-    //     answer: "พอใจ",
-    //     name: "ความพึงพอใจ",
-    //     percent: 20,
-    //     totalN: 100,
-    //     N: 30 
-    //   },
-    //   {
-    //     answer: "ไม่พอใจ",
-    //     name: "ความพึงพอใจ",
-    //     percent: 80,
-    //     totalN: 100,
-    //     N: 70 
-    //   },
-    // ];
     const ds = new DataSet();
     const dv = ds
       .createView()

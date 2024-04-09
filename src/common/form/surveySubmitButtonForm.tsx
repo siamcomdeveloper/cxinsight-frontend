@@ -83,14 +83,6 @@ class EditForm extends React.Component<Props, IState, any> {
                               done_text: this.props.survey.done_text,
                             }, () => { /*console.log('after')*/ });
 
-                            if(this.props.survey.multi_lang){
-                              this.props.form.setFieldsValue({
-                                previous_text_EN: this.props.survey.previous_text_EN,
-                                next_text_EN: this.props.survey.next_text_EN,
-                                done_text_EN: this.props.survey.done_text_EN,
-                              }, () => { /*console.log('after')*/ });
-                            }
-
                           });
                         });
                         
@@ -138,8 +130,7 @@ class EditForm extends React.Component<Props, IState, any> {
   
           let fields = [] as any;
               
-          if(this.state.survey.multi_lang) fields = ['previous_text', 'next_text', 'done_text', 'button_color_theme', 'previous_text_EN', 'next_text_EN', 'done_text_EN'];
-          else fields = ['previous_text', 'next_text', 'done_text', 'button_color_theme'];
+          fields = ['previous_text', 'next_text', 'done_text', 'button_color_theme'];
 
           const jwt = getJwtToken();
           BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [this.state.survey.previous_text, this.state.survey.next_text, this.state.survey.done_text, this.state.survey.button_color_theme, this.state.survey.previous_text_EN, this.state.survey.next_text_EN, this.state.survey.done_text_EN]), jwt).then(
@@ -266,196 +257,7 @@ class EditForm extends React.Component<Props, IState, any> {
             </div>
           </Form.Item>
 
-          { this.state.survey.multi_lang ? 
-          <div className="languages-setting-form-container questionSetting comment-box-setting-container">
-            
-            <label className="sm-label sm-label--stretch"><b>Done button label:</b></label>
-            <Form.Item label="TH" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`done_text`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.done_text} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the text for Done button...'}
-              />
-              {getFieldDecorator('done_text', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the text for Done button',
-                  },
-                ],
-              })(<Input className="wds-input wds-input--md wds-input--stretched" style={{ display: 'none' }} /*onChange={this.onChange} placeholder="Text for Done button"*/ />)}
-            </Form.Item>
-
-            <Form.Item label="EN" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`done_text_EN`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.done_text_EN} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the text for Done button...'}
-              />
-              {getFieldDecorator('done_text_EN', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the text for Done button',
-                  },
-                ],
-              })(<Input className="wds-input wds-input--md wds-input--stretched" style={{ display: 'none' }} /*onChange={this.onChange} placeholder="Text for Done button"*/ />)}
-            </Form.Item>
-
-            <label className="sm-label sm-label--stretch"><b>Next button label:</b></label>
-            <Form.Item label="TH" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`next_text`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.next_text} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the text for Next button...'}
-              />
-              {getFieldDecorator('next_text', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the text for Next button',
-                  },
-                ],
-              })(<Input className="wds-input wds-input--md wds-input--stretched" style={{ display: 'none' }} /*onChange={this.onChange} placeholder="Text for Next button"*/ />)}
-            </Form.Item>
-
-            <Form.Item label="EN" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`next_text_EN`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.next_text_EN} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the text for Next button...'}
-              />
-              {getFieldDecorator('next_text_EN', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the text for Next button',
-                  },
-                ],
-              })(<Input className="wds-input wds-input--md wds-input--stretched" style={{ display: 'none' }} /*onChange={this.onChange} placeholder="Text for Next button"*/ />)}
-            </Form.Item>
-
-            <label className="sm-label sm-label--stretch"><b>Previous button label:</b></label>
-            <Form.Item label="TH" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`previous_text`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.previous_text} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the text for Previous button...'}
-              />
-              {getFieldDecorator('previous_text', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the text for Previous button',
-                  },
-                ],
-              })(<Input className="wds-input wds-input--md wds-input--stretched" style={{ display: 'none' }}/*onChange={this.onChange} placeholder="Text for Previous button"*/ />)}
-            </Form.Item>
-
-            <Form.Item label="EN" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`previous_text_EN`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.previous_text_EN} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the text for Previous button...'}
-              />
-              {getFieldDecorator('previous_text_EN', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the text for Previous button',
-                  },
-                ],
-              })(<Input className="wds-input wds-input--md wds-input--stretched" style={{ display: 'none' }}/*onChange={this.onChange} placeholder="Text for Previous button"*/ />)}
-            </Form.Item>
-          </div>
-          :
-          <div>
-            <Form.Item label="Done button" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`done_text`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.done_text} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the text for Done button...'}
-              />
-              {getFieldDecorator('done_text', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the text for Done button',
-                  },
-                ],
-              })(<Input className="wds-input wds-input--md wds-input--stretched" style={{ display: 'none' }}/*onChange={this.onChange} placeholder="Text for Done button"*/ />)}
-            </Form.Item>
-
-            <Form.Item label="Next button" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`next_text`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.next_text} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the text for Next button...'}
-              />
-              {getFieldDecorator('next_text', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the text for Next button',
-                  },
-                ],
-              })(<Input className="wds-input wds-input--md wds-input--stretched" style={{ display: 'none' }}/*onChange={this.onChange} placeholder="Text for Next button"*/ />)}
-            </Form.Item>
-
-            <Form.Item label="Previous button" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`previous_text`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.previous_text} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the text for Previous button...'}
-              />
-              {getFieldDecorator('previous_text', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the text for Previous button',
-                  },
-                ],
-              })(<Input className="wds-input wds-input--md wds-input--stretched" style={{ display: 'none' }}/*onChange={this.onChange} placeholder="Text for Previous button"*/ />)}
-            </Form.Item>
-          </div>
-          }
-
+          
           <footer className="wds-modal__foot">
             <div className="wds-modal__actions-right">
               <Button type="primary" className="wds-button wds-button--primary wds-button--solid wds-button--md" id="newSurvey" onClick={this.check}>

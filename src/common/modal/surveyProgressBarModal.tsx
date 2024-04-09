@@ -58,7 +58,7 @@ class surveyProgressBarModal extends React.Component<IProps, IState> {
 
                 <Modal 
                     className="create-survey-modal"
-                    title={<div>Progress Bar <Tooltip title={'Progress Bar คือ Indicator เพื่อบอกว่าผู้ทำเซอร์เวย์ทำไปได้มากน้อยแค่ไหน'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> </div>}
+                    title={<div>Progress Bar</div>}
                     visible={this.state.visible}
                     onCancel={this.handleCancel}
                 >

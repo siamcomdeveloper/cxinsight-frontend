@@ -409,8 +409,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                 // console.log(`in if(this.state.question.required_label || this.state.question.required_label.trim() === '')`);
                 let fields = [] as any;
                 
-                if(this.state.survey.multi_lang) fields = ['required_label', 'required_label_EN', 'required_label_html', 'required_label_EN_html'];
-                else fields = ['required_label', 'required_label_html'];
+                 fields = ['required_label', 'required_label_html'];
 
                 this.props.form.validateFields(fields, (err) => {
                     // console.log(`err`, err);
@@ -620,15 +619,11 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
             answerChoiceKeys.map((k: any) => {
                 answerChoiceFields.push('answer_choice['+(k)+']');
                 answerChoiceFields.push('answer_choice_html['+(k)+']');
-                if(this.state.survey.multi_lang) {
-                    answerChoiceFields.push('answer_choice_EN['+(k)+']');
-                    answerChoiceFields.push('answer_choice_EN_html['+(k)+']');
-                }
+                
             });
 
             //validate question_label field
             answerChoiceFields.push('question_label');
-            if(this.state.survey.multi_lang) answerChoiceFields.push('question_label_EN');
 
             // console.log(`onSaveOptions answerChoiceFields`, answerChoiceFields);
             
@@ -672,24 +667,12 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                         if( index < answerChoiceKeys.length - 1 ){ choice += ','; choiceHtml += '~';}
                     });
 
-                    if(this.state.survey.multi_lang){
-                        answerChoiceKeys.map((k: any, index: any) => {
-                            const answerChoiceEN = values.answer_choice_EN[k].replace(/,/g, '/');
-                            const answerChoiceENHtml = values.answer_choice_EN_html[k] ? values.answer_choice_EN_html[k] : `<p>${values.answer_choice_EN[k].replace(/,/g, '/')}</p>`;
-                            // console.log(`answerChoiceEN`, answerChoiceEN);
-                            // console.log(`answerChoiceENHtml`, answerChoiceENHtml);
-                            choiceEN += answerChoiceEN + ',' + (index+1);
-                            choiceENHtml +=  answerChoiceENHtml + '~' + (index+1);
-                            if( index < answerChoiceKeys.length - 1 ) { choiceEN += ','; choiceENHtml += '~';}
-                        });
-                    }
-                    else{
-                        choiceEN = choice;
-                        choiceENHtml = choiceHtml;
-                        // console.log(`else choiceEN`, choiceEN);
-                        // console.log(`else choiceENHtml`, choiceENHtml);
-                    }
-
+                    
+                    choiceEN = choice;
+                    choiceENHtml = choiceHtml;
+                    // console.log(`else choiceEN`, choiceEN);
+                    // console.log(`else choiceENHtml`, choiceENHtml);
+                    
                     const skipLoicStrArr = [];
                     for(let i = 1 ; i <= answerChoiceKeys.length; i++) skipLoicStrArr.push(`${i},0,0`);
                     skipLogic = skipLoicStrArr.join(',');
@@ -873,13 +856,6 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                 required_label_html: this.state.question.required_label_html ? this.state.question.required_label_html : `<p>${this.state.question.required_label ? this.state.question.required_label : ''}</p>`,
                 }, () => { /*console.log('setFieldsValue required_label')*/ });
 
-                //set required label EN
-                if(this.state.survey.multi_lang){
-                    this.props.form.setFieldsValue({
-                        required_label_EN: this.props.question.required_label_EN ? this.props.question.required_label_EN : this.state.question.required_label ? this.state.question.required_label : '',
-                        required_label_EN_html: this.state.question.required_label_EN_html ? this.state.question.required_label_EN_html : ( this.props.question.required_label_EN ? `<p>${this.props.question.required_label_EN}</p>` : this.state.question.required_label ? `<p>${this.state.question.required_label}</p>` : '<p></p>' ),
-                    }, () => { /*console.log('setFieldsValue required_label_EN')*/ });
-                }
             }
 
             } 
@@ -911,17 +887,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                     // console.log('setFieldsValue comment_field_label')
                 });
 
-                if(this.state.survey.multi_lang){
-                    this.props.form.setFieldsValue({
-                        comment_field_label_EN: this.state.question.comment_field_label_EN ? this.state.question.comment_field_label_EN : this.state.question.comment_field_label ? this.state.question.comment_field_label : '',
-                        comment_field_label_EN_html: this.state.question.comment_field_label_EN_html ? this.state.question.comment_field_label_EN_html : ( this.props.question.comment_field_label_EN ? `<p>${this.props.question.comment_field_label_EN}</p>` : this.state.question.comment_field_label ? `<p>${this.state.question.comment_field_label}</p>` : '<p></p>' ),
-                        
-                        comment_field_hint_EN: this.state.question.comment_field_hint_EN ? this.state.question.comment_field_hint_EN : this.state.question.comment_field_hint ? this.state.question.comment_field_hint : '',
-                        comment_field_hint_EN_html: this.state.question.comment_field_hint_EN_html ? this.state.question.comment_field_hint_EN_html : ( this.props.question.comment_field_hint_EN ? `<p>${this.props.question.comment_field_hint_EN}</p>` : this.state.question.comment_field_hint ? `<p>${this.state.question.comment_field_hint}</p>` : '<p></p>' ),
-                    }, () => { 
-                        // console.log('setFieldsValue comment_field_label')
-                    });
-                }
+                
             }
 
             } 
@@ -1214,48 +1180,6 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                     // console.log('setFieldsValue question_label')
                 });
 
-            //     //set question label EN
-            //     if(this.state.survey.multi_lang){
-            //         this.props.form.setFieldsValue({
-            //             question_label_EN: this.props.question.question_label_EN ? this.props.question.question_label_EN : this.props.question.question_label ? this.props.question.question_label : '',
-            //             question_label_EN_html: this.state.question.question_label_EN_html ? this.state.question.question_label_EN_html : ( this.props.question.question_label_EN ? `<p>${this.props.question.question_label_EN}</p>` : this.state.question.question_label ? `<p>${this.state.question.question_label}</p>` : '<p></p>' ),
-            //         }, () => { 
-            //             // console.log('setFieldsValue question_label_EN')
-            //         });
-            //     }
-
-            //     let selectedAreaOfImpactsName = [];
-            //     const areaOfImpacts = this.state.question.area_of_impact_id.includes(',') ? this.state.question.area_of_impact_id.split(',') : [this.state.question.area_of_impact_id];
-            //     let allAreaOfImpactName = this.props.survey.name_area_of_impacts.includes(",") ? this.props.survey.name_area_of_impacts.split(',') : [this.props.survey.name_area_of_impacts];
-
-            // // console.log('areaOfImpacts', areaOfImpacts);
-            // // console.log('allAreaOfImpactName', allAreaOfImpactName);
-
-            //     //replace &amp; with & character
-            //     allAreaOfImpactName = allAreaOfImpactName.map((name: any) => { return name.includes('&amp;') ? name.replace('&amp;', '&') : name; });
-
-            //     selectedAreaOfImpactsName = areaOfImpacts.map((selectedAreaOfImpactId: any, selectedAreaOfImpactIndex: any) => {
-            //         // console.log(`selectedAreaOfImpactId ${selectedAreaOfImpactId} selectedAreaOfImpactIndex ${selectedAreaOfImpactIndex}`);
-            //         let selectedAreaOfImpactName;
-            //         allAreaOfImpactName.map((areaOfImpactName: any, areaOfImpactIndex: any) => {
-            //         const areaOfImpactNameSplit = areaOfImpactName.split('~')[0];
-            //         const areaOfImpactId = parseInt(areaOfImpactName.split('~')[1]);
-            //         // console.log(`areaOfImpactName ${areaOfImpactName} areaOfImpactId ${areaOfImpactId} areaOfImpactIndex ${areaOfImpactIndex} no ${areaOfImpactIndex+1}`);
-            //         // console.log(`selectedAreaOfImpactId ${selectedAreaOfImpactId} === areaOfImpactId ${areaOfImpactId}`, parseInt(selectedAreaOfImpactId) === areaOfImpactId);
-            //             if(parseInt(selectedAreaOfImpactId) === areaOfImpactId) {
-            //                 // console.log('in if areaOfImpactNameSplit', areaOfImpactNameSplit);
-            //                 selectedAreaOfImpactName = areaOfImpactNameSplit;
-            //                 return;
-            //             }
-            //         });
-            //         return selectedAreaOfImpactName;
-            //     });
-
-            // // console.log('selectedAreaOfImpactsName', selectedAreaOfImpactsName);
-            //     this.setState( { selectedAreaOfImpacts: selectedAreaOfImpactsName, allAreaOfImpactName: allAreaOfImpactName }, () => {
-            //         // console.log('after selectedAreaOfImpacts', this.state.selectedAreaOfImpacts);
-            //         }
-            //     );
 
                 //check required
                 if(this.state.question.show_comment_field){
@@ -1270,18 +1194,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                         // console.log('setFieldsValue comment_field_label')
                     });
     
-                    if(this.state.survey.multi_lang){
-                        this.props.form.setFieldsValue({
-                            comment_field_label_EN: this.state.question.comment_field_label_EN ? this.state.question.comment_field_label_EN : '',
-                            comment_field_label_EN_html: this.state.question.comment_field_label_EN_html ? this.state.question.comment_field_label_EN_html : `<p>${this.state.question.comment_field_label_EN ? this.state.question.comment_field_label_EN : ''}</p>`,
-                            
-                            comment_field_hint_EN: this.state.question.comment_field_hint_EN ? this.state.question.comment_field_hint_EN : '',
-                            comment_field_hint_EN_html: this.state.question.comment_field_hint_EN_html ? this.state.question.comment_field_hint_EN_html : `<p>${this.state.question.comment_field_hint_EN ? this.state.question.comment_field_hint_EN : ''}</p>`,
-                        }, () => { 
-                            // console.log('setFieldsValue comment_field_label')
-                        });
-                    }
-                    
+                   
                 }
 
             }
@@ -1300,14 +1213,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                         required_label_html: this.props.question.required_label_html ? this.props.question.required_label_html : '',
                     }, () => { /*console.log('setFieldsValue required_label')*/ });
 
-                    //set required label EN
-                    if(this.state.survey.multi_lang){
-                        this.props.form.setFieldsValue({
-                            required_label_EN: this.props.question.required_label_EN ? this.props.question.required_label_EN : 'Hint',
-                            required_label_EN_html: this.props.question.required_label_EN_html ? this.props.question.required_label_EN_html : '',
-                        }, () => { /*console.log('setFieldsValue required_label_EN')*/ });
-                    }
-
+               
                 }
                 
             }
@@ -1646,195 +1552,6 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
         );
     }
 
-    // getAnswerChoiceRow = (answerChoiceKeys: any) => {
-    //     const { getFieldDecorator } = this.props.form;
-    //     const answerChoiceItem = answerChoiceKeys.map((k: any, index: any) => {
-    //         return (
-    //             this.state.survey.multi_lang ?
-    //             <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
-    //                 <td className="choiceText" style={{ width: '40%' }}>
-    //                     <Form.Item {...formItemLayout} >
-    //                         {getFieldDecorator(`answer_choice`, {
-    //                             rules: [
-    //                             {
-    //                                 required: true,
-    //                                 message: 'You must enter an answer choice.',
-    //                             },
-    //                             ],
-    //                         })(<Input disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length } className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                     </Form.Item>
-    //                 </td>
-    //                 <td className="choiceText" style={{ width: '40%' }}>
-    //                     <Form.Item {...formItemLayout} >
-    //                         {getFieldDecorator(`answer_choice_EN`, {
-    //                             rules: [
-    //                             {
-    //                                 required: true,
-    //                                 message: 'You must enter an answer choice.',
-    //                             },
-    //                             ],
-    //                         })(<Input disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length } className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                     </Form.Item>
-    //                 </td>
-    //                 <td>
-
-    //                     { answerChoiceKeys.length > 2 && this.state.isNotTemplateQuestion && (!this.state.alreadyResponded || index+1 > this.state.choices.length) ? (
-    //                         <Icon
-    //                             className={"dynamic-delete-button"}
-    //                             type="minus-circle-o"
-    //                             onClick={() => this.removeAnswerChoice(k, index)}
-    //                             style={{ paddingRight: '10px'}}
-    //                         />
-    //                     ) : null }
-
-    //                     { answerChoiceKeys.length === index + 1 && this.state.isNotTemplateQuestion ? (
-    //                         <Icon
-    //                             className={"dynamic-delete-button"}
-    //                             type="plus-circle-o"
-    //                             onClick={() => this.addAnswerChoice()}
-    //                         />
-    //                     ) : null }
-
-    //                 </td>
-    //             </tr>
-    //             :
-    //             <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
-    //                 <td className="choiceText" style={{ width: '90%' }}>
-    //                     <Form.Item {...formItemLayout} >
-    //                         {getFieldDecorator(`answer_choice`, {
-    //                             rules: [
-    //                             {
-    //                                 required: true,
-    //                                 message: 'You must enter an answer choice.',
-    //                             },
-    //                             ],
-    //                         })(<Input disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length } className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                     </Form.Item>
-    //                 </td>
-    //                 <td>
-
-    //                     { answerChoiceKeys.length > 2 && this.state.isNotTemplateQuestion && (!this.state.alreadyResponded || index+1 > this.state.choices.length) ? (
-    //                         <Icon
-    //                             className={"dynamic-delete-button"}
-    //                             type="minus-circle-o"
-    //                             onClick={() => this.removeAnswerChoice(k, index)}
-    //                             style={{ paddingRight: '10px'}}
-    //                         />
-    //                     ) : null }
-
-    //                     { answerChoiceKeys.length === index + 1 && this.state.isNotTemplateQuestion ? (
-    //                         <Icon
-    //                             className={"dynamic-delete-button"}
-    //                             type="plus-circle-o"
-    //                             onClick={() => this.addAnswerChoice()}
-    //                         />
-    //                     ) : null }
-
-    //                 </td>
-    //             </tr>
-    //         );
-    //     });
-
-    //     return answerChoiceItem;
-    // }
-
-    // getAllAnswerChoiceRow = () => {
-
-    //   // console.log('getAllAnswerChoiceRow');
-    //     const { getFieldDecorator, getFieldValue  } = this.props.form;
-    //     getFieldDecorator('answerChoiceKeys', { initialValue: [] });
-    //     const answerChoiceKeys = getFieldValue('answerChoiceKeys');
-    //   // console.log('answerChoiceKeys', answerChoiceKeys);
-    //     // answerChoiceKeys.push(answerChoiceId++);
-    //     const answerChoiceItems = answerChoiceKeys.map((k: any, index: any) => (
-
-    //         this.state.survey.multi_lang ?
-    //         <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
-    //             <td className="choiceText" style={{ width: '40%' }}>
-    //                 <Form.Item {...formItemLayout} >
-    //                     {getFieldDecorator(`answer_choice[${index}]`, {
-    //                         rules: [
-    //                         {
-    //                             required: true,
-    //                             message: 'You must enter an answer choice.',
-    //                         },
-    //                         ],
-    //                     })(<Input disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length } className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                 </Form.Item>
-    //             </td>
-    //             <td className="choiceText" style={{ width: '40%' }}>
-    //                 <Form.Item {...formItemLayout} >
-    //                     {getFieldDecorator(`answer_choice_EN[${index}]`, {
-    //                         rules: [
-    //                         {
-    //                             required: true,
-    //                             message: 'You must enter an answer choice.',
-    //                         },
-    //                         ],
-    //                     })(<Input disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length } className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                 </Form.Item>
-    //             </td>
-    //             <td>
-
-    //                 { answerChoiceKeys.length > 2 && this.state.isNotTemplateQuestion && (!this.state.alreadyResponded || index+1 > this.state.choices.length) ? (
-    //                     <Icon
-    //                         className={"dynamic-delete-button"}
-    //                         type="minus-circle-o"
-    //                         onClick={() => this.removeAnswerChoice(k, index)}
-    //                         style={{ paddingRight: '10px'}}
-    //                     />
-    //                 ) : null }
-
-    //                 { answerChoiceKeys.length === index + 1 && this.state.isNotTemplateQuestion ? (
-    //                     <Icon
-    //                         className={"dynamic-delete-button"}
-    //                         type="plus-circle-o"
-    //                         onClick={() => this.addAnswerChoice()}
-    //                     />
-    //                 ) : null }
-
-    //             </td>
-    //         </tr>
-    //         :
-    //         <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
-    //             <td className="choiceText" style={{ width: '90%' }}>
-    //                 <Form.Item {...formItemLayout} >
-    //                     {getFieldDecorator(`answer_choice[${index}]`, {
-    //                         rules: [
-    //                         {
-    //                             required: true,
-    //                             message: 'You must enter an answer choice.',
-    //                         },
-    //                         ],
-    //                     })(<Input disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length } className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice" />)}
-    //                 </Form.Item>
-    //             </td>
-    //             <td>
-
-    //                 { answerChoiceKeys.length > 2 && this.state.isNotTemplateQuestion && (!this.state.alreadyResponded || index+1 > this.state.choices.length) ? (
-    //                     <Icon
-    //                         className={"dynamic-delete-button"}
-    //                         type="minus-circle-o"
-    //                         onClick={() => this.removeAnswerChoice(k, index)}
-    //                         style={{ paddingRight: '10px'}}
-    //                     />
-    //                 ) : null }
-
-    //                 { answerChoiceKeys.length === index + 1 && this.state.isNotTemplateQuestion ? (
-    //                     <Icon
-    //                         className={"dynamic-delete-button"}
-    //                         type="plus-circle-o"
-    //                         onClick={() => this.addAnswerChoice()}
-    //                     />
-    //                 ) : null }
-
-    //             </td>
-    //         </tr>
-    //     ));
-
-    //     return answerChoiceItems;
-    // }
-
     getQuestionOptionRow = async (no: any, jwt: any) => {
       // console.log (`question no.${no}`);
 
@@ -2121,24 +1838,6 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
         );
     }
 
-    // setChoiceWeight = () => {
-    //     for(let i = 0; i < this.state.choices.length; i++){
-    //         // set star choice and weight
-    //         let starLabelFieldName = 'answer_choice['+i+']';
-    //         this.props.form.setFieldsValue({
-    //             [starLabelFieldName]: this.state.choices[i],
-    //         }, () => { /*console.log('setFieldsValue', starLabelFieldName)*/ });
-
-    //         if(this.state.survey.multi_lang){
-    //             // set star choice and weight
-    //             let starLabelFieldNameEN = 'answer_choice_EN['+i+']';
-    //             this.props.form.setFieldsValue({
-    //                 [starLabelFieldNameEN]: this.state.choicesEN[i],
-    //             }, () => { /*console.log('setFieldsValue', starLabelFieldNameEN)*/ });
-    //         }
-    //     }
-    // }
-
     setImageWhenAddChekced = () => {
         // console.log(`setImageWhenAddChekced this.state.question.image_enabled`, this.state.question.image_enabled);
         if(this.state.question.image_enabled){
@@ -2290,32 +1989,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                 // console.log(`after removeImage index ${index} this.state.choicesHtml`, this.state.choicesHtml);
             });
 
-            if(this.state.survey.multi_lang){
-
-                let answerChoiceENArr = this.state.choicesEN;
-                // let answerChoiceENHtmlArr = this.state.choicesENHtml;
-
-                let answerChoiceENHtmlArr = this.state.choicesENHtml.filter(function (choice: any) {
-                    return choice != null;
-                });
-
-                // console.log(`before splice answerChoiceENArr`, answerChoiceENArr);
-                // console.log(`before splice answerChoiceENHtmlArr`, answerChoiceENHtmlArr);
-
-                answerChoiceENArr.splice(index, 1);
-                answerChoiceENHtmlArr.splice(index, 1);
-
-                // console.log(`after splice answerChoiceENArr`, answerChoiceENArr);
-                // console.log(`after splice answerChoiceENHtmlArr`, answerChoiceENHtmlArr);
-
-                this.setState({
-                    choicesEN: answerChoiceENArr,
-                    choicesENHtml: answerChoiceENHtmlArr,
-                },  () => { 
-                    // console.log(`after removeImage index ${index} this.state.choicesEN`, this.state.choicesEN);
-                    // console.log(`after removeImage index ${index} this.state.choicesENHtml`, this.state.choicesENHtml);
-                });
-            }
+            
 
         });
 
@@ -2524,99 +2198,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
         getFieldDecorator('answerChoiceKeys', { initialValue: [] });
         const answerChoiceKeys = getFieldValue('answerChoiceKeys');
         const formAnswerChoiceItems = answerChoiceKeys.map((k: any, index: any) => (
-            this.state.survey.multi_lang ?
-            <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
-                <td className="choiceText" style={{ width: '50%' }}>
-                    <Form.Item {...formItemLayout} >
-                        {/* {getFieldDecorator(`answer_choice`, { */}
-                        <RichTextEditor
-                            xSite={this.props.match.params.xSite}
-                            style={{ marginBottom: '15px' }}
-                            id={`answer_choice`}
-                            index={`${k}`}
-                            realIndex={index}
-                            theme={'snow'}
-                            fontColor={this.state.fontColor}
-                            defaultValue={this.state.choicesHtml ? this.state.choicesHtml[index] : `<p></p>`} 
-                            disableAlign={true}
-                            onChange={this.onChoiceRichChange}
-                            placeholder={'You must enter an answer choice...'}
-                            disable={this.state.alreadyResponded && index+1 <= this.state.choices.length}
-                        />
-                        {getFieldDecorator(`answer_choice[${k}]`, {
-                            validateTrigger: ['onChange'],
-                            initialValue: this.state.choices ? this.state.choices[index] : '',
-                            rules: [
-                            {
-                                required: true,
-                                message: 'You must enter an answer choice.',
-                            },
-                            ],
-                        })(<Input style={{display: 'none'}} /*disabled={!this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length} className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice"*/ />)}
-                        </Form.Item>
-                        {/* {getFieldDecorator(`answer_choice_html[${k}]`)(<Input/>)} </Form.Item> */}
-                        <Form.Item style={{display: 'none'}}/**/> 
-                            {getFieldDecorator(`answer_choice_html[${k}]`, {
-                                initialValue: this.state.choicesHtml ? this.state.choicesHtml[index] : '',
-                            })(<Input/>)} 
-                    </Form.Item>
-                </td>
-                <td className="choiceText" style={{ width: '50%' }}>
-                    <Form.Item {...formItemLayout} >
-                        {/* {getFieldDecorator(`answer_choice`, { */}
-                        <RichTextEditor
-                            xSite={this.props.match.params.xSite}
-                            style={{ marginBottom: '15px' }}
-                            id={`answer_choice_EN`}
-                            index={`${k}`}
-                            realIndex={index}
-                            theme={'snow'}
-                            fontColor={this.state.fontColor}
-                            defaultValue={this.state.choicesENHtml ? this.state.choicesENHtml[index] : `<p></p>`} 
-                            disableAlign={true}
-                            onChange={this.onChoiceRichChange}
-                            placeholder={'You must enter an answer choice...'}
-                            disable={this.state.alreadyResponded && index+1 <= this.state.choices.length}
-                        />
-                        {getFieldDecorator(`answer_choice_EN[${k}]`, {
-                            validateTrigger: ['onChange'],
-                            initialValue: this.state.choicesEN ? this.state.choicesEN[index] : '',
-                            rules: [
-                            {
-                                required: true,
-                                message: 'You must enter an answer choice.',
-                            },
-                            ],
-                        })(<Input style={{display: 'none'}} /*disabled={!this.state.isNotTemplateQuestion || this.state.alreadyResponded && index+1 <= this.state.choices.length} className="wds-input wds-input--md wds-input--stretched" style={{ fontSize: '14px', height: '35px' }} onChange={this.onChangeQuestion} placeholder="Enter an answer choice"*/ />)}
-                        </Form.Item>
-                        <Form.Item style={{display: 'none'}}/**/> 
-                            {getFieldDecorator(`answer_choice_EN_html[${k}]`, {
-                                initialValue: this.state.choicesENHtml ? this.state.choicesENHtml[index] : '',
-                            })(<Input/>)} 
-                    </Form.Item>
-                </td>
-                <td>
-
-                    { answerChoiceKeys.length > 2 && (!this.state.alreadyResponded || index+1 > this.state.choices.length) ? (
-                        <Icon
-                            className={"dynamic-delete-button"}
-                            type="minus-circle-o"
-                            onClick={() => this.removeAnswerChoice(k, index)}
-                            style={{ paddingRight: '10px'}}
-                        />
-                    ) : null }
-
-                    { answerChoiceKeys.length === index + 1 ? (
-                        <Icon
-                            className={"dynamic-delete-button"}
-                            type="plus-circle-o"
-                            onClick={() => this.addAnswerChoice()}
-                        />
-                    ) : null }
-
-                </td>
-            </tr>
-            :
+           
             <tr key={'question-'+this.state.question.order_no+'-'+this.state.actionKey+'-answer-choice-tr-'+(index+1)} className="column choice actual">
                 <td className="choiceText" style={{ width: '90%' }}>
                     <Form.Item {...formItemLayout} >
@@ -2695,12 +2277,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                                         <td className="questionNum">
                                             <strong>Q<var className="questionPos notranslate">{this.state.question.order_no}</var></strong>
                                         </td>
-                                        { this.state.survey.multi_lang ? 
-                                        <td className="questionNum">
-                                            <strong>TH</strong>
-                                        </td>
-                                        : null
-                                        }
+                                        
                                         <td className="questionText">
 
                                             <Form.Item {...formItemLayout} >
@@ -2732,49 +2309,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                                             </span>
                                         </td>
                                     </tr>
-                                    { this.state.survey.multi_lang ? 
-                                    <tr className="title-row">
-                                        <td className="questionNum">
-                                        &nbsp;
-                                        </td>
-                                        { this.state.survey.multi_lang ? 
-                                        <td className="questionNum">
-                                            <strong>EN</strong>
-                                        </td>
-                                        : null
-                                        }
-                                        <td className="questionText" style={{ paddingTop: '20px' }}>
-
-                                            <Form.Item {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`question_label_EN`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.question_label_EN_html ? this.state.question.question_label_EN_html : ( this.props.question.question_label_EN ? `<p>${this.props.question.question_label_EN}</p>` : this.state.question.question_label ? `<p>${this.state.question.question_label}</p>` : '<p></p>' )} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'You must enter question text...'}
-                                                    disable={this.state.alreadyResponded}
-                                                /> 
-                                                {getFieldDecorator('question_label_EN', {
-                                                    rules: [
-                                                    {
-                                                        required: true,
-                                                        message: 'You must enter question text.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}}/*disabled={ !this.state.isNotTemplateQuestion || this.state.alreadyResponded } className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Enter your question text"*/ />)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('question_label_EN_html')(<Input/>)} </Form.Item>
-                                        </td>
-                                        {/* <td className="questionType">
-                                            <span className="qNumType staticType">
-                                                <span className="question-essay i">{this.state.questionTypeLabel}</span>
-                                            </span>
-                                        </td> */}
-                                    </tr>
-                                    : null }
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -2807,15 +2342,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                                         <div className="question-matrix question-emoji">
                                             <table className="columnsTable choicesTable emojiTable" cellSpacing="0">
                                                 <thead>
-                                                { this.state.survey.multi_lang ? 
-                                                    <tr>
-                                                        <th colSpan={1} style={{ fontWeight: 'bold', fontSize: '14px' }}> TH </th>
-                                                        <th colSpan={1} style={{ fontWeight: 'bold', fontSize: '14px' }}> EN </th>
-                                                        <th colSpan={1}> &nbsp; </th>
-                                                    </tr>
-                                                    :
-                                                    null
-                                                }
+                                                
                                                 </thead>
                                                 <tbody id="answer-choice-row" className="columnSetting singleLine">
                                                     {formAnswerChoiceItems}
@@ -2834,54 +2361,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                                 { this.state.question.show_comment_field ? 
                                     
                                     <div className="clearfix" style={{ padding: '25px' }}>
-                                        { this.state.survey.multi_lang ?
-                                        <div>
-                                            <label className="sm-label sm-label--stretch"><b>Label</b></label>
-                                            <Form.Item label="TH" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_label`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_label_html ? this.state.question.comment_field_label_html : `<p>${this.state.question.comment_field_label ? this.state.question.comment_field_label : ''}</p>`} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field label...'}
-                                                />
-                                                {getFieldDecorator('comment_field_label', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a label.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Other (please specify)" *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_label_html')(<Input/>)} </Form.Item>
-
-                                            <Form.Item label="EN" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_label_EN`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_label_EN_html ? this.state.question.comment_field_label_EN_html : ( this.props.question.comment_field_label_EN ? `<p>${this.props.question.comment_field_label_EN}</p>` : this.state.question.comment_field_label ? `<p>${this.state.question.comment_field_label}</p>` : '<p></p>' )} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field label...'}
-                                                />
-                                                {getFieldDecorator('comment_field_label_EN', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a label.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Other (please specify)" *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_label_EN_html')(<Input/>)} </Form.Item>
-                                        </div>
-                                        : 
+                                        
                                         <div>
                                             <label className="sm-label sm-label--stretch"><b>Label</b></label>
                                             <Form.Item {...formItemLayout} >
@@ -2906,56 +2386,9 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                                             </Form.Item>
                                             <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_label_html')(<Input/>)} </Form.Item>
                                         </div>
-                                        }
+                                        
 
-                                        { this.state.survey.multi_lang ? 
-                                        <div style={{ marginTop: '35px' }}>
-                                            <label className="sm-label sm-label--stretch"><b>Hint</b></label>
-                                            <Form.Item label="TH" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_hint`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_hint_html ? this.state.question.comment_field_hint_html : `<p>${this.state.question.comment_field_hint ? this.state.question.comment_field_hint : ''}</p>`} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field hint...'}
-                                                />
-                                                {getFieldDecorator('comment_field_hint', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a hint message.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Please enter a hint." *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_hint_html')(<Input/>)} </Form.Item>
-
-                                            <Form.Item label="EN" {...formItemLayout} >
-                                                <RichTextEditor
-                                                    xSite={this.props.match.params.xSite}
-                                                    id={`comment_field_hint_EN`}
-                                                    theme={'snow'}
-                                                    fontColor={this.state.fontColor}
-                                                    defaultValue={this.state.question.comment_field_hint_EN_html ? this.state.question.comment_field_hint_EN_html : ( this.props.question.comment_field_hint_EN ? `<p>${this.props.question.comment_field_hint_EN}</p>` : this.state.question.comment_field_hint ? `<p>${this.state.question.comment_field_hint}</p>` : '<p></p>' )} 
-                                                    disableAlign={true}
-                                                    onChange={this.onQuestionRichChange}
-                                                    placeholder={'Please enter comment field hint...'}
-                                                />
-                                                {getFieldDecorator('comment_field_hint_EN', {
-                                                    rules: [
-                                                    {
-                                                        // required: true,
-                                                        // message: 'You must enter a hint message.',
-                                                    },
-                                                    ],
-                                                })(<Input style={{display: 'none'}} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="Please enter a hint." *//>)}
-                                            </Form.Item>
-                                            <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_hint_EN_html')(<Input/>)} </Form.Item>
-                                        </div>
-                                        : 
+                                        
                                         <div style={{ marginTop: '35px' }}>
                                             <label className="sm-label sm-label--stretch"><b>Hint</b></label>
                                             <Form.Item {...formItemLayout} >
@@ -2980,7 +2413,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                                             </Form.Item>
                                             <Form.Item style={{display: 'none'}}> {getFieldDecorator('comment_field_hint_html')(<Input/>)} </Form.Item>
                                         </div>
-                                        }
+                                        
 
                                     </div>
 
@@ -3005,54 +2438,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                             { this.state.question.required ? 
 
                             <div className="clearfix" style={{ padding: '25px' }}>
-                                { this.state.survey.multi_lang ? 
-                                <div>
-                                    <label className="sm-label sm-label--stretch"><b>Display this error message when this question is not answered.</b></label>
-                                    <Form.Item label="TH" {...formItemLayout} >
-                                        <RichTextEditor
-                                            xSite={this.props.match.params.xSite}
-                                            id={`required_label`}
-                                            theme={'snow'}
-                                            fontColor={this.state.fontColor}
-                                            defaultValue={this.state.question.required_label_html ? this.state.question.required_label_html : `<p>${this.state.question.required_label ? this.state.question.required_label : ''}</p>`} 
-                                            disableAlign={true}
-                                            onChange={this.onQuestionRichChange}
-                                            placeholder={'You must enter an error message...'}
-                                        /> 
-                                        {getFieldDecorator('required_label', {
-                                            rules: [
-                                            {
-                                                required: true,
-                                                message: 'You must enter an error message.',
-                                            },
-                                            ],
-                                        })(<Input style={{display: 'none'}}/*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="When a textbox is not answered, display this error message."*/ />)}
-                                    </Form.Item>
-                                    <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_html')(<Input/>)} </Form.Item>
-
-                                    <Form.Item label="EN" {...formItemLayout} >
-                                        <RichTextEditor
-                                            xSite={this.props.match.params.xSite}
-                                            id={`required_label_EN`}
-                                            theme={'snow'}
-                                            fontColor={this.state.fontColor}
-                                            defaultValue={this.state.question.required_label_EN_html ? this.state.question.required_label_EN_html : ( this.props.question.required_label_EN ? `<p>${this.props.question.required_label_EN}</p>` : this.state.question.required_label ? `<p>${this.state.question.required_label}</p>` : '<p></p>' )} 
-                                            disableAlign={true}
-                                            onChange={this.onQuestionRichChange}
-                                            placeholder={'You must enter an error message...'}
-                                        /> 
-                                        {getFieldDecorator('required_label_EN', {
-                                            rules: [
-                                            {
-                                                required: true,
-                                                message: 'You must enter an error message.',
-                                            },
-                                            ],
-                                        })(<Input style={{display: 'none'}}className="wds-input wds-input--md wds-input--stretched" onChange={this.onChangeQuestion} placeholder="When a textbox is not answered, display this error message." />)}
-                                    </Form.Item>
-                                    <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_EN_html')(<Input/>)} </Form.Item>
-                                </div>
-                                :
+                                
                                 <div>
                                     <label className="sm-label sm-label--stretch"><b>Display this error message when this question is not answered.</b></label>
                                     <Form.Item {...formItemLayout} >
@@ -3077,7 +2463,7 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                                     </Form.Item>
                                     <Form.Item style={{display: 'none'}}> {getFieldDecorator('required_label_html')(<Input/>)} </Form.Item>
                                 </div>
-                                }
+                                
                             </div>
 
                             : null }
@@ -3100,35 +2486,6 @@ class CheckboxQuestionForm extends React.Component<Props, IState, any> {
                     </TabPane>
 
                     <TabPane tab="LOGIC" key="logic">
-
-                        {/* <div className="questionSetting starTable" style={{ borderBottom: 'solid 1px #D0D2D3' }}>
-
-                            <Checkbox onChange={this.onAddCommentLogicChange.bind(this)} checked={this.state.question.show_comment_field_logic}>Comment Box: Make the comment box appear once the customer answer matches the choice(s) set below.&nbsp;
-                                <Tooltip title="Let your customer voice be heard. You can set the comment box to appear when customer answer matches the choice(s) below.">
-                                    <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/> 
-                                </Tooltip>
-                            </Checkbox>
-
-                            { this.state.question.show_comment_field_logic ? 
-                                
-                                <div className="clearfix" style={{ padding: '0 25px 25px 25px' }}>
-                                    <Select
-                                        mode="multiple"
-                                        placeholder="Please select choices to Add a Comment box for this question"
-                                        value={selectedItems}
-                                        onChange={this.handleAddCommentLogicChange}
-                                        style={{ width: '100%' }}
-                                    >
-                                        {filteredOptions.map((item: any) => (
-                                        <Select.Option key={item} value={item}>
-                                            {item}
-                                        </Select.Option>
-                                        ))}
-                                    </Select>
-                                </div>
-
-                                : null }
-                        </div> */}
 
                         <div id={"question-"+this.state.question.order_no+"-skip-logic"}></div>
                     </TabPane>

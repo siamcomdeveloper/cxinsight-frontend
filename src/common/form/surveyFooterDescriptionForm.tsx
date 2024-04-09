@@ -115,11 +115,7 @@ class EditForm extends React.Component<Props, IState, any> {
                                       footer_description: this.state.currentFooterDescription,
                                   }, () => { /*onsole.log('after')*/ });
 
-                                  if(this.state.survey.multi_lang) {
-                                      this.props.form.setFieldsValue({
-                                          footer_description_EN: this.state.currentFooterDescriptionEN,
-                                      }, () => { /*console.log('after')*/ });
-                                  }
+                                  
                               });
                           });
                       }
@@ -144,11 +140,7 @@ class EditForm extends React.Component<Props, IState, any> {
                                       footer_description: this.state.currentFooterDescription,
                                   }, () => { /*onsole.log('after')*/ });
 
-                                  if(this.state.survey.multi_lang) {
-                                      this.props.form.setFieldsValue({
-                                          footer_description_EN: this.state.currentFooterDescriptionEN,
-                                      }, () => { /*console.log('after')*/ });
-                                  }
+                               
                               });
                               
                           });
@@ -222,8 +214,7 @@ class EditForm extends React.Component<Props, IState, any> {
   
           let fields = [] as any;
               
-          if(this.state.survey.multi_lang) fields = ['footer_description', 'footer_description_EN'];
-          else fields = ['footer_description'];
+          fields = ['footer_description'];
 
           const jwt = getJwtToken();
           BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [modifiedFooterDescription, modifiedFooterDescriptionEN]), jwt).then(
@@ -283,75 +274,7 @@ class EditForm extends React.Component<Props, IState, any> {
       }
       return (
         <div>
-          { this.state.survey.multi_lang ? 
-          <div className="languages-setting-form-container">
-            <Form.Item label="TH" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`footer_description`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.state.currentFooterDescription} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the survey footer description...'}
-              /> 
-              {getFieldDecorator('footer_description', {
-                rules: [
-                  {
-                    // required: true,
-                    message: 'Please input the survey footer description',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Footer Description" />)}
-              // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Footer Description" rows={5}/>)}
-              })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
-            </Form.Item>
-
-            <Form.Item label="EN" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`footer_description_EN`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.state.currentFooterDescriptionEN} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the survey footer description...'}
-              /> 
-              {getFieldDecorator('footer_description_EN', {
-                rules: [
-                  {
-                    // required: true,
-                    message: 'Please input the survey footer description',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Footer Description" />)}
-              // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Footer Description" rows={5}/>)}
-              })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
-            </Form.Item>
-          </div>
-          :
-          <Form.Item {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`footer_description`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.state.currentFooterDescription} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the survey footer description...'}
-              /> 
-              {getFieldDecorator('footer_description', {
-                rules: [
-                  {
-                    // required: true,
-                    message: 'Please input the survey footer description',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Footer Description" />)}
-              // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Footer Description" rows={5}/>)}
-              })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
-          </Form.Item>
-          }
+          
 
 
           <footer className="wds-modal__foot">

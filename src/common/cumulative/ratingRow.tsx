@@ -52,114 +52,10 @@ class RatingRow extends React.Component<IProps, IState> {
 
     public componentDidMount() { 
         // console.log('RatingRow componentDidMount tabsCallback diffDaysAbs', this.props.diffDaysAbs);
-
-        // const current = moment();
-        // const endMonth = current.format('YYYY/MM');
-        // // const endDate = current.format('DD/YYYY/MM');
-        // // console.log('current', current);
-        // // console.log('endMonth', endMonth);
-
-        // const last11Months = moment().subtract( moment.duration(11, 'months') );
-        // // const last31days = moment().subtract( moment.duration(30, 'days') );
-        // // console.log('last11Months', last11Months);
-        
-        // const startMonth = moment(last11Months).format('YYYY/MM');
-        // // const startDate = moment(last31days).format('DD/YYYY/MM');
         
         if(this.props.dailyRangePicker) this.setState({ dateChartData: this.generateDateChartData(this.props.diffDaysAbs, [ moment(this.props.datesValue[0], 'DD/YYYY/MM'), moment(this.props.datesValue[1], 'DD/YYYY/MM') ],) });
         if(this.props.monthlyRangePicker) this.setState({ monthChartData: this.generateMonthChartData(this.props.diffMonthsAbs, [ moment(this.props.monthsValue[0], 'YYYY/MM'), moment(this.props.monthsValue[1], 'YYYY/MM') ]) });
-        // this.setState({
-        //     monthsValue: [moment(startMonth, 'YYYY/MM'), moment(endMonth, 'YYYY/MM')],
-        //     // datesValue: [moment(startDate, 'DD/YYYY/MM'), moment(endDate, 'DD/YYYY/MM')],
-        // }, () => {
-        //     this.setState({ 
-        //         monthChartData: this.generateMonthChartData(11),
-        //         // dateChartData: this.generateDateChartData(30)
-        //     });
-        // });
-
-        // //data chart
-        // const lastMonthsNum = [] as any;
-        // const lastMonthsName = [] as any;
-
-        // for(let i = 11; i > 0; i--){
-        //     // console.log('i', i);
-        //     const subMonth = moment().subtract( moment.duration(i, 'months') );
-        //     // console.log('last10Months', last10Months);
-        //     const lastmonthNum = moment(subMonth).format('MM');
-        //     // console.log('lastmonthNum', lastmonthNum);
-        //     lastMonthsNum.push(lastmonthNum);
-
-        //     const lastMonthName = moment(subMonth).format('MMM YYYY');
-        //     // console.log('lastMonthName', lastMonthName);
-        //     lastMonthsName.push(lastMonthName);
-        // }
-
-        // const lastmonthNum = moment(current).format('MM');
-        // // console.log('lastmonthNum', lastmonthNum);
-        // lastMonthsNum.push(lastmonthNum);
-
-        // const lastMonthName = moment(current).format('MMM YYYY');
-        // // console.log('lastMonthName', lastMonthName);
-        // lastMonthsName.push(lastMonthName);
-
-        // // console.log('lastMonthsNum', lastMonthsNum);
-        // // console.log('lastMonthsName', lastMonthsName);
-        
-        // console.log('this.props.answer.recordset', this.props.answer.recordset);
-        // console.log('this.props.answer.recordset.length', this.props.answer.recordset.length);
-
-        // const sumArr = new Array<any>(lastMonthsNum.length);
-        // const countArr = new Array<any>(lastMonthsNum.length);
-        // for(let i = 0; i < sumArr.length; i++) { sumArr[i] = 0; }
-        // for(let i = 0; i < countArr.length; i++) { countArr[i] = 0; }
-        // console.log('sumArr', sumArr);
-        // console.log('countArr', countArr);
-
-        // this.props.answer.recordset.map((answerObj: any, i: any) => {
-        //     console.log(`answerObj index ${i}`, answerObj);
-        //     console.log(`answerObj index ${i} created_at[0]`, answerObj.created_at[0]);
-        //     const answerMonthName = moment(answerObj.created_at[0]).format('MMM YYYY');
-        //     console.log(`answerObj index ${i} answerMonthName`, answerMonthName);
-        //     console.log(`answerObj index ${i} answer`, answerObj.answer);
-
-        //     lastMonthsName.forEach((MonthName: any, index: any) => { 
-        //         console.log(`MonthName`, MonthName);
-        //         if(answerMonthName === MonthName){
-        //             console.log(`in if answerMonthName ${answerMonthName} MonthName ${MonthName}`);
-        //             sumArr[index] += answerObj.answer;
-        //             countArr[index]++;
-        //         }
-        //     });
-        // });
-
-        // console.log('after sumArr', sumArr);
-        // console.log('after countArr', countArr);
-        
-        // const avgFormatAvg = { minimumFractionDigits: 1, maximumFractionDigits: 1 };
-        // const af = new Intl.NumberFormat('en-IN', avgFormatAvg);
-        
-        // let data = [] as any;
-
-        // for(let i = 0; i < 12; i++){
-        //     // console.log(`sumArr[${i}]/countArr[${i}]`, sumArr[i]/countArr[i]);
-        //     console.log(`sumArr[${i}]`, sumArr[i]);
-        //     console.log(`countArr[${i}]`, countArr[i]);
-
-        //     const calAvg = (sumArr[i] / countArr[i]);
-        //     const avgScore = isNaN(calAvg) ? af.format(0) : af.format(calAvg);
-        //     console.log(`avgScore`, avgScore);
-
-        //     const avgScoreFloat = parseFloat(avgScore);
-        //     console.log(`avgScoreFloat`, avgScoreFloat);
-
-        //     data.push({
-        //         month: `${lastMonthsName[i]},${countArr[i]}`,
-        //         score: avgScoreFloat,
-        //         label: "Rating Score"
-        //     });
-        // }
-        // console.log('data', data);
+     
     }
 
     //Month Trend Report
@@ -359,45 +255,6 @@ class RatingRow extends React.Component<IProps, IState> {
             return null;
         }
     }
-    
-    // handleDailyApply = () => {
-    //     // console.log('handleDailyApply this.state.datesValue[0]', this.state.datesValue[0]);
-    //     // console.log('handleDailyApply this.state.datesValue[1]', this.state.datesValue[1]);
-
-    //     const startDate = moment(this.props.datesValue[0]);
-    //     const endDate = moment(this.props.datesValue[1]);
-
-    //     // const diffYears = startDate.diff(endDate, 'year');
-    //     // endDate.add(diffYears, 'years');
-
-    //     // const diffMonths = startDate.diff(endDate, 'months');
-    //     // endDate.add(diffMonths, 'months');
-
-    //     const diffDays = startDate.diff(endDate, 'days');
-    //     // console.log(diffYears + ' years ' + diffMonths + ' dates ' + diffDays + ' days');
-
-    //     // const diffYearsAbs = Math.abs(diffYears);
-    //     // const diffMonthsAbs = Math.abs(diffMonths);
-    //     const diffDaysAbs = Math.abs(diffDays);
-    //     console.log('diffDaysAbs', diffDaysAbs);
-    //     // console.log(diffYearsAbs + ' years ' + diffMonthsAbs + ' dates ' + diffDaysAbs + ' days');
-
-    //     // if( diffDaysAbs === 0 || diffMonthsAbs > 0 || diffYearsAbs > 0 ){
-    //     if( diffDaysAbs === 0 || diffDaysAbs > 30 ){
-    //         // console.log('less than 2 dates or more then 31 dates')
-    //         toastr.error('Invalid date selection! You must select at least 2 dates and up to 31 dates to display the report.');
-    //     }
-    //     else{
-    //         // console.log('Ok');
-
-    //         this.setState({
-    //             dateChartData: this.generateDateChartData(diffDaysAbs)
-    //         }, () => {
-    //             toastr.success('Daily Trend Report Updated');
-    //         });
-
-    //     }
-    // };
 
     tabsCallback(key: any) {
         try{

@@ -252,7 +252,7 @@ class PageQuestionListDesign extends React.Component<IProps, IState> {
                                 <a href="# " onClick={()=>this.props.callAddLogoModal()} className="wds-button wds-button--sm wds-button--util actions delete">EDIT</a>
                                 <span className="actions" style={{ paddingLeft: 5, fontSize: '18px', color: '#555', textDecoration: 'underline', zIndex: 2 }}>BANNER</span>
                                 <div className="question-presentation-image qn question image" data-alt-title="Image">
-                                    <img className="user-generated notranslate" style={{ zIndex: 1 }} src={this.props.survey.banner_src ? this.props.survey.banner_src : `http://localhost:3000/images/logo_template.png`} alt="logo"/>
+                                    <img className="user-generated notranslate" style={{ zIndex: 1 }} src={this.props.survey.banner_src ? this.props.survey.banner_src : `https://cxinsight-backend-api.onrender.com/images/logo_template.png`} alt="logo"/>
                                 </div>
                             </div>
                             :
@@ -261,7 +261,7 @@ class PageQuestionListDesign extends React.Component<IProps, IState> {
                                     <a href="# " onClick={()=>this.props.callAddLogoModal()} className="wds-button wds-button--sm wds-button--util actions delete">EDIT</a>
                                     <span className="actions" style={{ paddingLeft: 5, fontSize: '18px', color: '#555', textDecoration: 'underline', zIndex: 2 }}>LOGO</span>
                                     <div className={ this.props.survey.logo_alignment === 1 ? 'question-presentation-image question logo-align-center' : this.props.survey.logo_alignment === 2 ? 'question-presentation-image question logo-align-right' : 'question-presentation-image question'}>
-                                        <img className="user-generated notranslate" style={styles.surveyImage} src={this.props.survey.image_src ? this.props.survey.image_src : `http://localhost:3000/images/logo_template.png`} alt="logo"/>
+                                        <img className="user-generated notranslate" style={styles.surveyImage} src={this.props.survey.image_src ? this.props.survey.image_src : `https://cxinsight-backend-api.onrender.com/images/logo_template.png`} alt="logo"/>
                                     </div>
                                 </div>
                             </div>

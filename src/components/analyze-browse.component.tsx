@@ -1657,29 +1657,6 @@ export default class AnalyzeBrowse extends React.Component<IProps, IState> {
             }
         );
     }
-      
-    // exportToCSV = (csvData: any, fileName: any) => {
-    /*
-    exportToCSV = () => {
-        try{
-            // console.log('exportToCSV exportData', this.state.exportData);
-            
-            const csvData = this.state.exportData;
-            const fileName = 'export-' + this.getDateTime();
-
-            const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-            const fileExtension = '.xlsx';
-
-            const ws = XLSX.utils.json_to_sheet(csvData);
-            const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
-            const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-            const data = new Blob([excelBuffer], {type: fileType});
-            FileSaver.saveAs(data, fileName + fileExtension);
-        }catch(error){
-            toastr.error('Something went wrong!, please refresh the page or try again later.');
-            BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `analyze-browse exportToCSV catch`, message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-        }
-    }*/
 
     getDateTime(){
         const today = new Date();
@@ -2040,25 +2017,6 @@ export default class AnalyzeBrowse extends React.Component<IProps, IState> {
                                                             : null }
                                                         </li>
                                                         : null }
-                                                        {/* <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Filter by Question and Answer</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>APPLY</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Filter by Collector</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>APPLY</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Filter by Completeness</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>APPLY</span>
-                                                            </a>
-                                                        </li>*/}
-
                                                         <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
                                                             <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
                                                                 <span className="listText">Filter by Respondent Metadata</span>
@@ -2121,18 +2079,6 @@ export default class AnalyzeBrowse extends React.Component<IProps, IState> {
                                             <section className="acContent" id="accPanelBuilder">{/* style={{height: 'auto', overflowY: 'auto'}} */}
                                                 <div id="builderQuestionContainer" className="setting" style={{/*height: 'calc(100vh - 200px)', overflowY: 'auto'*/}}>{/*height: '100vh'*/}
                                                     <ul className="addList">
-                                                        {/* <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Compare by Question and Answer</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>COMPARE</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
-                                                            <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
-                                                                <span className="listText">Compare by Collector</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>COMPARE</span>
-                                                            </a>
-                                                        </li> */}
                                                         <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'default' }}>
                                                             <a href="# " style={{ cursor: 'default', paddingLeft: '0' }}>
                                                                 <span className="listText">Compare by Time Period</span>
@@ -2143,71 +2089,6 @@ export default class AnalyzeBrowse extends React.Component<IProps, IState> {
                                                 </div>
                                             </section>
                                         </div>
-
-                                        {/* <div id="accBuilder" className={ this.state.sidebarTool === "show" ? "key open" : "key hidden" } style={{ display: 'block', maxHeight: '100%' }}>
-                                            <header>
-                                                <h3 className="accordionLabel">
-                                                    8<a href="# " onClick={ (e) => { e.preventDefault() } } className="press keyOpener" target="#accPanelBuilder" data-action="surveyBuilder">SHOW</a>
-                                                </h3>
-                                                
-                                            </header>
-                                            <section className="acContent" id="accPanelBuilder">
-                                                <div id="builderQuestionContainer" className="setting" style={{ height: 'calc(100vh - 200px)', overflowY: 'auto'}}>
-                                                    <ul className="addList">
-                                                    <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q1: How satisfied are you with the location of this project?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q2: How likely is it that you would recommend this project to a friend?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 cta dta chat-mode-unsupported acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q3: How satisfied are you with our project?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q4: How would you rate the interior design of the unit?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q5: How satisfied are you with the common area (or facilities) in this project?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q6: How would you rate your overall satisfaction towards our sales representative?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q7: The information that is provided to you by the sales staff is relavant towards your purchase decision?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-
-                                                        <li className="c1 dta cta acc_question_types ui-draggable" style={{ cursor: 'pointer' }}>
-                                                            <a href="# " style={{ cursor: 'pointer', paddingLeft: '0' }}>
-                                                                <span className="listText">Q8: Overall, how satisfied are you with the price and promotional offer from the project?</span>
-                                                                <span className="add wds-button wds-button--ghost-filled wds-button--tight" style={{ height: 'auto' }}>SHOW</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </section>
-                                        </div> */}
-
                                     </div>
                                 </aside>
 
@@ -2277,17 +2158,8 @@ export default class AnalyzeBrowse extends React.Component<IProps, IState> {
                                                         <div className="respondent-profile clearfix spacer-phm spacer-ptm sm-corner-a fadeable" style={{ marginBottom: '0' }}>
                                                             <div className="respondent-tool-bar sm-float-r">
                                                                 <div edit-delete-menu="" className="wds-button-group sm-float-r">
-                                                                    {/* <a sm-edit-btn="" full-access-only="" className="wds-button wds-button--util-light wds-button--sm ">Edit</a>
-                                                                    <a sm-delete-btn="" full-access-only="" className="delete-btn wds-button wds-button--util-light wds-button--sm">Delete</a> */}
-                                                                    {/* <a sm-export-btn="" full-access-only="" className="wds-button wds-button--util-light wds-button--sm" onClick={(e) => this.exportToCSV()}>Export</a> */}
                                                                 </div>
                                                             </div>
-                                                            {/* <!-- <div className="respondent-pic-container">
-                                                                <span className="respondent-pic-number ">
-                                                                    #5
-                                                                </span>
-                                                                <img className="respondent-pic" src="https://secure.iconcxm.com/assets/anweb/anweb/175.53.1/assets/icon_respondentHead.gif"/>
-                                                            </div> --> */}
                                                             <div id="respondent-profile-data" className="respondent-data">
                                                             </div>
                                                         </div>
@@ -2299,8 +2171,6 @@ export default class AnalyzeBrowse extends React.Component<IProps, IState> {
 
                                                             </div>
                                                         </div>
-                                        
-                                                        {/* <div id="jump-to-top" className="smf-icon jump-to-top" view-role="analyzeJumpToTopView">Ÿ</div> */}
                                         
                                                     </div>{/* respondent */}
 

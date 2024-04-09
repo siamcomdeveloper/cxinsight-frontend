@@ -44,7 +44,7 @@ export default class Confirm extends React.Component<IProps, IState>{
                     if (rp.Status) {
                       // console.log('rp.Data', rp.Data);
                         toastr.success(rp.Messages);
-                        // localStorage.setItem('iconcxmuser', rp.Data.userToken);
+                        // localStorage.setItem('cxmuser', rp.Data.userToken);
                         this.setState({ isLoading: false });
                         setTimeout(function(this: any){ this.props.history.push(`/${this.props.match.params.xSite}/login`); }.bind(this), 500);
                     } else {

@@ -4,12 +4,7 @@ export default class Email {
     email_address!: string;
     first_name?: string;
     last_name?: string;
-    // sent?: string;
-    // responded?: string;
     active?: number;
-    // created_at?: Date;
-    // modified_at?: Date;
-    // deleted_at?: Date;
 
     constructor(
         id: string,

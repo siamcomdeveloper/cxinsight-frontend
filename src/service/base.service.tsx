@@ -1,14 +1,6 @@
 import Response from "../models/response";
 import axios from "axios";
-// console.log('baseURL', process.env.REACT_APP_BASE_URL)
 export default class BaseService {
-    // private static baseURL: string = "http://116.206.81.49/cxmapi";
-    // private static baseURL: string = "http://116.206.81.49:3000";
-    // private static baseURL: string = "http://localhost:3000";
-    // private static baseURL: string = "http://www.cxthailand.com/cxmapi";
-    // private static baseURL: string = "http://203.154.95.145/cxmapi";
-    // private static xSite = this.props.match.params.xSite;
-    // private static xBusiness = process.env.REACT_APP_X_BUSINESS;
     private static baseURL = process.env.REACT_APP_BASE_URL;
     
     public static async getAll<T>(xSite: any, url: string, jwt?: any): Promise<Response> {
@@ -109,19 +101,6 @@ export default class BaseService {
 
         return res;
     }
-    // public static getFromURL(url: string): Promise<Response> {
-    //     axios.defaults.headers = { 'x-site' : xSite.toLowerCase() }
-
-    //     let res = axios.get(url)
-    //         .then(response => {
-    //             return new Response(true, response.data, "Got From URL", "");
-    //         })
-    //         .catch(function (error) {
-    //             return new Response(false, null, error, error);
-    //         });
-
-    //     return res;
-    // }
 
     public static get<T>(xSite: any, url: string, param: any, jwt?: any): Promise<Response> {
         axios.defaults.headers = { 'x-site' : xSite.toLowerCase() }
@@ -263,18 +242,5 @@ export default class BaseService {
 
         return res;
     }
-
-    // public static axiosPost(url: string, param: any, obj: any): Promise<Response> {
-
-    //     let res = axios.get(this.baseURL + url + param, obj)
-    //         .then(response => {
-    //             return new Response(true, response.data, "Got It", "");
-    //         })
-    //         .catch(function (error) {
-    //             return new Response(false, null, "Get Error", error);
-    //         });
-
-    //     return res;
-    // }
 
 }

@@ -77,36 +77,6 @@ const textRow: React.StatelessComponent<IProps> = (props) => {
                             <Divider style={{ fontSize: '18px', color: 'red', fontStyle: 'italic' }} >NEGATIVE</Divider>
                             {/* <TagCloud data={props.answer.tags_negative} height={200} color={"red"}/> */}
                             
-                            {/* <div className="comment-list" style={{ padding: '0 12px 16px 15px' }}>
-                                <Collapse accordion>
-                                    <Panel header="comment Positive" key="positive">
-                                        <List
-                                            bordered
-                                            dataSource={props.answer.tags_negative_answer as []}
-                                            renderItem={item => (
-                                                <List.Item>
-                                                    {item}
-                                                </List.Item>
-                                            )}
-                                        />
-                                    </Panel>
-                                </Collapse>
-                            </div>
-                            <div className="comment-list" style={{ padding: '0 12px 16px 15px' }}>
-                                <Collapse accordion>
-                                    <Panel header="comment Negative" key="negative">
-                                        <List
-                                            bordered
-                                            dataSource={props.answer.tags_positive_answer as []}
-                                            renderItem={item => (
-                                                <List.Item>
-                                                    {item}
-                                                </List.Item>
-                                            )}
-                                        />
-                                    </Panel>
-                                </Collapse>
-                            </div> */}
                             <div className="comment-list">
                                 <Collapse accordion>
                                     <Panel header="comment" key="comment">

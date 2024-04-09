@@ -71,12 +71,7 @@ class EditForm extends React.Component<Props, IState, any> {
                               name_html: this.props.survey.name_html ? this.props.survey.name_html : `<p>${this.props.survey.name}</p>`,
                             }, () => { /*console.log('after')*/} );
       
-                            if(this.state.survey.multi_lang) {
-                              this.props.form.setFieldsValue({
-                                name_EN: this.props.survey.name_EN,
-                                name_EN_html: this.props.survey.name_EN_html ? this.props.survey.name_EN_html : (this.props.survey.name_html ? this.props.survey.name_html : `<p>${this.props.survey.name}</p>`) ,
-                              }, () => { /*console.log('after')*/} );
-                            }
+                           
 
                           });
                       });
@@ -130,8 +125,7 @@ class EditForm extends React.Component<Props, IState, any> {
   
           let fields = [] as any;
             
-          if(this.state.survey.multi_lang) fields = ['name', 'name_html', 'name_EN', 'name_EN_html'];
-          else fields = ['name', 'name_html'];
+          fields = ['name', 'name_html'];
 
           const jwt = getJwtToken();
           BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [this.state.survey.name, this.state.survey.name_html, this.state.survey.name_EN, this.state.survey.name_EN_html]), jwt).then(
@@ -227,104 +221,7 @@ class EditForm extends React.Component<Props, IState, any> {
       }
       return (
         <div>
-          { this.state.survey.multi_lang ? 
-          <div className="languages-setting-form-container">
-            <Form.Item label="TH" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`name`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.name_html ? this.props.survey.name_html : `<p>${this.props.survey.name}</p>`} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the survey name'}
-              />
-              {getFieldDecorator('name', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the survey name',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name" />)}
-              })(<Input style={{ display: 'none' }} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name"*/ />)}
-            </Form.Item>
-
-            <Form.Item label="TH" {...formItemLayout} style={{ display: 'none' }}>
-              {getFieldDecorator('name_html', {
-                rules: [
-                  {
-                    message: 'Please input the survey name',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name" />)}
-              })(<Input style={{ display: 'none' }} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name"*/ />)}
-            </Form.Item>
-            
-            <Form.Item label="EN" {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`name_EN`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.name_EN_html ? this.props.survey.name_EN_html : (this.props.survey.name_html ? this.props.survey.name_html : `<p>${this.props.survey.name}</p>`) } 
-                onChange={this.onRichChange}
-                placeholder={'Please input the survey name'}
-              />
-              {getFieldDecorator('name_EN', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the survey name',
-                  },
-                ],
-              })(<Input style={{ display: 'none' }} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name"*/ />)}
-            </Form.Item>
-
-            <Form.Item label="EN" {...formItemLayout} style={{ display: 'none' }}>
-              {getFieldDecorator('name_EN_html', {
-                rules: [
-                  {
-                    message: 'Please input the survey name',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name" />)}
-              })(<Input style={{ display: 'none' }} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name"*/ />)}
-            </Form.Item>
-          </div>
-          :
-          <div>
-            <Form.Item {...formItemLayout} >
-              <RichTextEditor
-                xSite={this.props.match.params.xSite}
-                id={`name`}
-                theme={`snow`}
-                fontColor={this.state.fontColor}
-                defaultValue={this.props.survey.name_html ? this.props.survey.name_html : `<p>${this.props.survey.name}</p>`} 
-                onChange={this.onRichChange}
-                placeholder={'Please input the survey name'}
-              />
-              {getFieldDecorator('name', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the survey name',
-                  },
-                ],
-              })(<Input style={{ display: 'none' }} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name"*/ />)}
-            </Form.Item>
-            <Form.Item label="TH" {...formItemLayout} style={{ display: 'none' }}>
-              {getFieldDecorator('name_html', {
-                rules: [
-                  {
-                    message: 'Please input the survey name',
-                  },
-                ],
-              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name" />)}
-              })(<Input style={{ display: 'none' }} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name"*/ />)}
-            </Form.Item>
-          </div>
-          }
+          
 
           <footer className="wds-modal__foot">
             <div className="wds-modal__actions-right">

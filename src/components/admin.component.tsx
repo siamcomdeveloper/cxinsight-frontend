@@ -242,14 +242,6 @@ export default class Admin extends React.Component<IProps, IState>{
                 
                 <Row type="flex" justify="center" align="middle" style={{ padding: 20 }}>
                     <Col span={24} xs={24} md={24} lg={24}>
-                        {/* <div className="site-card-border-less-wrapper">
-                            <Card bordered={true} style={{ width: 350, marginTop: 50, marginBottom: 50}}>
-                                <div style={{ textAlign: 'center' }}>
-                                    <img style={{ width: '150px' }} src="https://dl.dropboxusercontent.com/s/nmt9tk5mox7a5nj/ICON%20ANALYTICS_New.png?dl=0" alt="ICONSURVEY"/>
-                                </div>
-                                <RegisterForm handleHistoryPush={this.handleHistoryPush}></RegisterForm>
-                            </Card>
-                        </div> */}
                         <div className="accordion options">
                             <div className="key open" style={{ maxHeight: '100%', borderTop: '1px solid lightgray' }}>
                                 <header>

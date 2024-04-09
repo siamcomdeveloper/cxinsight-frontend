@@ -59,16 +59,7 @@ class surveyRenameModal extends React.Component<IProps, IState> {
                 <Modal 
                     className="create-survey-modal"
                     title={
-                        <div>Name Your survey &nbsp;
-                            {/* <Tooltip overlayStyle={{ whiteSpace: 'pre-line' }} 
-                                title={`ผู้ใช้งานระบบสามารถใส่ ตัวแปร สำหรับแสดงผลข้อมูลได้ดังนี้
-                                - ชื่อโครงการ : \${ProjectName}
-                                - ชื่อช่องทางจัดเก็บ : \${CollectorName}
-                                - ชื่อ (ผู้ทำแบบสอบถาม) : \${FirstName}
-                                - นามสกุล (ผู้ทำแบบสอบถาม) : \${LastName}
-                                *โดยระบบจะดึงข้อมูลจากช่องทางการจัดเก็บ (Collector) ที่ผู้ใช้งานระบบได้ตั้งค่าไว้แทน ตัวแปร ข้างต้น`}>
-                                <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/>
-                            </Tooltip>  */}
+                        <div>Name Your survey
                         </div>
                     }
                     visible={this.state.visible}

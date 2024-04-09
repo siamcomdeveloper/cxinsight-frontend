@@ -56,7 +56,7 @@ class collectorCreateModal extends React.Component<IProps, IState> {
                 <Modal 
                     className="create-collector-modal"
                     // title="Name Your Collector"
-                    title={<div>Name Your Collector <Tooltip title={'โดยผู้ใช้งานจะเห็นชื่อที่ต้ังนี้ในหน้าต่างๆ โดยเฉพาะในการใช้งานฟังก์ชันตัวกรอง แนะนำให้ตั้งชื่อให้สอดคล้องกับชนิดของตัวจัดเก็บ และโครงการที่จะให้ลูกค้าทำแบบสอบถาม ตัวอย่างเช่น ถ้าเป็นแบบสอบถามชนิด Web Link QR ของโครงการ A ก็ตั้งควรตั้งชื่อ "Web Link QR - โครงการ A"'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> </div>}
+                    title={<div>Name Your Collector</div>}
                     visible={this.state.visible}
                     onCancel={this.handleCancel}
                 >

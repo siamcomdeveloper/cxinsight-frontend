@@ -6,12 +6,12 @@ import { History } from 'history';
 const { Panel } = Collapse;
 
 interface IProps {
-    question: any;  
+    question: any;
     answer: any;
     // exportHandler: (questionNo: any) => void;
     history: History;
     //Map properties match
-    match:{ 
+    match:{
         isExact: boolean
         params: {
             xSite: string
@@ -21,7 +21,7 @@ interface IProps {
     }
 }
 
-const textRow: React.StatelessComponent<IProps> = (props) => { 
+const textRow: React.StatelessComponent<IProps> = (props) => {
 
     return (
 
@@ -74,40 +74,12 @@ const textRow: React.StatelessComponent<IProps> = (props) => {
                         <div>
                             <Divider style={{ fontSize: '18px', color: 'green', fontStyle: 'italic' }} >POSITIVE</Divider>
                             {/* <TagCloud data={props.answer.tags_positive} height={200} color={"green"}/> */}
+                            <TagCloud data={props.answer.tags_positive} height={200} />
 
                             <Divider style={{ fontSize: '18px', color: 'red', fontStyle: 'italic' }} >NEGATIVE</Divider>
                             {/* <TagCloud data={props.answer.tags_negative} height={200} color={"red"}/> */}
-                            
-                            {/* <div className="comment-list" style={{ padding: '0 12px 16px 15px' }}>
-                                <Collapse accordion>
-                                    <Panel header="comment Positive" key="positive">
-                                        <List
-                                            bordered
-                                            dataSource={props.answer.tags_negative_answer as []}
-                                            renderItem={item => (
-                                                <List.Item>
-                                                    {item}
-                                                </List.Item>
-                                            )}
-                                        />
-                                    </Panel>
-                                </Collapse>
-                            </div>
-                            <div className="comment-list" style={{ padding: '0 12px 16px 15px' }}>
-                                <Collapse accordion>
-                                    <Panel header="comment Negative" key="negative">
-                                        <List
-                                            bordered
-                                            dataSource={props.answer.tags_positive_answer as []}
-                                            renderItem={item => (
-                                                <List.Item>
-                                                    {item}
-                                                </List.Item>
-                                            )}
-                                        />
-                                    </Panel>
-                                </Collapse>
-                            </div> */}
+                            <TagCloud data={props.answer.tags_negative} height={200} />
+
                             <div className="comment-list">
                                 <Collapse accordion>
                                     <Panel header="comment" key="comment">
@@ -145,7 +117,7 @@ const textRow: React.StatelessComponent<IProps> = (props) => {
                         </div>
                         : null
                         }
-                        
+
                     </div>
                 </div>
 

@@ -8,22 +8,8 @@ import * as toastr from 'toastr';
 import { Menu, Select, Dropdown, Icon, Popconfirm, Tooltip } from 'antd';
 import 'antd/dist/antd.css';
 import { History } from 'history';
-// import Surveys from '../../models/surveys';
 
 const { Option, OptGroup } = Select;
-// const menu = (id: any) => (
-//     <Menu>
-//         <Menu.Item key="0">
-//             {/* <Link to={"/edit/" + id}><Icon type="edit" />  Edit</Link> */}
-//             <a href={`/cxm/platform/${props.match.params.xSite}/edit/${id}`} style={{ textDecoration: 'none' }}><Icon type="edit" /> Edit</a>
-//         </Menu.Item>
-//         <Menu.Item key="1">
-//             {/* <Link to={"#"} onClick={()=>Del(Number(id))}><Icon type="delete" />  Delete</Link> */}
-//             <a  href="# " onClick={()=>Del(Number(id))} style={{ textDecoration: 'none' }}><Icon type="delete" />  Delete</a>
-//         </Menu.Item>
-//     </Menu>
-// );
-
 interface IProps { 
     collector: Collector;  
     projectName: string;  
@@ -352,7 +338,7 @@ const CollectorRow: React.StatelessComponent<IProps> = (props) => {
                     <a sm-tooltip-side="bottom" className="notranslate" href={collectorURL}>
                         {props.collector.nickname}
                     </a>
-                    {/* &nbsp;<Tooltip title={`Display name: ${props.collector.name} (ผู้ทำแบบสอบถามจะเป็นชื่อ Display name นี้)`}><Icon type="info-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> */}
+                    
                 </b>
                 <div>
                     <span>Created</span> {props.collector.created_date}
@@ -361,59 +347,6 @@ const CollectorRow: React.StatelessComponent<IProps> = (props) => {
             <td className="collector-project">
                 {props.projectName}
             </td>
-            
-            { props.match.params.xSite === 'realasset' ?
-
-            <td className="collector-project">
-                {/* <Select style={{ width: '100%' }} defaultValue="All Surveys" onChange={handleSelectChange}>
-                    <Option value="">All Surveys</Option>
-                    <Option value="2">Open Surveys</Option>
-                    <Option value="1">Draft Surveys</Option>
-                    <Option value="3">Closed Surveys</Option>
-                </Select> */}
-                {/* <Select
-                    showSearch
-                    style={{ width: '100%' }}
-                    defaultValue={props.collector.employee_id ? props.collector.employee_id : '1'}
-                    placeholder="กรุณาเลือกพนักงาน"
-                    optionFilterProp="children"
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    onSearch={onSearch}
-                    filterOption={(input: any, option: any) =>
-                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                >
-                    <Option value="1">Jack</Option>
-                    <Option value="2">Lucy</Option>
-                    <Option value="3">Tom</Option>
-                    <Option value="0552ced8-d500-41a3-8bd7-f669c144ef36">นายนิตินาถ หิรัญ</Option>
-                    <Option value="0a16b946-a53a-4006-b62e-c31f2a31f421">นางสาวเสาวคนธ์ สนณรงค์</Option>
-                </Select> */}
-
-                {/* { console.log(props.employeeElement) } */}
-
-                <Select
-                    showSearch
-                    style={{ width: '100%' }}
-                    defaultValue={props.collector.employee_id ? props.collector.employee_id : 'กรุณาเลือกพนักงาน'}
-                    placeholder="กรุณาเลือกพนักงาน"
-                    optionFilterProp="children"
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    onSearch={onSearch}
-                    filterOption={(input: any, option: any) =>
-                        option.props.children.toString().toLowerCase().indexOf(input.toString().toLowerCase()) >= 0
-                    }
-                >
-                    { props.employeeElement }
-                </Select>
-            </td>
-            :
-                null
-            }
             
             <td className="collector-status">
                 {/* <Select defaultValue="1">

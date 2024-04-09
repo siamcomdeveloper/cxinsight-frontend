@@ -25,14 +25,11 @@ import CheckboxQuestion from '../common/client-survey/checkboxQuestion';
 import DropdownQuestion from '../common/client-survey/dropdownQuestion';
 import InfoTextQuestion from '../common/client-survey/infoTextQuestion';
 import InfoDropdownQuestion from '../common/client-survey/infoDropdownQuestion';
-import InfoDropdownInstitutionQuestion from '../common/client-survey/infoDropdownInstitutionQuestion';
 import InfoDropdownProjectQuestion from '../common/client-survey/infoDropdownProjectQuestion';
 import InfoDatePickerQuestion from '../common/client-survey/infoDatePickerQuestion';
 import { refreshJwtToken, getJwtToken } from '../helper/jwt.helper';
 import parse from 'html-react-parser';
 import reactCSS from 'reactcss';
-
-import Recaptcha from 'react-recaptcha';
 
 interface IProps { 
     history: History;
@@ -296,10 +293,6 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
         
         this.setState({ isLoading: true });
 
-        //lang
-        //0 = TH or Default Single Language, 1 = EN
-        // console.log('getSurveyData this.state.lang', this.state.lang);
-
         const jwtToken = await refreshJwtToken(this.props.match.params.xSite, getJwtToken());
         if(!jwtToken) this.props.history.push(`/${this.props.match.params.xSite}/login`);
 
@@ -539,208 +532,6 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
         let allInfoElement: any
         let nodeInfoElement: any;
 
-        if(this.state.survey.client_info_form){
-            infoQuestions = [
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 0,
-                    enable: this.state.survey.enable_name_title,
-                    name: 'name-title',
-                    typeId: 6,
-                    label: this.state.lang ? 'Name Title' : 'คำนำหน้า',
-                    required: this.state.survey.required_name_title,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    lang: this.state.lang
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 1,
-                    enable: this.state.survey.enable_first_name,
-                    name: 'first-name',
-                    typeId: 5,
-                    label: this.state.lang ? 'First Name' : 'ชื่อ',
-                    required: this.state.survey.required_first_name,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 100,
-                    cols: 50
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 2,
-                    enable: this.state.survey.enable_last_name,
-                    name: 'last-name',
-                    typeId: 5,
-                    label: this.state.lang ? 'Last Name' : 'นามสกุล',
-                    required: this.state.survey.required_last_name,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 100,
-                    cols: 50
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 3,
-                    enable: this.state.survey.enable_birthdate,
-                    name: 'birthday',
-                    typeId: 5,
-                    label: this.state.lang ? 'Birthday (DD/MM/YYYY)' : 'วันเดือนปีเกิด (วว/ดด/ปปปป)',
-                    required: this.state.survey.required_birthdate,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 10,
-                    cols: 10
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 4,
-                    enable: this.state.survey.enable_mobile_number,
-                    name: 'mobile-number',
-                    typeId: 5,
-                    label: this.state.lang ? 'Mobile Number' : 'เบอร์มือถือ',
-                    required: this.state.survey.required_mobile_number,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 15,
-                    cols: 20
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 5,
-                    enable: this.state.survey.enable_email,
-                    name: 'email',
-                    typeId: 5,
-                    label: this.state.lang ? 'Email' : 'อีเมล',
-                    required: this.state.survey.required_email,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 50,
-                    cols: 50
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 6,
-                    enable: this.state.survey.enable_line_id,
-                    name: 'line-id',
-                    typeId: 5,
-                    label: this.state.lang ? 'Line ID' : 'ไอดีไลน์',
-                    required: this.state.survey.required_line_id,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 50,
-                    cols: 50
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 7,
-                    enable: this.state.survey.enable_id_card_4_digit,
-                    name: 'id-card-4-digit',
-                    typeId: 5,
-                    label: this.state.lang ? 'ID Card last 4 digits' : 'รหัสบัตรประชาชน 4 ตัวท้าย',
-                    required: this.state.survey.required_id_card_4_digit,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 4,
-                    cols: 6,
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 8,
-                    enable: this.state.survey.enable_room_number,
-                    name: 'room-number',
-                    typeId: 5,
-                    label: this.state.lang ? 'Room Number' : 'หมายเลขห้อง',
-                    required: this.state.survey.required_room_number,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 10,
-                    cols: 15,
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 9,
-                    enable: this.state.survey.enable_institution_name,
-                    name: 'institution-name',
-                    typeId: 7,
-                    label: this.state.lang ? 'Institution Name' : 'ชื่อสถาบัน',
-                    required: this.state.survey.required_institution_name,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    lang: this.state.lang
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 10,
-                    enable: this.state.survey.enable_project_name,
-                    name: 'project-name',
-                    typeId: 8,
-                    label: this.state.lang ? 'Project Name' : 'ชื่อโครงการ',
-                    required: this.state.survey.required_project_name,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    lang: this.state.lang
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 11,
-                    enable: this.state.survey.enable_company_name,
-                    name: 'company-name',
-                    typeId: 5,
-                    label: this.state.lang ? 'Company Name' : 'ชื่อบริษัท',
-                    required: this.state.survey.required_company_name,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 100,
-                    cols: 50
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 12,
-                    enable: this.state.survey.enable_department,
-                    name: 'department',
-                    typeId: 5,
-                    label: this.state.lang ? 'Department' : 'แผนก',
-                    required: this.state.survey.required_department,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 100,
-                    cols: 50
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 13,
-                    enable: this.state.survey.enable_position,
-                    name: 'position',
-                    typeId: 5,
-                    label: this.state.lang ? 'Position' : 'ตำแหน่ง',
-                    required: this.state.survey.required_position,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    maxLength: 100,
-                    cols: 50
-                },
-                {
-                    globalFont: this.state.survey.global_font_family,
-                    globalFontSize: this.state.survey.global_font_size ? this.state.survey.global_font_size : '20px',
-                    index: 14,
-                    enable: this.state.survey.enable_consent_date,
-                    name: 'consent-date',
-                    typeId: 9,
-                    label: this.state.lang ? 'Consent Date' : 'วันที่ยินยอม',
-                    required: this.state.survey.required_consent_date,
-                    requiredLabel: this.state.lang ? 'This question requires an answer.' : 'กรุณาให้คำตอบ',
-                    lang: this.state.lang
-                },
-            ];
-
-            // console.log(`infoQuestions`, infoQuestions);
-
-            allInfoElement = infoQuestions.map((infoQuestion: any, i: number) => this.getInfoQuestionRow(infoQuestion, this.state.requiredLabelStatusInfo[i], this.state.answerInfo[i]));
-            nodeInfoElement = await Promise.all(allInfoElement);
-
-            // console.log(`after nodeInfoElement`, nodeInfoElement);
-        }
 
         this.setState({ isLoading: false, isSuccessLoading: true }, () => {
             ReactDOM.render(<div>{nodeElement}</div>, document.getElementById('question-items-list'));
@@ -1258,9 +1049,6 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
         else if(question.typeId === 6 && question.enable){
             return <InfoDropdownQuestion ref={(ref) => { let htmlElRefInfoArr = this.state.htmlElRefInfo; htmlElRefInfoArr[question.index] = ref; this.setState({ htmlElRefInfo: htmlElRefInfoArr }); }} key={`question-${question.name}-choice`} question={question} answerInfoHandler={this.answerInfoHandler} requiredLabelStatus={requiredLabelStatus} answer={currentAnswer} fontStyles={{fontFamily: this.state.survey.global_font_family, fontSize: this.state.survey.global_font_size}} history={this.props.history} match={this.props.match}/>
         }
-        else if(question.typeId === 7 && question.enable){
-            return <InfoDropdownInstitutionQuestion ref={(ref) => { let htmlElRefInfoArr = this.state.htmlElRefInfo; htmlElRefInfoArr[question.index] = ref; this.setState({ htmlElRefInfo: htmlElRefInfoArr }); }} key={`question-${question.name}-choice`} question={question} answerInfoHandler={this.answerInfoHandler} requiredLabelStatus={requiredLabelStatus} answer={currentAnswer} fontStyles={{fontFamily: this.state.survey.global_font_family, fontSize: this.state.survey.global_font_size}} history={this.props.history} match={this.props.match}/>
-        }
         else if(question.typeId === 8 && question.enable){
             return <InfoDropdownProjectQuestion ref={(ref) => { let htmlElRefInfoArr = this.state.htmlElRefInfo; htmlElRefInfoArr[question.index] = ref; this.setState({ htmlElRefInfo: htmlElRefInfoArr }); }} key={`question-${question.name}-choice`} question={question} answerInfoHandler={this.answerInfoHandler} requiredLabelStatus={requiredLabelStatus} answer={currentAnswer} fontStyles={{fontFamily: this.state.survey.global_font_family, fontSize: this.state.survey.global_font_size}} history={this.props.history} match={this.props.match}/>
         }
@@ -1479,7 +1267,7 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
                             // console.log(`in if toPage -1, this.state.numQuestion`, this.state.numQuestion);
                             for(let k = index+1; k < this.state.numQuestion; k++) {
                                 disableArr[k] = true;
-                                skipLogicTextArr[k] = `โปรดข้ามไปส่วนสุดท้ายของแบบสอบถาม (กดปุ่มส่งแบบสอบถามเพื่อยืนยันคำตอบ)`;
+                                skipLogicTextArr[k] = `Please skip to the end of the survey and click submit button to confirm`;
                             }
                         }
                         //if set skip logic for this weight answer
@@ -1493,7 +1281,7 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
                             //set disable question element until the specific question no.
                             for(let k = index+1; k < toQuestion[i]-1; k++) {
                                 disableArr[k] = true;
-                                skipLogicTextArr[k] = `โปรดข้ามไปยังข้อ ${toQuestion[i]}.`;
+                                skipLogicTextArr[k] = `Please skip to ${toQuestion[i]}.`;
                             }
 
                             // console.log(`if weightAnswer.forEach`, disableArr);
@@ -1565,7 +1353,7 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
                             //     //set disable question element until the specific question no.
                             //     for(let k = index+1; k < toQuestion[i]-1; k++) {
                             //         disableArr[k] = true;
-                            //         skipLogicTextArr[k] = `โปรดข้ามไปยังข้อ ${toQuestion[i]}.`;
+                            //         skipLogicTextArr[k] = `Please skip to ${toQuestion[i]}.`;
                             //     }
 
                             //   // console.log(`if weightAnswer.forEach`, disableArr);
@@ -1614,7 +1402,7 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
                 //     //set disable question element until the specific question no.
                 //     for(let k = index+1; k < minQustionNo-1; k++) {
                 //         disableArr[k] = true;
-                //         skipLogicTextArr[k] = `โปรดข้ามไปยังข้อ ${minQustionNo}.`;
+                //         skipLogicTextArr[k] = `Please skip to ${minQustionNo}.`;
                 //     }
                 // }
 
@@ -1630,26 +1418,26 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
                         //set disable question element until the specific question no.
                         for(let k = index+1; k < minQustionNo-1; k++) {
                             disableArr[k] = true;
-                            skipLogicTextArr[k] = `โปรดข้ามไปยังข้อ ${minQustionNo}.`;
+                            skipLogicTextArr[k] = `Please skip to ${minQustionNo}.`;
                         }
                     }
                     else{//End of survey
                         for(let k = index+1; k < this.state.numQuestion; k++) {
                             disableArr[k] = true;
-                            skipLogicTextArr[k] = `โปรดข้ามไปส่วนสุดท้ายของแบบสอบถาม (กดปุ่มส่งแบบสอบถามเพื่อยืนยันคำตอบ)`;
+                            skipLogicTextArr[k] = `Please skip to the end of the survey and click submit button to confirm`;
                         }
                         // if(skipPageNoArr.length > 1){//More then one choice checked
                         //     //skip to the first question no. which is not 0
                         //     console.log(`skipQustionNoArrSortFilter[0]`, skipQustionNoArrSortFilter[0]);
                         //     for(let k = index+1; k < skipQustionNoArrSortFilter[0]-1; k++) {
                         //         disableArr[k] = true;
-                        //         skipLogicTextArr[k] = `โปรดข้ามไปยังข้อ ${skipQustionNoArrSortFilter[0]}.`;
+                        //         skipLogicTextArr[k] = `Please skip to ${skipQustionNoArrSortFilter[0]}.`;
                         //     }
                         // }
                         // else{//Only one choice checked
                         //     for(let k = index+1; k < this.state.numQuestion; k++) {
                         //         disableArr[k] = true;
-                        //         skipLogicTextArr[k] = `โปรดข้ามไปส่วนสุดท้ายของแบบสอบถาม (กดปุ่มส่งแบบสอบถามเพื่อยืนยันคำตอบ)`;
+                        //         skipLogicTextArr[k] = `Please skip to the end of the survey and click submit button to confirm`;
                         //     }
                         // }
                     }
@@ -1693,7 +1481,7 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
                             // console.log(`in if toPage -1, this.state.numQuestion`, this.state.numQuestion);
                             for(let k = index+1; k < this.state.numQuestion; k++) {
                                 disableArr[k] = true;
-                                skipLogicTextArr[k] = `โปรดข้ามไปส่วนสุดท้ายของแบบสอบถาม (กดปุ่มส่งแบบสอบถามเพื่อยืนยันคำตอบ)`;
+                                skipLogicTextArr[k] = `Please skip to the end of the survey and click submit button to confirm`;
                             }
                         }
                         //if set skip logic for this weight answer
@@ -1707,7 +1495,7 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
                             //set disable question element until the specific question no.
                             for(let k = index+1; k < toQuestion[i]-1; k++) {
                                 disableArr[k] = true;
-                                skipLogicTextArr[k] = `โปรดข้ามไปยังข้อ ${toQuestion[i]}.`;
+                                skipLogicTextArr[k] = `Please skip to ${toQuestion[i]}.`;
                             }
 
                             // console.log(`if weightAnswerFrom.forEach`, disableArr);
@@ -2112,7 +1900,6 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
     // };
 
     handleTH = (e: any) => {
-        // console.log('handleTH', e);
         this.setState({
             langModalVisible: false,
         });
@@ -2216,25 +2003,7 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
         if (this.state.isLoading) {
             return <div id="overlay"> <Spin size="large" tip="Loading..."></Spin> </div>
         }
-        // else if(this.state.langModalVisible){
-        //     return (
-        //         <Modal
-        //             className="create-survey-modal choose-survey-language-modal"
-        //             title={`โปรดเลือกภาษา\nPlease choose the survey language`}
-        //             visible={this.state.langModalVisible}
-        //         >
-        //             <Button onClick={this.handleTH}>
-        //                 <img className="img" src={`/cxm/platform/TH.png`} alt="TH"/>
-        //                 <span>ภาษาไทย</span>
-        //             </Button>
-
-        //             <Button onClick={this.handleEN}>
-        //                 <img className="img" src={`/cxm/platform/EN.png`} alt="EN"/>
-        //                 <span>English</span>
-        //             </Button>
-        //         </Modal>
-        //     );
-        // }
+        
         else if(this.state.thankyou){
             return  <div ref={ el => this.container = el} style={containerStyles}>
                         <main className="v3theme text_center">
@@ -2291,19 +2060,7 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
                             }
 
                             <section className="survey-page-body" style={{ paddingTop: '0'}}>
-            
-                                {/* <div className={ this.state.thankyou ? '' : 'hidden' }>
-                                    <div className="question-row clearfix" style={{ marginTop: '100px', marginBottom: '200px' }}>
-                                        <div className="question-container">
-                                            <div id="question-field-439413964" className=" question-presentation-image qn question image" data-alt-title="Image" style={{ textAlign: 'center' }}>
-                                                <img className={this.state.survey.image_src ? "user-generated" : 'hidden'} style={{ maxWidth: '200px' }} src={this.state.survey.image_src} alt="logo"/>
-                                                <h1 className="survey-title user-generated notranslate">
-                                                    <span className="title-text">ขอบคุณสำหรับความร่วมมือในการตอบแบบสำรวจ</span>
-                                                </h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
+    
 
                                 <div className='survey-title-container clearfix survey-title-align-left has-survey-title '>
                                     { (this.state.survey.enable_src_type === 1 && this.state.survey.image_src) &&
@@ -2429,18 +2186,6 @@ export default class PreviewClientSurvey extends React.Component<IProps, IState>
                                 : null}
                             </section>
         
-                            {/* <footer className="survey-footer bottom">
-                            <div className="standard-footer notranslate">
-                                <p className="survey-footer-title ">
-                                    Powered by <a target="_blank" href="https://www.iconcxm.com?ut_source=survey_poweredby_home" className="footer-brand-name survey-footer-link"><img src="https://secure.iconcxm.com/assets/responseweb/smlib.surveytemplates/4.2.63/assets/sm_logo_footer.svg" alt="SurveyMonkey" className="responsive-logo"/></a>
-                                </p>
-                                        See how easy it is to <a target="_blank" data-mangled=rLwSZaG8FbF5ZTt1BQNusHcbpzgM002gqRNNlQBG35Wqak9UrAXretIkB7_2B_2BHtKAYINr56dexeUMokjwA07Cqj0hgTImEI2zj8t3qHM2u6s_3D className="survey-footer-link create-a-survey" href="https://www.iconcxm.com/mp/how-to-create-surveys/?ut_source=survey_poweredby_createsurveys">create a survey</a>.
-                            </div>
-
-                            <div className="survey-footer-privacy-link-container">
-                                <a target="_blank" className="survey-footer-link survey-footer-privacy-link" href="https://www.iconcxm.com/mp/legal/privacy-basics/?ut_source=survey_pp">Privacy</a><span className="survey-footer-privacy-text"> & </span><a target="_blank" className="survey-footer-link survey-footer-privacy-link" href="https://help.iconcxm.com/articles/en_US/kb/About-the-cookies-we-use/?ut_source=survey_pp">Cookie Policy</a>
-                            </div>
-                            </footer> */}
                         </article>
                         <div className="privacy-policy-icon-super-container"></div>
                     </main>           

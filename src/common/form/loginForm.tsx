@@ -43,73 +43,7 @@ class LoginForm extends React.Component<IProps, IState, any> {
         }
     }
 
-    componentDidMount() { 
-        // console.log('LoginForm componentDidMount this.props.match.params.xSite', this.props.match.params.xSite);
-
-        // const userData = {
-        //     survey_id: 2,
-        //     collector_id: 1,
-        //     email_id: 1
-        //     email_address: 'siamcome@gmail.com',
-        //     first_name: 'Siam',
-        //     last_name: 'Come',
-        // }
-
-        // const userData = {
-        //     survey_id: 2,
-        //     collector_id: 1,
-        //     sms_id: 1
-        //     mobile_number: '0988355598',
-        //     first_name: 'Siam',
-        //     last_name: 'Come',
-        // }
-
-        // const userToken = jwt.sign(userData, 'iconcxm-admin');
-        // console.log('userToken', userToken);
-        
-        // const token = getJwtToken() as string;
-        // console.log('LoginForm token', token);
-
-        // // if(!jwt){
-        // //     this.props.handleHistoryPush('/login');
-        // // }
-        // // else{
-        // //     this.props.handleHistoryPush(`/${this.props.match.params.xSite}/dashboard`);
-        // // }
-
-        // // get the decoded payload ignoring signature, no secretOrPrivateKey needed
-        // let userData = jwt.decode(token) as any;
-        
-        // console.log('decoded', userData);
-        // console.log('userData.exp', userData.exp);
-        // console.log('this.isTokenExpired(userData.exp)', this.isTokenExpired(userData.exp));
-
-        // if(this.isTokenExpired(userData.exp)) this.props.handleHistoryPush('/login');
-
-        // BaseService.getUser(jwt).then(
-        //     (rp) => {
-        //         if (rp.Status) {
-
-        //           // console.log('getUser rp', rp);
-        //           // console.log('getUser rp.Data', rp.Data);
-
-        //             // this.setState({
-        //             //     id: templateName,
-        //             //     userRole: templateName,
-        //             //     userEmail: visibleStatus,
-        //             // });
-
-        //             // console.log('Authentication showModal', this.state);
-
-        //         } else {
-        //             // toastr.error(rp.Messages);
-        //             console.log("Messages: " + rp.Messages);
-        //             console.log("Exception: " + rp.Exception);
-        //             localStorage.removeItem('iconcxmuser');
-        //             this.props.handleHistoryPush('/login');
-        //         }
-        //     }
-        // );
+    componentDidMount() {
     }
 
     handleSubmit = (e: any) => {
@@ -124,7 +58,7 @@ class LoginForm extends React.Component<IProps, IState, any> {
                             // console.log('rp', rp);
                             if (rp.Status) {
                                 // console.log('rp.Data.userToken', rp.Data.userToken);
-                                localStorage.setItem('iconcxmuser', rp.Data.userToken);
+                                localStorage.setItem('cxmuser', rp.Data.userToken);
                                 toastr.success(rp.Messages);
                                 setTimeout(function(this: any){ this.props.handleHistoryPush(`/${this.props.match.params.xSite}/dashboard`); }.bind(this), 500);
                             } else {

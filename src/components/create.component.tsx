@@ -4,19 +4,11 @@ import ReactDOM from 'react-dom';
 import * as toastr from 'toastr';
 import Surveys from '../models/surveys';
 import BaseService from '../service/base.service';
-// import SurveyCreateForm from '../common/form/surveyCreateForm';
 import { History } from 'history';
 import jwt from 'jsonwebtoken';
 import { getJwtToken, refreshJwtToken } from '../helper/jwt.helper';
 
 import SurveyTemplateGrid from '../common/survey/surveyTemplateGrid';
-// import SurveyTemplateList from '../common/survey/surveyTemplateList';
-
-// import SurveyPopularList from '../common/survey/surveyPopularList';
-// import SurveyPopularGrid from '../common/survey/surveyPopularGrid';
-
-// import SurveyFeedbackList from '../common/survey/surveyFeedbackList';
-// import SurveyFeedbackGrid from '../common/survey/surveyFeedbackGrid';
 
 import SurveyCreateModal from '../common/modal/surveyCreateModal';
 
@@ -152,13 +144,6 @@ export default class Create extends  React.Component<IProps, IState> {
             }, () => {
               // console.log('surveys', this.state.surveys);
             });
-            // const touchpointObj = {
-            //     id: 1,
-            //     display_name: 'Sales',
-            //     descriptions: ' Understand the customers experience towards your product & services',
-            //     image: 'https://dl.dropboxusercontent.com/s/c29ap3a99kaqabf/crm.png?dl=0',
-            //     image_description: 'Customer Satisfaction Survey Template'
-            // }
 
             BaseService.get(this.props.match.params.xSite ,"/projects", '', jwtToken).then(
                 async (rp) => {
@@ -227,91 +212,6 @@ export default class Create extends  React.Component<IProps, IState> {
         return (<TouchpointRow key={`TouchpointRow-${touchpoint.id}`} touchpoint={touchpoint} showModal={this.showModal}/>);
     }
 
-    // handleStyleChange = (e: RadioChangeEvent) => {
-
-    //     this.setState({
-    //         visible: false
-    //     });
-
-    //   // console.log(`Create handleStyleChange ${ e.target.value }`, this.state.seletedTemplate);
-
-    //     //All
-    //     if(e.target.value === 'grid' && this.state.seletedTemplate === 'all'){
-    //         ReactDOM.render(<SurveyTemplateGrid showModal={this.showModal}/>, document.getElementById('survey-templates'));
-    //     }
-    //     else if(e.target.value === 'list' && this.state.seletedTemplate === 'all'){
-    //         ReactDOM.render(<SurveyTemplateList showModal={this.showModal}/>, document.getElementById('survey-templates'));
-    //     }
-
-    //     //Popular
-    //     if(e.target.value === 'grid' && this.state.seletedTemplate === 'popular'){
-    //         ReactDOM.render(<SurveyPopularGrid />, document.getElementById('survey-templates'));
-    //     }
-    //     else if(e.target.value === 'list' && this.state.seletedTemplate === 'popular'){
-    //         ReactDOM.render(<SurveyPopularList />, document.getElementById('survey-templates'));
-    //     }
-
-    //     //Feedback
-    //     if(e.target.value === 'grid' && this.state.seletedTemplate === 'feedback'){
-    //         ReactDOM.render(<SurveyFeedbackGrid />, document.getElementById('survey-templates'));
-    //     }
-    //     else if(e.target.value === 'list' && this.state.seletedTemplate === 'feedback'){
-    //         ReactDOM.render(<SurveyFeedbackList />, document.getElementById('survey-templates'));
-    //     }
-
-    //     this.setState(
-    //         { itemStyle: e.target.value }
-    //     );
-    // };
-
-    // handleSelectChange = (status: any) => {
-
-    //     this.setState({
-    //         visible: false
-    //     });
-
-    //   // console.log(`Create handleSelectChange ${this.state.itemStyle}`, status);
-
-    //     //All
-    //     if(this.state.itemStyle === 'grid' && status === 'all'){
-    //         ReactDOM.render(<SurveyTemplateGrid showModal={this.showModal}/>, document.getElementById('survey-templates'));
-    //     }
-    //     else if(this.state.itemStyle === 'list' && status === 'all'){
-    //         ReactDOM.render(<SurveyTemplateList showModal={this.showModal} />, document.getElementById('survey-templates'));
-    //     }
-
-    //     //Popular
-    //     if(this.state.itemStyle === 'grid' && status === 'popular'){
-    //         ReactDOM.render(<SurveyPopularGrid />, document.getElementById('survey-templates'));
-    //     }
-    //     else if(this.state.itemStyle === 'list' && status === 'popular'){
-    //         ReactDOM.render(<SurveyPopularList />, document.getElementById('survey-templates'));
-    //     }
-
-    //     //Feedback
-    //     if(this.state.itemStyle === 'grid' && status === 'feedback'){
-    //         ReactDOM.render(<SurveyFeedbackGrid />, document.getElementById('survey-templates'));
-    //     }
-    //     else if(this.state.itemStyle === 'list' && status === 'feedback'){
-    //         ReactDOM.render(<SurveyFeedbackList />, document.getElementById('survey-templates'));
-    //     }
-
-    //     this.setState({seletedTemplate: status});
-    // };
-
-    // handleInputChange = (event: { target: { value: any; }; }) => {
-    // };
-      
-    // handleStyleChanges = () => {
-    //   // console.log('switchToGrid');
-    //     ReactDOM.render(<SurveyTemplateGrid />, document.getElementById('survey-templates'));
-    // };
-
-    // switchToList = () => {
-    //   // console.log('switchToList');
-    //     ReactDOM.render(<SurveyTemplateList />, document.getElementById('survey-templates'));
-    // };
-
     handleOk = (e: any) => {
       // console.log('Create handleOk', e);
         this.props.history.push(`/${this.props.match.params.xSite}`);
@@ -356,33 +256,6 @@ export default class Create extends  React.Component<IProps, IState> {
                 onSave={this.onSave}
                 />
 
-                {/* <SurveyCreateModal /> */}
-                {/* // history={this.props.history} 
-                // visible={this.state.visible} 
-                // handleOk={this.handleOk} 
-                // handleCancel={this.handleCancel} */}
-                
-                {/* <div id="survey-create-modal"></div> */}
-
-                {/* <Modal className="create-survey-modal"
-                title="Name Your survey"
-                visible={this.state.visible}
-                onOk={this.handleOk}
-                onCancel={this.handleCancel}
-                >
-
-                {this.state.surveyTemplate}
-
-                <SurveyCreateForm 
-                    surveys={this.state.surveys}
-                    surveyTemplate={this.state.surveyTemplate}
-                    surveyTemplateId={this.state.surveyTemplateId}
-                    onChange={this.onFieldValueChange}
-                    onSave={this.onSave}
-                />
-                
-                </Modal> */}
-
                 <div className="sm-create-survey" data-testid="CreateSurvey__Content">
                     <div className="wds-grid wds-grid--no-bleeds wds-grid--fluid wds-h-100 wds-m-0">
                         <div className="wds-grid__row wds-flex wds-flex--column wds-h-100 wds-m-0">
@@ -406,12 +279,7 @@ export default class Create extends  React.Component<IProps, IState> {
                             <div className="wds-flex wds-h-100 wds-flex--y sm-explore__main-container">
                                 <div className="wds-flex wds-flex--x wds-flex--between wds-p-b-5 wds-p-6 sm-explore__templates-heading">
                                     <div className="wds-type--section-title">Explore templates</div>
-                                    {/* <div id="48ef8ee8-db65-474a-9600-f0c0994994d4" className="wds-input-group">
-                                        <div className="wds-input-group__addon">
-                                            <svg className="wds-icon-svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16" aria-label="Search"><g><path d="m15.7 14.6392-4.09-4.0892a6.4833 6.4833 0 1 0 -1.06 1.0605l4.0892 4.0895a.75.75 0 0 0 1.0608-1.0608zm-14.1194-8.0938a4.9646 4.9646 0 1 1 4.9648 4.9646 4.9706 4.9706 0 0 1 -4.9648-4.9646z"></path></g></svg>
-                                        </div>
-                                        <input id="search" placeholder="Search templates" data-testid="SearchInput__Input" className="wds-input wds-input--sm sm-search-input" value="">
-                                    </div> */}
+                                    
                                 </div>
 
                                 <div className="wds-flex wds-flex--x wds-flex__item--grow">
@@ -421,49 +289,7 @@ export default class Create extends  React.Component<IProps, IState> {
                                             
                                             {/* <div className="sm-all-templates-tab__actions sm-all-templates-tab__actions--no-tabs" style={{ paddingTop: '34px' }}> */}
                                             <div className="wds-flex wds-flex--x wds-w-100 sm-all-templates-tab__actions--inner">
-                                                {/* <Select defaultValue="View All Templates" onChange={this.handleSelectChange} style={{ width: '200px' }}>
-                                                    <Option value="all">View All Templates</Option>
-                                                    <Option value="popular">Most Popular</Option>
-                                                    <Option value="feedback">Customer Feedback</Option>
-                                                </Select> */}
-                                                {/* <div className="wds-select wds-select--md" role="button" aria-haspopup="listbox" aria-expanded="false">
-                                                    <select data-testid="AllTemplatesTab__CategoryMenu" id="categoryMenu"><option value="">View all templates</option><option value="182">Most Popular</option><option value="1">General Business</option><option value="241">Benchmarkable</option><option value="134">Community</option><option value="123">Customer Feedback</option><option value="124">Demographics</option><option value="125">Education</option><option value="126">Events</option><option value="127">Healthcare</option><option value="11">Human Resources</option><option value="133">Just for Fun</option><option value="13">Nonprofit </option><option value="130">Political</option><option value="132">Market Research</option><option value="255">Quizzes</option></select>
-                                                    <span className="wds-select__affordance">
-                                                    <svg className="wds-icon-svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16" aria-label="CaretDown"><g><path d="m1.7438 4.55c-.605 0-.75.35-.3222.7778l5.8006 5.8006a1.1032 1.1032 0 0 0 1.5556 0l5.8006-5.8006c.4278-.4278.2828-.7778-.3222-.7778z"></path></g></svg>
-                                                    </span>
-                                                </div> */}
-                                                {/* <div className="sm-list-view-toggle">
-                                                    <div className="wds-button-group">
-                                                        
-                                                        <Radio.Group value={this.state.itemStyle} onChange={this.handleStyleChange}>
-                                                            <Radio.Button value="grid"><Icon type="appstore" /></Radio.Button>
-                                                            <Radio.Button value="list"><Icon type="menu" /></Radio.Button>
-                                                        </Radio.Group>
-                                                    
-                                                        <span className="wds-has-tooltip" role="button" >
-                                                            <span className="wds-tooltip--top wds-tooltip" role="tooltip">
-                                                                <span className="wds-tooltip__body">Grid view</span>
-                                                            </span>
-                                                            <span className="wds-tooltip__trigger">
-                                                                <Button className="wds-button wds-button--secondary wds-button--solid wds-button--md wds-button--icon-only sm-list-view-toggle__grid-button" type="primary" onClick={this.switchToGrid}>
-                                                                    <Icon type="appstore" />
-                                                                </Button>
-                                                            </span>
-                                                        </span>
-
-                                                        <span className="wds-has-tooltip" role="button" >
-                                                            <span className="wds-tooltip--top wds-tooltip" role="tooltip">
-                                                                <span className="wds-tooltip__body">List view</span>
-                                                            </span>
-                                                            <span className="wds-tooltip__trigger">
-                                                                <Button className="wds-button wds-button--alt wds-button--solid wds-button--md wds-button--icon-only sm-list-view-toggle__list-button" type="primary" onClick={this.switchToList}>
-                                                                    <Icon type="menu" />
-                                                                </Button>
-                                                            </span>
-                                                        </span>
-
-                                                    </div>
-                                                </div> */}
+                                                
                                             </div>
                                             {/* </div> */}
 

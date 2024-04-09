@@ -24,29 +24,7 @@ interface IProps {
 
 const HorizontalChart: React.StatelessComponent<IProps> = (props) => { 
     try{
-      // const data = [
-      //     {
-      //       answer: "ไม่พึงพอใจเลย",
-      //       percent: 20
-      //     },
-      //     {
-      //       answer: "ไม่ค่อยพึงพอใจ",
-      //       percent: 10
-      //     },
-      //     {
-      //       answer: "ปานกลาง",
-      //       percent: 10
-      //     },
-      //     {
-      //       answer: "ค่อนข้างพึงพอใจ",
-      //       percent: 60
-      //     },
-      //     {
-      //       answer: "พึงพอใจมาก",
-      //       percent: 10
-      //     }
-      // ];
-      
+    
       const color = [] as any;
 
       for(let i = 0 ; i < props.data.length ; i++){

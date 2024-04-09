@@ -13,7 +13,6 @@ import moment from 'moment';
 import HeaderSurvey from '../../../common/header';
 
 import '../../../css/wds-react.4_16_1.min.css';
-// import '../../../css/collectweb-collector_list-bundle-min.5e29c8fb.css';
 import '../../../css/smlib.globaltemplates-base_nonresponsive-bundle-min.125b4dd4.css';
 import '../../../css/smlib.ui-global-bundle-min.9feec1b6.css';
 import '../../../css/collectweb-collector_get-bundle-min.ea15b72a.css';
@@ -45,74 +44,7 @@ import SurveyReNicknameModal from '../../../common/modal/surveyRenicknameModal';
 
 const { SubMenu } = Menu;
 
-// const options = {
-//     title: {
-//         text: 'My chart'
-//     },
-//     series: [{
-//         type: 'line',
-//         data: [1, 2, 3]
-//     }]
-// }
-// Load the exporting module.
-// import * as Exporting from 'highcharts/modules/exporting';
-// Module with declaration:
-// import AccessibilityModule from 'highcharts/modules/accessibility';
-// Module with any type:
-// import NewModule from 'highcharts/modules/new';
-
-// import '../css/wds-charts.4_16_1.min.css';
-// import '../css/survey-summary.css';
-// import '../css/side-bar.css';
-// import '../css/survey-info-stats.css';
-// import '../css/status-card-survey-status.css';
-// import '../css/status-card-response-count.css';
-// import '../css/collector-list.css';
-// const { Option } = Select;
 const { TabPane } = Tabs;
-
-// const menu = (id: any) => (
-//     <Menu>
-//         <Menu.Item key="edit">
-//             <a href={'/cxm/platform/${this.props.match.params.xSite}/edit/' + id} style={{ textDecoration: 'none' }}><Icon type="edit" /> Edit collector</a>
-//         </Menu.Item>
-//         <Menu.Item key="close">
-//             {/* <Link to={"/edit/" + id}><Icon type="edit" />  Edit</Link> */}
-//             <a  href="# " onClick={()=>Close(Number(id))} style={{ textDecoration: 'none' }}><Icon type="close" /> Close collector</a>
-//         </Menu.Item>
-//         <Menu.Item key="delete">
-//             {/* <Link to={"#"} onClick={()=>Del(Number(id))}><Icon type="delete" />  Delete</Link> */}
-//             <a  href="# " onClick={()=>Del(Number(id))} style={{ textDecoration: 'none' }}><Icon type="delete" />  Delete collector</a>
-//         </Menu.Item>
-//         <Menu.Item key="rename">
-//             <a  href="# " onClick={()=>Rename(Number(id))} style={{ textDecoration: 'none' }}><Icon type="edit" />  Rename collector</a>
-//         </Menu.Item>
-//     </Menu>
-// );
-
-// function Del(ID:number) {
-//   // console.log("Del click", ID);
-//     // BaseService.delete(this.props.match.params.xSite, "/surveys/", ID).then(
-//     //     (rp) => {
-//     //         if (rp.Status) {
-//     //             toastr.success(rp.Messages);    
-//     //             window.location.reload();
-//     //         } else { 
-//     //             toastr.error(rp.Messages);
-//     //             console.log("Messages: " + rp.Messages);
-//     //             console.log("Exception: " + rp.Exception);
-//     //         }
-//     //     }
-//     // );
-// }
-
-// function Rename(ID:number) {
-//   // console.log("Rename click", ID);
-// }
-
-// function Close(ID:number) {
-//   // console.log("Close click", ID);
-// }
 
 interface IProps { 
     history: History;
@@ -252,19 +184,6 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
 
     }
 
-    // private onFieldValueChange(fieldName: string, value: any) { 
-    //     const nextState = {
-    //         ...this.state,
-    //         collector: {
-    //             ...this.state.collector,
-    //             [fieldName]: value,
-    //         }
-    //     };
-
-    //     this.setState(nextState);
-    //   // console.log('Create onFieldValueChange', this.state.survey);
-    // }
-
     componentDidMount() { 
 
         const jwt = getJwtToken();
@@ -354,25 +273,8 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
 
     }
 
-    // messageContent = () => {
-    //   // console.log(`messageContent`);
-    //     try{
-    //         ReactDOM.render(<div><p>{this.state.collector.message}</p></div>, document.getElementById('message-content'));
-    //     }
-    //     catch(e){
-    //       // console.log(e);
-    //     }
-    // }
-
     handleTableChange = (pagination: PaginationProps, filters: Partial<Record<string | number | symbol, string[]>>, sorter: SorterResult<never>, extra: any) => {
-      // console.log('params', pagination, filters, sorter, extra, extra.currentDataSource.length);
-        // const paginationChange = { total: 1, ...this.state.pagination };
-
-        // const pagination = { ...this.state.pagination };
-        // Read total count from server
-        // pagination.total = data.totalCount;
-        // pagination.total = 200;
-
+      
         this.setState({
             // data: extra.currentDataSource,
             // pagination: paginationChange,
@@ -381,47 +283,11 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
             visibleCollectorModal: false
         });
     }
-    
-    // handleTableChange = (pagination: PaginationProps, filters: Partial<Record<string | number | symbol, string[]>>, sorter: SorterResult<never>) => {
-    //     const pager = { current: pagination.current, ...this.state.pagination };
-    //     // pager.current = pagination.current;
-
-    //     // pagination={{ pageSize: 50 }}
-
-    //     this.setState({
-    //         pagination: pager,
-    //     });
-    //     this.fetch({
-    //         results: 2,
-    //         page: pagination.current,
-    //         sortField: sorter.field,
-    //         sortOrder: sorter.order,
-    //         ...filters,
-    //     });
-    // };
 
     fetch = (params = {}) => {
       // console.log('fetch params:', params);
         this.setState({ loading: true });
-        // reqwest({
-        //   url: 'https://randomuser.me/api',
-        //   method: 'get',
-        //   data: {
-        //     results: 10,
-        //     ...params,
-        //   },
-        //   type: 'json',
-        // }).then(data => {
-        //     const pagination = { ...this.state.pagination };
-        //     // Read total count from server
-        //     // pagination.total = data.totalCount;
-        //     pagination.total = 200;
-        //     this.setState({
-        //         loading: false,
-        //         data: data.results,
-        //         pagination,
-        //     });
-        // });
+        
       // console.log('fetch', this.state.data);
         const jwt = getJwtToken();
         BaseService.getJSON(this.props.match.params.xSite, "/sms/list/", this.props.match.params.id, jwt).then(
@@ -1189,66 +1055,6 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
     callback = (key: any) => {
       // console.log(key);
     }
-
-    /*
-    handleFileChange = (e: any, results: any[]) => {
-
-        try{
-            this.setState({
-                visibleMessageModal: false,
-                visibleCollectorModal: false,
-            });
-
-            results.forEach((result: [any, any]) => {
-                const [e, file] = result;
-                // console.log(file);
-
-                const fileData = e.target.result;
-                const wb = XLSX.read(fileData, {type : 'binary'});
-                // const oFile = XLSX.read(e.target.result, {type: 'binary', cellDates:true, cellStyles:true});
-                // const excelData = XLSX.utils.sheet_to_json(wb.Sheets[0])
-
-                const excelJSON: unknown[] = [];
-                wb.SheetNames.forEach(function(sheetName){
-                    const rowJSON = XLSX.utils.sheet_to_json(wb.Sheets[sheetName]);
-                    // console.log(rowJSON);
-                    excelJSON.push(rowJSON);
-                });
-                
-                const excelData: any = excelJSON;
-            // console.log(excelData[0]);
-
-                const collectorId = this.state.collector.id;
-                const dataImport = excelData[0].map(function (object: any, i: any) {
-                    object = { ...object, collector_id: collectorId, index: i+1 };
-                    // console.log(object);
-                    return object;
-                });
-                
-            // console.log('dataImport', dataImport);
-                const paginationImport = { total: excelData[0].length, ...this.state.paginationImport };
-                // const paginationImport = { total: excelData[0].length, pageSize: excelData[0].length, hideOnSinglePage: true };
-                this.setState({
-                    fileName: file.name,
-                    loadingImport: false,
-                    dataImport: dataImport,
-                    paginationImport,
-                    totalDataImport: excelData[0].length,
-                    importDisabled: false
-                });
-
-                toastr.success('Loading Completed!');
-            });
-        }catch(error){
-            toastr.error('Something went wrong!, please refresh the page or try again later.');
-            BaseService.post(this.props.match.params.xSite, "/frontendlog/", { method: `collect sms manage handleFileChange catch`, message: `catch: ${error}` }, getJwtToken()).then( (rp) => { console.log(`catch: ${error}`); });
-        }
-    }*/
-
-    // componentWillReceiveProps() {
-    //   // console.log('componentWillReceiveProps');
-    //     // this.messageContent();
-    // }
     
     handleInvite = (id: any) => {
       // console.log(`handleInvite id ${id} this.state.collector.type ${this.state.collector.type}`);
@@ -1574,11 +1380,6 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                             <main>
                                 {/* <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit nickname">{this.state.collector.name}</h1><span id="edit-name-icon" onClick={()=>this.showCollectorModal(this.state.collector.type)} className="smf-icon notranslate">W</span> */}
 
-                                <span>Nickname <Tooltip title={'ผู้ใช้งานระบบเท่านั้นถึงจะเห็นชื่อนี้'}><Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/></Tooltip> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit nickname">{this.state.collector.nickname}</h1><span id="edit-name-icon" onClick={()=>this.showCollectorModal(this.state.collector.type)} className="smf-icon notranslate">W</span></span>
-                                <br></br>
-                                <br></br>
-                                <span>Display name <Tooltip title={'ผู้ทำแบบสอบถามจะเห็นชื่อนี้ในแบบสอบถาม'}><Icon type="info-circle-o" style={{ color: 'dodgerblue' }}/></Tooltip> : <h1 id="edit-name" className="wds-type--page-title truncate " title="Click to edit display name">{this.state.collector.name}</h1><span id="edit-name-icon" onClick={()=>this.showCollectorModal(this.state.collector.type)} className="smf-icon notranslate">W</span></span>
-
                                 <span id="collector-created-date">Created: {this.state.collector.created_date}</span>
                                 
                                 <section className="weblink">
@@ -1815,10 +1616,7 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                                                         <a  href="# " target="#panel-compose-message" style={{cursor: 'default'}} className="keyOpener">
                                                             <b>COMPOSE MESSAGE:
                                                                 &nbsp;
-                                                                <Tooltip overlayStyle={{ whiteSpace: 'pre-line' }} 
-                                                                    title={`ข้อความที่ตั้งค่านี้จะถูกส่งไปยังเบอร์โทรของผู้ทำแบบสอบถามในรูปแบบ SMS (เบอร์โทรของผู้ทำแบบสอบถามที่อยู่ในลิสต์)`}>
-                                                                    <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/>
-                                                                </Tooltip>
+                                                                
                                                             </b>
                                                         </a>
                                                     </h3>
@@ -1831,17 +1629,7 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                                                         <header className="message-header" style={{ background: 'none', marginTop: '25px' }}>
                                                             <h5 className="sm-label">MESSAGE:
                                                                 &nbsp;
-                                                                <Tooltip overlayStyle={{ whiteSpace: 'pre-line' }} 
-                                                                    title={`ผู้ใช้งานระบบสามารถใส่ ตัวแปร สำหรับแสดงผลข้อมูลได้ดังนี้
-                                                                    - ชื่อโครงการ : \${ProjectName}
-                                                                    - ชื่อช่องทางจัดเก็บ : \${CollectorName}
-                                                                    - ชื่อ (ผู้ทำแบบสอบถาม) : \${FirstName}
-                                                                    - นามสกุล (ผู้ทำแบบสอบถาม) : \${LastName}
-                                                                    - ลิงค์แบบสอบถาม : \${SurveyLink}
-                                                                    * โดยระบบจะดึงข้อมูลจากช่องทางการจัดเก็บ (Collector)
-                                                                    ตามที่ผู้ใช้งานระบบได้ตั้งค่าไว้แทน ตัวแปร ข้างต้น`}>
-                                                                    <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/>
-                                                                </Tooltip> 
+                                                                 
                                                             </h5>
                                                         </header>
 
@@ -1904,35 +1692,7 @@ export default class CollectorMessage extends React.Component<IProps, IState> {
                                                         </a>
                                                     </h3>
                                                 </header>
-                                                {/* 
-                                                <section id="panel-preview-import" style={{ height: 'auto', paddingBottom: '40px' }}>
-                                                    <p>Please upload the excel file (*.xlsx). <a href={`/cxm/platform/sms-excel-template.xlsx`} target="_blank">Example Here!</a></p>
-
-                                                    <div style={{ width: '40%' }}>
-                                                        <FileReaderInput as="binary" onChange={this.handleFileChange}>
-                                                            <button style={{ color: 'white', background: 'dodgerblue' }}>Choose file</button> <span>{this.state.fileName}</span>
-                                                        </FileReaderInput>
-                                                    </div>
-
-                                                    <Table style={{ marginTop: '20px' }}
-                                                        columns={columnsImport}
-                                                        locale={{ emptyText: <Empty description={<span> Preview Here </span>}/> }}
-                                                        // size="middle"
-                                                        // rowKey={record => record.login.uuid}
-                                                        rowKey="index"
-                                                        dataSource={this.state.dataImport}
-                                                        pagination={this.state.paginationImport}
-                                                        loading={this.state.loadingImport}
-                                                        footer={() => 'RECIPIENTS: '+ this.state.totalDataImport}
-                                                    />
-
-                                                    <div style={{ width: '100%', borderTop: '1px solid lightgray' }}>
-                                                        <Button type="primary" className='add-button' onClick={this.onSave} disabled={this.state.importDisabled} >
-                                                            ADD RECIPIENTS
-                                                        </Button>
-                                                    </div>
-
-                                                </section> */}
+                                                
                                             </div>
                                         </div>
                                     </TabPane>

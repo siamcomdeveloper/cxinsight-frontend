@@ -11,10 +11,6 @@ import { getJwtToken, refreshJwtToken } from '../helper/jwt.helper';
 // import '../App.css'; 
 const { Content } = Layout;
 
-// import { Input } from "antd";
-// import TableRow from '../common/form/TableRow';
-// const { Search } = Input;
-
 interface IProps {
     history: History;
     //Map properties match
@@ -142,15 +138,13 @@ class Dashboard extends React.Component<IProps, IState> {
                         <Card className="dashboard-statistic-card" style={{ paddingLeft: '20px', paddingRight: '20px', paddingBottom: '15px' }}>
                             <Statistic 
                                 className="dashboard-statistic" 
-                                // title="Open" 
-                                // title={<div>Open <Tooltip title={'คือ จำนวนแบบสอบถามชนิด Open ทั้งหมด ที่อยู่ในการดูแลของผู้ใช้งาน'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> </div>}
+                                
                                 title={<div>Open</div>}
                                 value={this.state.statisticData.num_open} style={{ display: 'inline-block', borderRight: '1px solid lightgray', paddingRight: '35px'}}
                             />
                             <Statistic 
                                 className="dashboard-statistic" 
-                                // title="Draft" 
-                                // title={<div>Draft <Tooltip title={'คือ จำนวนแบบสอบถามชนิด Draft ทั้งหมด ที่อยู่ในการดูแลของผู้ใช้งาน'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> </div>}
+                                
                                 title={<div>Draft</div>}
                                 value={this.state.statisticData.num_draft} style={{ display: 'inline-block', paddingLeft: '35px'}}
                             />
@@ -159,8 +153,7 @@ class Dashboard extends React.Component<IProps, IState> {
                     <Col span={6} xs={24} sm={12} md={12} lg={6} xl={6}>
                         <Card style={{ paddingBottom: '15px' }}>
                             <Statistic
-                                // title="Total completed responses"
-                                // title={<div>Total completed responses <Tooltip title={'คือ จำนวนผู้ทำแบบสอบถามที่ทำแบบสอบถามจบ (คำนวณจากแบบสอบถามชนิด OPEN และ CLOSED) ยกตัวอย่างเช่น ผู้ทำแบบสอบถามที่คลิกลิงค์เข้ามายังหน้าทำแบบสอบถาม 100 คน แต่ทำแบบสอบถามจบเพียง 50 คน เพราะฉะนั้น Total completed responses ของแบบสอบถามทั้งหมดจะเท่ากับ 50'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip> </div>}
+                               
                                 title={<div>Total completed responses</div>}
                                 value={this.state.statisticData.total_responses ? this.state.statisticData.total_responses : 0}
                                 valueStyle={{ color: '#3f8600' }}
@@ -174,7 +167,6 @@ class Dashboard extends React.Component<IProps, IState> {
                     </Col>
                     <Col span={6} xs={24} sm={12} md={12} lg={6} xl={6}>
                         <Card className="dashboard-average-card" style={{ textAlign: 'center' }}>
-                            {/* <div className="ant-statistic-title" style={{ textAlign: 'left', marginBottom: '10px' }}>Average completion rate <Tooltip title={'คือ จำนวน % ของผู้ทำแบบสอบถามที่ทำแบบสอบถามจบ (คำนวณจากแบบสอบถามชนิด OPEN และ CLOSED) ยกตัวอย่างเช่น ผู้ทำแบบสอบถามที่คลิกลิงค์เข้ามายังหน้าทำแบบสอบถาม 100 คน แต่ทำแบบสอบถามจบเพียง 50 คน เพราะฉะนั้น Total completed responses ของแบบสอบถามทั้งหมดจะเท่ากับ 50%'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip></div> */}
                             <div className="ant-statistic-title" style={{ textAlign: 'left', marginBottom: '10px' }}>Average completion rate</div>
                             <Progress
                                 type="circle"
@@ -189,8 +181,7 @@ class Dashboard extends React.Component<IProps, IState> {
                     <Col span={6} xs={24} sm={12} md={12} lg={6} xl={6}>
                         <Card className="dashboard-statistic-card average-time-spent-statistic-card">
                             <Statistic
-                                // title="Average time spent" 
-                                // title={<div>Average time spent <Tooltip title={'คือ เวลาที่ผู้ทำแบบสอบถามใช้ในการทำแบบสอบถามจบในแต่ละครั้ง (คำนวณจากแบบสอบถามชนิด OPEN และ CLOSED ทั้งหมดที่ผู้ใช้งานเป็นผู้ดูแล) ยกตัวอย่างเช่น ผู้ทำแบบสอบถามที่คลิกลิงค์เข้ามายังหน้าทำแบบสอบถาม 100 คน แต่ทำแบบสอบถามจบเพียง 50 คน โดยใช้เวลาคนละใช้เวลา 1 นาที เพราะฉะนั้น Average time spent ของแบบสอบถามทั้งหมดจะเท่ากับ 1 นาที'}><Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/></Tooltip><br></br><span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'normal' }}>(on each survey) </span></div>}
+                                
                                 title={<div>Average time spent<br></br><span className="si-token-large" style={{ fontSize: '14px', fontWeight: 'normal' }}>(on each survey) </span></div>}
                                 value={this.state.statisticData.time_spent} 
                                 style={{ display: 'inline-block'}}

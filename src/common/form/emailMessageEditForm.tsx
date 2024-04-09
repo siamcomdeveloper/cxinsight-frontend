@@ -253,17 +253,7 @@ class EditForm extends React.Component<Props, IState, any> {
 
           <Form.Item {...formItemLayout} >
             <label className="sm-label" style={{ marginBottom: '0' }}>{label}
-              &nbsp;
-              <Tooltip overlayStyle={{ whiteSpace: 'pre-line' }} 
-                  title={`ผู้ใช้งานระบบสามารถใส่ ตัวแปร สำหรับแสดงผลข้อมูลได้ดังนี้
-                  - ชื่อโครงการ : \${ProjectName}
-                  - ชื่อช่องทางจัดเก็บ : \${CollectorName}
-                  - ชื่อ (ผู้ทำแบบสอบถาม) : \${FirstName}
-                  - นามสกุล (ผู้ทำแบบสอบถาม) : \${LastName}
-                  * โดยระบบจะดึงข้อมูลจากช่องทางการจัดเก็บ (Collector)
-                  ตามที่ผู้ใช้งานระบบได้ตั้งค่าไว้แทน ตัวแปร ข้างต้น`}>
-                  <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/>
-              </Tooltip> 
+              
             </label>
             {/* <RichTextEditor 
               id={`subject`}
@@ -285,17 +275,7 @@ class EditForm extends React.Component<Props, IState, any> {
 
           <Form.Item {...formItemLayout} >
             <label className="sm-label" style={{ marginBottom: '0' }}>MESSAGE:
-              &nbsp;
-              <Tooltip overlayStyle={{ whiteSpace: 'pre-line' }} 
-                  title={`ผู้ใช้งานระบบสามารถใส่ ตัวแปร สำหรับแสดงผลข้อมูลได้ดังนี้
-                  - ชื่อโครงการ : \${ProjectName}
-                  - ชื่อช่องทางจัดเก็บ : \${CollectorName}
-                  - ชื่อ (ผู้ทำแบบสอบถาม) : \${FirstName}
-                  - นามสกุล (ผู้ทำแบบสอบถาม) : \${LastName}
-                  * โดยระบบจะดึงข้อมูลจากช่องทางการจัดเก็บ (Collector)
-                  ตามที่ผู้ใช้งานระบบได้ตั้งค่าไว้แทน ตัวแปร ข้างต้น`}>
-                  <Icon type="question-circle-o"  style={{ color: 'dodgerblue' }}/>
-              </Tooltip> 
+              
             </label>
             <RichTextEditor
               xSite={this.props.match.params.xSite}

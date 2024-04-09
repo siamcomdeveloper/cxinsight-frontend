@@ -33,7 +33,6 @@ class DropdownQuestion extends React.Component<IProps, IState> {
             answerText: '',
             requiredLabelState: false,
         };
-        // console.log('infoDropdownInstitutionQuestion constructor', props);
     }
 
     public componentDidMount() { 
@@ -49,9 +48,6 @@ class DropdownQuestion extends React.Component<IProps, IState> {
 
     onMouseClickDropdownOptionHandler = (e : any) => {
         try{
-            // console.log('infoDropdownInstitutionQuestion click Dropdown Option target', e.target);
-            // console.log('infoDropdownInstitutionQuestion click Dropdown Option target id', e.target.id);
-            // console.log('infoDropdownInstitutionQuestion click Dropdown Option target value', e.target.value);
 
             const value = e.target.value;
 

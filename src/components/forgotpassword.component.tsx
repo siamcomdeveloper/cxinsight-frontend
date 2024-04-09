@@ -35,8 +35,7 @@ export default class ForgotPassword extends React.Component<IProps>{
                     <div className="site-card-border-less-wrapper">
                         <Card bordered={true} style={{ width: 350 }}>
                             <div style={{ textAlign: 'center' }}>
-                                {/* <img style={{ width: '150px' }} src="https://dl.dropboxusercontent.com/s/nmt9tk5mox7a5nj/ICON%20ANALYTICS_New.png?dl=0" alt="ICONSURVEY"/> */}
-                                <img style={{ width: '150px' }} src={logo} alt="ICONSURVEY"/>
+                                <img style={{ width: '150px' }} src={logo} alt="SURVEY"/>
                             </div>
                             <ForgotPasswordForm history={this.props.history} match={this.props.match} handleHistoryPush={this.handleHistoryPush}></ForgotPasswordForm>
                         </Card>

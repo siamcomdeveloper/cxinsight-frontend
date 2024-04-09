@@ -86,27 +86,6 @@ class DropdownQuestion extends React.Component<IProps, IState> {
                             {this.props.question.label}
                         </span>
                     </h4>
-
-                    { this.props.question.lang ?
-
-                    <div className="question-body clearfix notranslate">
-                        <select id="question-name-title-dropdown-option" className="select no-touch" style={this.props.fontStyles} defaultValue={this.state.answer} onChange={ (e) => this.onMouseClickDropdownOptionHandler(e) }>
-                            <option value="" className="user-generated"></option>
-                            <option value="Mr." className="user-generated">Mr.</option>
-                            <option value="Mrs." className="user-generated">Mrs.</option>
-                            <option value="Miss" className="user-generated">Miss</option>
-                        </select>
-                    </div>
-                    :
-                    <div className="question-body clearfix notranslate">
-                        <select id="question-name-title-dropdown-option" className="select no-touch" style={this.props.fontStyles} defaultValue={this.state.answer} onChange={ (e) => this.onMouseClickDropdownOptionHandler(e) }>
-                            <option value="" className="user-generated"></option>
-                            <option value="นาย" className="user-generated">นาย</option>
-                            <option value="นาง" className="user-generated">นาง</option>
-                            <option value="นางสาว" className="user-generated">นางสาว</option>
-                        </select>
-                    </div>
-                    }
                     
                 </fieldset>
             </div>

@@ -226,68 +226,10 @@ class InfoQuestionForm extends React.Component<Props, IState, any> {
                                 <Checkbox className="info-checkbox" id='client_info_form' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.client_info_form}> Enable Client Info Form</Checkbox>
                             </div>
                         </div>
-                        { this.state.survey.client_info_form ?
-                        <div className="editorSection">
-                            <div className="questionSetting starTable comment-box-setting-container">
-                                <p className="info-title">Enabled Question(s): </p>
-                                <Checkbox className="info-checkbox" id='enable_name_title' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_name_title}>คำนำหน้า (Name Title)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_first_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_first_name}>ชื่อ (First Name)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_last_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_last_name}>นามสกุล (Last Name)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_birthdate' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_birthdate}>วันเดือนปีเกิด (DD/MM/YYYY) (Birthday)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_mobile_number' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_mobile_number}>เบอร์มือถือ (Mobile Number)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_email' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_email}>อีเมล (Email)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_line_id' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_line_id}>ไอดีไลน์ (Line ID)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_id_card_4_digit' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_id_card_4_digit}>รหัสบัตรประชาชน 4 ตัวท้าย (ID Card last 4 digits)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_room_number' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_room_number}>หมายเลขห้อง (Room Number)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_institution_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_institution_name}>ชื่อสถาบัน (Institution Name)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_project_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_project_name}>ชื่อโครงการ (Project Name)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_company_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_company_name}>ชื่อบริษัท (Company Name)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_department' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_department}>แผนก (Department)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_position' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_position}>ตำแหน่ง (Position)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>วันที่ยินยอม (Consent Date)</Checkbox>
-                                {/* <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>Unit No.</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>Media</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>Channel</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>อายุ (Age)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>อาชีพ (Career)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>เงินเดือน (Salary)</Checkbox>
-                                <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>ที่อยู่ติดต่อ (Contacted Address)</Checkbox> */}
-                            </div>
-                        </div>
-                        : <div></div>
-                        }
+                        
                     </TabPane>
 
-                    { this.state.survey.client_info_form ?
-                    <TabPane tab="OPTIONS" key="options">
-                        <div className="questionSetting required-setting-container">
-                            <p className="info-title">Required Question(s): </p>
-                            <Checkbox className="info-checkbox" id='required_name_title' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_name_title}>คำนำหน้า (Name Title)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_first_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_first_name}>ชื่อ (First Name)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_last_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_last_name}>นามสกุล (Last Name)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_birthdate' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_birthdate}>วันเดือนปีเกิด (DD/MM/YYYY) (Birthday)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_mobile_number' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_mobile_number}>เบอร์มือถือ (Mobile Number)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_email' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_email}>อีเมล (Email)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_line_id' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_line_id}>ไอดีไลน์ (Line ID)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_id_card_4_digit' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_id_card_4_digit}>รหัสบัตรประชาชน 4 ตัวท้าย (ID Card last 4 digits)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_room_number' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_room_number}>หมายเลขห้อง (Room Number)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_institution_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_institution_name}>ชื่อสถาบัน (Institution Name)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_project_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_project_name}>ชื่อโครงการ (Project Name)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_company_name' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_company_name}>ชื่อบริษัท (Company Name)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_department' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_department}>แผนก (Department)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_position' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_position}>ตำแหน่ง (Position)</Checkbox>
-                            <Checkbox className="info-checkbox" id='required_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.required_consent_date}>วันที่ยินยอม (Consent Date)</Checkbox>
-                            {/* <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>Unit No.</Checkbox>
-                            <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>Media</Checkbox>
-                            <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>Channel</Checkbox>
-                            <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>อายุ (Age)</Checkbox>
-                            <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>อาชีพ (Career)</Checkbox>
-                            <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>เงินเดือน (Salary)</Checkbox>
-                            <Checkbox className="info-checkbox" id='enable_consent_date' onChange={this.onCheckboxChange.bind(this)} checked={this.state.survey.enable_consent_date}>ที่อยู่ติดต่อ (Contacted Address)</Checkbox> */}
-                        </div>
-                    </TabPane>
-                    : ''
-                    }
+                    
 
                 </Tabs>
 
