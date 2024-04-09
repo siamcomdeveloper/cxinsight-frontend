@@ -137,7 +137,7 @@ const CheckboxRow: React.StatelessComponent<IProps> = (props) => {
                             { props.answer.tags.length && props.question.analyze_entity && !props.question.analyze_sentiment ?
                             <div>
                                 <Divider style={{ fontSize: '18px', color: 'black', fontStyle: 'italic' }} >WORD CLOUD</Divider>
-                                <TagCloud data={props.answer.tags} height={200} color={""} />
+                                {/* <TagCloud data={props.answer.tags} height={200} color={""} /> */}
                                 <div className="comment-list">
                                     <Collapse accordion>
                                         <Panel header="comment" key="comment">
@@ -159,10 +159,10 @@ const CheckboxRow: React.StatelessComponent<IProps> = (props) => {
                             { (props.answer.tags_positive.length ||  props.answer.tags_negative.length) && props.question.analyze_entity && props.question.analyze_sentiment ?
                             <div>
                                 <Divider style={{ fontSize: '18px', color: 'green', fontStyle: 'italic' }} >POSITIVE</Divider>
-                                <TagCloud data={props.answer.tags_positive} height={200} color={"green"}/>
+                                {/* <TagCloud data={props.answer.tags_positive} height={200} color={"green"}/> */}
 
                                 <Divider style={{ fontSize: '18px', color: 'red', fontStyle: 'italic' }} >NEGATIVE</Divider>
-                                <TagCloud data={props.answer.tags_negative} height={200} color={"red"}/>
+                                {/* <TagCloud data={props.answer.tags_negative} height={200} color={"red"}/> */}
                                 
                                 <div className="comment-list">
                                     <Collapse accordion>
