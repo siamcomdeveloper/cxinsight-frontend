@@ -17,7 +17,6 @@ module.exports = function override(config) {
       "https": require.resolve("https-browserify"), 
       "os": require.resolve("os-browserify"), 
       "url": require.resolve("url"),
-      "querystring": require.resolve("querystring-es3"),
       "process": require.resolve("process"),
       }) 
    config.resolve.fallback = fallback; 

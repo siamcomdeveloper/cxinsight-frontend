@@ -51,7 +51,7 @@ const App: React.FC = () => {
                     <Route path='/:xSite/create' component={ Create } />
                     <Route path='/:xSite/preview/:id' component={ Preview } />
                     <Route path='/:xSite/summary/:id' component={ Summary } />
-                    <Route path='/:xSite/sv' component={ RedirectClientSurvey } />
+                    {/* <Route path='/:xSite/sv' component={ RedirectClientSurvey } /> */}
                     <Route path='/:xSite/sv-preview/:surveyId/:size' component={ PreviewClientSurvey } />
                     <Route path='/:xSite/comparison/:id' component={ Comparison } />
                     <Route path='/:xSite/cumulative/:id' component={ Cumulative } />
