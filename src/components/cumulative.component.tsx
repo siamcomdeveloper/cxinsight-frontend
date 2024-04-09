@@ -240,7 +240,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                     // console.log(`${entity} === ${tags10[index].name}`, entity === tags10[index].name);
                                     if(entity === tags[index].name){
                                         // console.log('matched');
-                                        tags[index].value += 10;
+                                        tags[index].value += 1;
                                         matched = true;
                                     }
                                 });
@@ -271,7 +271,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                 // console.log(`${entity} === ${tags10[index].name}`, entity === tags10[index].name);
                                 if(data.analyze_entity === tags[index].name){
                                     // console.log('matched');
-                                    tags[index].value += 10;
+                                    tags[index].value += 1;
                                     matched = true;
                                 }
                             });
@@ -331,7 +331,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                         // if(tags_negative[index].name.localeCompare(item.name) === 0){
                                         if(entity === tags_negative[index].name){
                                         // console.log('matched');
-                                            tags_negative[index].value += 10;
+                                            tags_negative[index].value += 1;
                                             matched = true;
                                         }
                                     });
@@ -363,7 +363,7 @@ export default class Cumulative extends React.Component<IProps, IState> {
                                         // if(tags_positive[index].name.localeCompare(item.name) === 0){
                                         if(entity === tags_positive[index].name){
                                         // console.log('matched');
-                                            tags_positive[index].value += 10;
+                                            tags_positive[index].value += 1;
                                             matched = true;
                                         }
                                     });
