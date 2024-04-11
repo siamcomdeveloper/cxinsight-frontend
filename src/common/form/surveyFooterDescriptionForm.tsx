@@ -34,9 +34,7 @@ interface IState{
   isLoading: boolean;
   survey: Surveys;
   footerDescription: any;
-  footerDescriptionEN: any;
   currentFooterDescription: any;
-  currentFooterDescriptionEN: any;
   fontColor: any;
 }
 
@@ -49,9 +47,7 @@ class EditForm extends React.Component<Props, IState, any> {
         isLoading: true,
         survey: this.props.survey,
         footerDescription: [],
-        footerDescriptionEN: [],
         currentFooterDescription: [],
-        currentFooterDescriptionEN: [],
         fontColor: []
       }
     }
@@ -69,9 +65,7 @@ class EditForm extends React.Component<Props, IState, any> {
                       // console.log('SurveyFooterDescriptionForm componentDidMount pageNo', this.props.pageNo);
 
                       const footerDescription = this.props.survey.footer_description ? this.props.survey.footer_description.includes('~') ? this.props.survey.footer_description.split('~') : [this.props.survey.footer_description] : [''];
-                      const footerDescriptionEN = this.props.survey.footer_description_EN ? this.props.survey.footer_description_EN.includes('~') ? this.props.survey.footer_description_EN.split('~') : [this.props.survey.footer_description_EN] : [''];
                       // console.log('footerDescription', footerDescription);
-                      // console.log('footerDescriptionEN', footerDescriptionEN);
 
                       //check if current page is more then set page footer description number on design page
                       // console.log('this.props.pageNo > footerDescription.length', this.props.pageNo > footerDescription.length);
@@ -79,68 +73,49 @@ class EditForm extends React.Component<Props, IState, any> {
 
                           //prepare a new array for footer description
                           const footerDescriptionArr = new Array(this.props.pageNo); 
-                          const footerDescriptionArrEN = new Array(this.props.pageNo); 
                           for (let i = 0; i < this.props.pageNo; i++) { 
                             footerDescriptionArr[i] = ''; 
-                            footerDescriptionArrEN[i] = ''; 
                           }
                           // console.log('after prepare footerDescriptionArr', footerDescriptionArr);
-                          // console.log('after prepare footerDescriptionArrEN', footerDescriptionArrEN);
 
                           //transfers all set page footer description to new array
                           for (let i = 0; i < footerDescription.length; i++) { 
                             footerDescriptionArr[i] = footerDescription[i]; 
-                            footerDescriptionArrEN[i] = footerDescriptionEN[i]; 
                           }
                           // console.log('after transfers footerDescriptionArr', footerDescriptionArr);
-                          // console.log('after transfers footerDescriptionArrEN', footerDescriptionArrEN);
 
                           this.setState({
                               footerDescription: footerDescriptionArr,
-                              footerDescriptionEN: footerDescriptionArrEN,
                               currentFooterDescription: footerDescriptionArr[this.props.pageNo-1],
-                              currentFooterDescriptionEN: footerDescriptionArrEN[this.props.pageNo-1],
                               fontColor: colors
                           }, () => {
                               // console.log('if after this.state.footerDescription', this.state.footerDescription);
-                              // console.log('if after this.state.footerDescriptionEN', this.state.footerDescriptionEN);
 
                               // const currentFooterDescription = this.state.footerDescription[this.props.pageNo-1];
-                              // const currentFooterDescriptionEN = this.state.footerDescriptionEN[this.props.pageNo-1];
                               // console.log('currentFooterDescription', currentFooterDescription);
-                              // console.log('currentFooterDescriptionEN', currentFooterDescriptionEN);
 
                               this.setState({ isLoading: false }, () => {
                                   this.props.form.setFieldsValue({
                                       footer_description: this.state.currentFooterDescription,
                                   }, () => { /*onsole.log('after')*/ });
-
-                                  
                               });
                           });
                       }
                       else{
                           this.setState({
                               footerDescription: footerDescription,
-                              footerDescriptionEN: footerDescriptionEN,
                               currentFooterDescription: footerDescription[this.props.pageNo-1],
-                              currentFooterDescriptionEN: footerDescriptionEN[this.props.pageNo-1],
                               fontColor: colors
                           }, () => {
                               // console.log('else after this.state.footerDescription', this.state.footerDescription);
-                              // console.log('else after this.state.footerDescriptionEN', this.state.footerDescriptionEN);
 
                               // const currentFooterDescription = this.state.footerDescription[this.props.pageNo-1];
-                              // const currentFooterDescriptionEN = this.state.footerDescriptionEN[this.props.pageNo-1];
                               // console.log('currentFooterDescription', currentFooterDescription);
-                              // console.log('currentFooterDescriptionEN', currentFooterDescriptionEN);
 
                               this.setState({ isLoading: false }, () => {
                                   this.props.form.setFieldsValue({
                                       footer_description: this.state.currentFooterDescription,
                                   }, () => { /*onsole.log('after')*/ });
-
-                               
                               });
                               
                           });
@@ -188,36 +163,27 @@ class EditForm extends React.Component<Props, IState, any> {
           // console.log('this.state.footerDescription', this.state.footerDescription);
 
           const footerDescriptionArr = this.state.footerDescription;
-          const footerDescriptionArrEN = this.state.footerDescriptionEN;
           // console.log('footerDescriptionArr', footerDescriptionArr);
-          // console.log('footerDescriptionArrEN', footerDescriptionArrEN);
 
           // console.log('pageNo', this.props.pageNo);
           // console.log('pageNo-1', this.props.pageNo-1);
 
           const footerDescriptionModified = this.state.survey.footer_description ? !this.state.survey.footer_description.includes('~') : true;
-          const footerDescriptionModifiedEN = this.state.survey.footer_description_EN ? !this.state.survey.footer_description_EN.includes('~') : true;
-
           // console.log(`footerDescriptionModified`, footerDescriptionModified);
-          // console.log(`footerDescriptionModifiedEN`, footerDescriptionModifiedEN);
 
           if(footerDescriptionModified) footerDescriptionArr[this.props.pageNo-1] = this.state.survey.footer_description;
-          if(footerDescriptionModifiedEN) footerDescriptionArrEN[this.props.pageNo-1] = this.state.survey.footer_description_EN;
-          
           // console.log('after footerDescriptionArr', footerDescriptionArr);
-          // console.log('after footerDescriptionArrEN', footerDescriptionArrEN);
 
           let modifiedFooterDescription = footerDescriptionArr.join('~');
-          let modifiedFooterDescriptionEN = footerDescriptionArrEN.join('~');
           // console.log('modifiedFooterDescription', modifiedFooterDescription);
-          // console.log('modifiedFooterDescriptionEN', modifiedFooterDescriptionEN);
   
           let fields = [] as any;
               
-          fields = ['footer_description'];
+          if(this.state.survey.multi_lang) fields = ['footer_description'];
+          else fields = ['footer_description'];
 
           const jwt = getJwtToken();
-          BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [modifiedFooterDescription, modifiedFooterDescriptionEN]), jwt).then(
+          BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [modifiedFooterDescription]), jwt).then(
               (rp) => {
                   try{
                       if (rp.Status) {
@@ -274,7 +240,27 @@ class EditForm extends React.Component<Props, IState, any> {
       }
       return (
         <div>
-          
+          <Form.Item {...formItemLayout} >
+              <RichTextEditor
+                xSite={this.props.match.params.xSite}
+                id={`footer_description`}
+                theme={`snow`}
+                fontColor={this.state.fontColor}
+                defaultValue={this.state.currentFooterDescription} 
+                onChange={this.onRichChange}
+                placeholder={'Please input the survey footer description...'}
+              /> 
+              {getFieldDecorator('footer_description', {
+                rules: [
+                  {
+                    // required: true,
+                    message: 'Please input the survey footer description',
+                  },
+                ],
+              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Footer Description" />)}
+              // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Footer Description" rows={5}/>)}
+              })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
+          </Form.Item>
 
 
           <footer className="wds-modal__foot">

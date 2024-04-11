@@ -73,10 +73,10 @@ const textRow: React.StatelessComponent<IProps> = (props) => {
                         { (props.answer.tags_positive.length ||  props.answer.tags_negative.length) && props.question.analyze_entity && props.question.analyze_sentiment ?
                         <div>
                             <Divider style={{ fontSize: '18px', color: 'green', fontStyle: 'italic' }} >POSITIVE</Divider>
-                            {/* <TagCloud data={props.answer.tags_positive} height={200} color={"green"}/> */}
+                            <TagCloud data={props.answer.tags_positive} height={200}/>
 
                             <Divider style={{ fontSize: '18px', color: 'red', fontStyle: 'italic' }} >NEGATIVE</Divider>
-                            {/* <TagCloud data={props.answer.tags_negative} height={200} color={"red"}/> */}
+                            <TagCloud data={props.answer.tags_negative} height={200}/>
                             
                             <div className="comment-list">
                                 <Collapse accordion>

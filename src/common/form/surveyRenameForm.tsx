@@ -1,6 +1,5 @@
 /* eslint-disable import/first */
 import * as React from "react";
-// import { Form, Input, Button, Checkbox, Select } from 'antd';
 import { Form, Input, Button, Spin } from 'antd';
 import { FormComponentProps } from "antd/lib/form";
 import BaseService from '../../service/base.service';
@@ -70,8 +69,6 @@ class EditForm extends React.Component<Props, IState, any> {
                               name: this.props.survey.name,
                               name_html: this.props.survey.name_html ? this.props.survey.name_html : `<p>${this.props.survey.name}</p>`,
                             }, () => { /*console.log('after')*/} );
-      
-                           
 
                           });
                       });
@@ -125,10 +122,11 @@ class EditForm extends React.Component<Props, IState, any> {
   
           let fields = [] as any;
             
-          fields = ['name', 'name_html'];
+          if(this.state.survey.multi_lang) fields = ['name', 'name_html'];
+          else fields = ['name', 'name_html'];
 
           const jwt = getJwtToken();
-          BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [this.state.survey.name, this.state.survey.name_html, this.state.survey.name_EN, this.state.survey.name_EN_html]), jwt).then(
+          BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [this.state.survey.name, this.state.survey.name_html]), jwt).then(
               (rp) => {
                   try{
                       if (rp.Status) {
@@ -222,6 +220,38 @@ class EditForm extends React.Component<Props, IState, any> {
       return (
         <div>
           
+          <div>
+            <Form.Item {...formItemLayout} >
+              <RichTextEditor
+                xSite={this.props.match.params.xSite}
+                id={`name`}
+                theme={`snow`}
+                fontColor={this.state.fontColor}
+                defaultValue={this.props.survey.name_html ? this.props.survey.name_html : `<p>${this.props.survey.name}</p>`} 
+                onChange={this.onRichChange}
+                placeholder={'Please input the survey name'}
+              />
+              {getFieldDecorator('name', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Please input the survey name',
+                  },
+                ],
+              })(<Input style={{ display: 'none' }} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name"*/ />)}
+            </Form.Item>
+
+            <Form.Item {...formItemLayout} style={{ display: 'none' }}>
+              {getFieldDecorator('name_html', {
+                rules: [
+                  {
+                    message: 'Please input the survey name',
+                  },
+                ],
+              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name" />)}
+              })(<Input style={{ display: 'none' }} /*className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey name"*/ />)}
+            </Form.Item>
+          </div>
 
           <footer className="wds-modal__foot">
             <div className="wds-modal__actions-right">

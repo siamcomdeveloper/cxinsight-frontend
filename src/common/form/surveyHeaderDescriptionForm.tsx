@@ -35,9 +35,7 @@ interface IState{
   isLoading: boolean;
   survey: Surveys;
   headerDescription: any;
-  headerDescriptionEN: any;
   currentHeaderDescription: any;
-  currentHeaderDescriptionEN: any;
   fontColor: any;
   // firstTime: any;
   // hideToolbar: any;
@@ -53,9 +51,7 @@ class EditForm extends React.Component<Props, IState, any> {
         isLoading: true,
         survey: this.props.survey,
         headerDescription: [],
-        headerDescriptionEN: [],
         currentHeaderDescription: '',
-        currentHeaderDescriptionEN: '',
         fontColor: [],
         // firstTime: true,
         // hideToolbar: true,
@@ -85,9 +81,7 @@ class EditForm extends React.Component<Props, IState, any> {
                         // console.log('colors', colors);
 
                         const headerDescription = this.props.survey.header_description ? this.props.survey.header_description.includes('~') ? this.props.survey.header_description.split('~') : [this.props.survey.header_description] : [''];
-                        const headerDescriptionEN = this.props.survey.header_description_EN ? this.props.survey.header_description_EN.includes('~') ? this.props.survey.header_description_EN.split('~') : [this.props.survey.header_description_EN] : [''];
                         // console.log('headerDescription', headerDescription);
-                        // console.log('headerDescriptionEN', headerDescriptionEN);
 
                         //check if current page No. is more than header description number on design page
                         // console.log('this.props.pageNo > headerDescription.length', this.props.pageNo > headerDescription.length);
@@ -102,37 +96,19 @@ class EditForm extends React.Component<Props, IState, any> {
                               headerDescriptionArrEN[i] = '';
                             }
                             // console.log('after prepare headerDescriptionArr', headerDescriptionArr);
-                            // console.log('after prepare headerDescriptionArrEN', headerDescriptionArrEN);
 
                             //transfers all set page header description to new array
                             for (let i = 0; i < headerDescription.length; i++) { 
                               headerDescriptionArr[i] = headerDescription[i]; 
-                              headerDescriptionArrEN[i] = headerDescriptionEN[i];
                             }
                             // console.log('after transfers headerDescriptionArr', headerDescriptionArr);
-                            // console.log('after transfers headerDescriptionArrEN', headerDescriptionArrEN);
 
                             this.setState({
                                 headerDescription: headerDescriptionArr,
-                                headerDescriptionEN: headerDescriptionArrEN,
                                 currentHeaderDescription: headerDescriptionArr[this.props.pageNo-1],
-                                currentHeaderDescriptionEN: headerDescriptionEN[this.props.pageNo-1],
                                 fontColor: colors
                             }, () => {
-                                // console.log('if after this.state.headerDescription', this.state.headerDescription);
-                                // console.log('if after this.state.headerDescriptionEN', this.state.headerDescriptionEN);
-
-                                // const currentHeaderDescription = this.state.headerDescription[this.props.pageNo-1];
-                                // const currentHeaderDescriptionEN = this.state.headerDescriptionEN[this.props.pageNo-1];
-                                // console.log('currentHeaderDescription', currentHeaderDescription);
-                                // console.log('currentHeaderDescriptionEN', currentHeaderDescriptionEN);
-
-                                // this.setState({
-                                //     currentHeaderDescription: currentHeaderDescription,
-                                //     currentHeaderDescriptionEN: currentHeaderDescriptionEN,
-                                // }, () => {
-                                    // console.log('this.state.currentHeaderDescription', this.state.currentHeaderDescription);
-                                    // console.log('this.state.currentHeaderDescriptionEN', this.state.currentHeaderDescriptionEN);
+                               
                                     this.setState({ isLoading: false }, () => {
                                         this.props.form.setFieldsValue({
                                             header_description: this.state.currentHeaderDescription,
@@ -144,9 +120,7 @@ class EditForm extends React.Component<Props, IState, any> {
                         } else{
                             this.setState({
                                 headerDescription: headerDescription,
-                                headerDescriptionEN: headerDescriptionEN,
                                 currentHeaderDescription: headerDescription[this.props.pageNo-1],
-                                currentHeaderDescriptionEN: headerDescriptionEN[this.props.pageNo-1],
                                 fontColor: colors
                             }, () => {
                                 // console.log('else after this.state.headerDescription', this.state.headerDescription);
@@ -215,42 +189,23 @@ class EditForm extends React.Component<Props, IState, any> {
           if (!err) {
             // console.log('check', this.state.survey);
             const headerDescriptionArr = this.state.headerDescription;
-            const headerDescriptionArrEN = this.state.headerDescriptionEN;
-            // console.log('headerDescriptionArr', headerDescriptionArr);
-            // console.log('headerDescriptionArrEN', headerDescriptionArrEN);
-
-            // console.log('pageNo', this.props.pageNo);
-            // console.log('pageNo-1', this.props.pageNo-1);
-
-            // console.log('this.state.survey.header_description', this.state.survey.header_description);
-            // console.log('this.state.survey.header_description_EN', this.state.survey.header_description_EN);
-
-            // console.log(`this.state.survey.header_description.includes('~')`, this.state.survey.header_description ? this.state.survey.header_description.includes('~') : false);
-            // console.log(`this.state.survey.header_description_EN.includes('~')`, this.state.survey.header_description_EN ? this.state.survey.header_description_EN.includes('~') : false);
-            
             const headerDescriptionModified = this.state.survey.header_description ? !this.state.survey.header_description.includes('~') : true;
-            const headerDescriptionModifiedEN = this.state.survey.header_description_EN ? !this.state.survey.header_description_EN.includes('~') : true;
-
-            // console.log(`headerDescriptionModified`, headerDescriptionModified);
-            // console.log(`headerDescriptionModifiedEN`, headerDescriptionModifiedEN);
 
             if(headerDescriptionModified) headerDescriptionArr[this.props.pageNo-1] = this.state.survey.header_description;
-            if(headerDescriptionModifiedEN) headerDescriptionArrEN[this.props.pageNo-1] = this.state.survey.header_description_EN;
+           
 
             // console.log('after headerDescriptionArr', headerDescriptionArr);
-            // console.log('after headerDescriptionArrEN', headerDescriptionArrEN);
 
             let modifiedHeaderDescription = headerDescriptionArr.join('~');
-            let modifiedHeaderDescriptionEN = headerDescriptionArrEN.join('~');
             // console.log('modifiedHeaderDescription', modifiedHeaderDescription);
-            // console.log('modifiedHeaderDescriptionEN', modifiedHeaderDescriptionEN);
 
             let fields = [] as any;
                 
-            fields = ['header_description'];
+            if(this.state.survey.multi_lang) fields = ['header_description'];
+            else fields = ['header_description'];
 
             const jwt = getJwtToken();
-            BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [modifiedHeaderDescription, modifiedHeaderDescriptionEN]), jwt).then(
+            BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [modifiedHeaderDescription]), jwt).then(
                 (rp) => {
                     try{
                         if (rp.Status) {
@@ -355,7 +310,32 @@ class EditForm extends React.Component<Props, IState, any> {
       }
       return (
         <div>
+          <Form.Item {...formItemLayout} >
+              <RichTextEditor
+                xSite={this.props.match.params.xSite}
+                id={`header_description`}
+                theme={`snow`}
+                fontColor={this.state.fontColor}
+                defaultValue={this.state.currentHeaderDescription}
+                onChange={this.onRichChange}
+                placeholder={'Please input the survey header description...'}
+                // hideToolbar={this.state.hideToolbar}
+                // onBlur={this.handleBlur}
+                // onFocus={this.handleFocus}
+              /> 
+              {getFieldDecorator('header_description', {
+                rules: [
+                  {
+                    // required: true,
+                    message: 'Please input the survey header description',
+                  },
+                ],
+              // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Header Description" />)}
+            // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Header Description" rows={5}/>)}
+            })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
+          </Form.Item>
           
+
           <footer className="wds-modal__foot">
             <div className="wds-modal__actions-right">
               <Button type="primary" className="wds-button wds-button--primary wds-button--solid wds-button--md" id="newSurvey" onClick={this.check}>

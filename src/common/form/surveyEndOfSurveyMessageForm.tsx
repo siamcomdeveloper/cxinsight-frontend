@@ -90,7 +90,7 @@ class EditForm extends React.Component<Props, IState, any> {
                                   end_of_survey_banner_src: this.state.survey.end_of_surveybanner_src,
                                   end_of_survey_image_width: this.state.survey.end_of_survey_image_width,
                               }, () => { /*console.log('after')*/ });
-        
+
                           });
                       });
 
@@ -209,11 +209,9 @@ class EditForm extends React.Component<Props, IState, any> {
           
           let fields = [] as any;
               
-          
-
-          
+        
           fields = ['end_of_survey_enable_src_type', 'end_of_survey_logo_alignment', 'end_of_survey_image_src', 'end_of_survey_banner_src', 'end_of_survey_image_width', 'end_of_survey_message'];
-         
+        
 
           const jwt = getJwtToken();
 
@@ -226,7 +224,7 @@ class EditForm extends React.Component<Props, IState, any> {
           // console.log('imgColumn', imgColumn);
           // console.log('this.state.radioLogoAlignment', this.state.radioLogoAlignment);
           
-          BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [imgSrcImageVal, this.state.radioLogoAlignment, this.state.end_of_survey_image_src, this.state.end_of_survey_banner_src, this.state.survey.end_of_survey_image_width, this.state.survey.end_of_survey_message, this.state.survey.end_of_survey_message_EN]), jwt).then(
+          BaseService.update(this.props.match.params.xSite, "/surveys/", this.state.survey.id, this.selectUpdate(this.state.survey, fields, [imgSrcImageVal, this.state.radioLogoAlignment, this.state.end_of_survey_image_src, this.state.end_of_survey_banner_src, this.state.survey.end_of_survey_image_width, this.state.survey.end_of_survey_message]), jwt).then(
               (rp) => {
                   try{
                       if (rp.Status) {
@@ -260,11 +258,6 @@ class EditForm extends React.Component<Props, IState, any> {
         });
     };
 
-
-    // onChange = (e: React.ChangeEvent<HTMLInputElement>)=> {
-    //   this.onFieldValueChange(e.target.id, e.target.value)
-    // }
-
     onFieldValueChange = (fieldName: string, value: any) => { 
       const nextState = {
           ...this.state,
@@ -284,22 +277,6 @@ class EditForm extends React.Component<Props, IState, any> {
             radioSrcValue: parseInt(e.target.value),
         });
 
-        // const jwt = getJwtToken();
-        // BaseService.update(this.props.match.params.xSite, "/collector/", this.state.collector.id, this.selectUpdate(this.state.collector, ['send'], [parseInt(e.target.value)]), jwt).then(
-        //     (rp) => {
-        //         try{
-        //             if (rp.Status) {
-        //                 toastr.success('Send Updated!');
-        //                 // props.history.goBack();
-        //                 // this.setState({ collectorStatus: statusName });
-        //             } else {
-        //                 toastr.error(rp.Messages);
-        //                 console.log("Messages: " + rp.Messages);
-        //                 console.log("Exception: " + rp.Exception);
-        //             }
-        //         }catch(error){ console.log("Exception: " + error); }
-        //     }
-        // );
     };
 
     onRadioLogoAlignmentChange = (e: RadioChangeEvent) => {
@@ -475,6 +452,29 @@ class EditForm extends React.Component<Props, IState, any> {
                   
                 : null }
           </Radio.Group>
+
+          <Form.Item {...formItemLayout} style={{ marginTop: '15px' }}>
+            <RichTextEditor 
+                xSite={this.props.match.params.xSite}
+                id={`end_of_survey_message`}
+                theme={`snow`}
+                fontColor={this.state.fontColor}
+                defaultValue={this.state.survey.end_of_survey_message} 
+                onChange={this.onRichChange}
+                placeholder={'Please input the end of survey message...'}
+            /> 
+            {getFieldDecorator('end_of_survey_message', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please input the end of survey message',
+                },
+              ],
+            // })(<Input className="wds-input wds-input--md wds-input--stretched" onChange={this.onChange} placeholder="Survey Footer Description" />)}
+            // })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" onChange={this.onTextAreaChange} placeholder="Survey Footer Description" rows={5}/>)}
+            })(<TextArea className="wds-textarea wds-textarea--sm wds-textarea--stretched" style={{ display: 'none' }}/>)}
+          </Form.Item>
+          
 
           <footer className="wds-modal__foot">
             <div className="wds-modal__actions-right">
